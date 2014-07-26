@@ -120,7 +120,7 @@ function cargarMapas(form)
 	envio='';
 	
 	Enviar(direccion,contenedor,envio);
-	
+	//include_once("view/cargarMapa.js")
 }
 
 
@@ -173,8 +173,4 @@ function cargarMapaIndividual(codMapa)
 	Enviar(direccion,contenedor,envio);
 	
 	include_once("view/cargarMapa.js");
-	
-	
 }
-
-

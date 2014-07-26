@@ -1,20 +1,18 @@
-
-
 <section class="content-header">
-	<!--<h1>
+	<!--<h1>onmouseover="javascript:$('.map').maphilight();"
 		Mapas
 		<small></small>
 	</h1>-->
 	<ol class="breadcrumb">
-		<li><a href="index.html"><i class="fa fa-dashboard"></i> Home</a></li>
+		<li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
 		<li class="active">Mapas</li>
 	</ol>
 </section>
 
 <!-- Main content -->
-<section class="content">
-	<div class="col-lg-3 col-xs-6">
-		<img src="img/mapa/zonas/<?php echo $_POST['codMapa']; ?>.png" width="500" height="400" border="0" class="map" usemap="#mapa" />
+<section class="content" >
+	<div class="col-lg-3 col-xs-6" >
+		<img src="img/mapa/zonas/<?php echo $_POST['codMapa']; ?>.png" width="994" height="994" border="0" class="map" usemap="#mapa" />
 		
 		<map name="mapa">
 			<!-- #$-:Image map file created by GIMP Image Map plug-in -->
@@ -22,7 +20,7 @@
 			<!-- #$-:Please do not edit lines starting with "#$" -->
 			<!-- #$VERSION:2.3 -->
 			<!-- #$AUTHOR:bryrodpe    -->
-			<area shape="rect" coords="0,0,28,28" href="#a1"  />
+			<area shape="rect" coords="0,0,28,28" href="#a1" />
 			<area shape="rect" coords="28,0,56,40" href="#a2" />
 			<area shape="rect" coords="56,0,84,40" href="#a3" />
 			<area shape="rect" coords="84,0,112,40" href="#a4" />
