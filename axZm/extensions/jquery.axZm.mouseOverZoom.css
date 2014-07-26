@@ -1,0 +1,83 @@
+/**
+* Plugin: jQuery AJAX-ZOOM, jquery.axZm.mouseOverZoom.css
+* Copyright: Copyright (c) 2010-2013 Vadim Jacobi
+* License Agreement: http://www.ajax-zoom.com/index.php?cid=download
+* Version: 4.1.5
+* Date: 2014-04-03
+* URL: http://www.ajax-zoom.com
+* Documentation: http://www.ajax-zoom.com/index.php?cid=docs
+*/
+
+
+/* This is the moving lens square underneath the mouse pointer. */
+.mouseOverLens {
+	border: 1px solid transparent;
+	background-color: #000000;	
+	cursor: pointer;
+	background-image: url(../icons/mousetrapFullscreen.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.mouseOverTrap {
+	background-image: url(../icons/empty.gif);
+	cursor: pointer;
+}
+ 
+/* This is for the title text. */
+.mouseOverTitle {
+	font-family: Arial, Helvetica, sans-serif;
+	position: absolute !important;
+	background-color: #000;
+	color: #fff;
+	padding: 3px;
+	width: 100%;
+	text-align: center;	
+	font-weight: bold;
+	font-size: 10px;
+}
+
+/* Flyout zoom window */
+.mouseOverFlyOut {
+	border-color: #CCCCCC;
+	border-style: solid;
+	box-shadow: 5px 5px 7px #818181;
+	-webkit-box-shadow: 5px 5px 7px #818181;
+	-moz-box-shadow: 5px 5px 7px #818181;
+}
+
+/* This is the loading message. */
+.mouseOverLoading {
+	/*background-color: #444444;*/
+	background-image: url(../icons/tr_black_50.png);
+	padding: 5px;
+	text-align: right;
+	/*border: #000000 1px solid;*/
+	/*text-shadow: 1px 1px 2px #000;*/
+	font: Arial;
+	font-size: 12px;
+	line-height: 20px;
+	color: #FDFDFD;
+	border-radius: 5px;
+}
+
+/* Thumbnails for gallery */
+.mouseOverThumb{
+	/* Empty class needed as identifier, do not put anything in it*/
+}
+
+.mouseOverThumbWrap{
+    float: left;
+    width: 60px;
+    height: 80px;
+    line-height: 77px;
+    text-align: center;
+    border: #CCCCCC 1px solid;
+    cursor: pointer;
+    margin: 0 3px 3px 0;
+}
+.mouseOverThumbWrap img{
+    vertical-align: middle;
+    max-height: 70px;
+    max-width: 70px;
+}
