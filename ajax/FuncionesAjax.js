@@ -99,6 +99,13 @@ function include(file_path){
 	document.body.appendChild(j);
 }
 
+function include_once(file_path){
+	var sc = document.getElementsByTagName("script");
+	for (var x in sc)
+		if (sc[x].src != null && sc[x].src.indexOf(file_path) != -1) return;
+	include(file_path);
+}
+
 /****************FUNCIONES PARA CARGAR PLANTILLAS. LA FORMA SIEMPRE ES POST*********/
 
 function cargarMapas(form)
@@ -133,7 +140,7 @@ function cargarCalendario(form)
 	envio='';
 	
 	Enviar(direccion,contenedor,envio);
-	include("view/calendar.js")
+	include_once("view/calendar.js")
 }
 
 function cargarReporte1(form)
@@ -148,7 +155,7 @@ function cargarReporte1(form)
 	envio='';
 	
 	Enviar(direccion,contenedor,envio);
-	include("view/reporte1.js")
+	include_once("view/reporte1.js")
 	
 }
 
@@ -165,7 +172,7 @@ function cargarMapaIndividual(codMapa)
 	
 	Enviar(direccion,contenedor,envio);
 	
-	include("view/cargarMapa.js");
+	include_once("view/cargarMapa.js");
 	
 	
 }

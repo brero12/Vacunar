@@ -6,7 +6,7 @@
 	</li>
 	<li>
 		<a href="JavaScript:cargarMapas(this)">
-			<i class="fa fa-th"></i> <span>Mapas</span> <small class="badge pull-right bg-green">new</small>
+			<i class="fa fa-th"></i> <span>Ver Mapa</span> <small class="badge pull-right bg-green">new</small>
 		</a>
 	</li>
 	
@@ -19,9 +19,9 @@
 			<i class="fa fa-angle-left pull-right"></i>
 		</a>
 		<ul class="treeview-menu">
-			<li><a href="pages/tables/simple.html"><i class="fa fa-angle-double-right"></i> Crear Usuario</a></li>
-			<li><a href="pages/tables/data.html"><i class="fa fa-angle-double-right"></i> Adicionar Familia</a></li>
-			<li><a href="pages/tables/data.html"><i class="fa fa-angle-double-right"></i> Modificar Usuario</a></li>
+			<li><a href="#pages/tables/simple.html"><i class="fa fa-angle-double-right"></i> Crear Usuario</a></li>
+			<li><a href="#pages/tables/data.html"><i class="fa fa-angle-double-right"></i> Adicionar Familia</a></li>
+			<li><a href="#pages/tables/data.html"><i class="fa fa-angle-double-right"></i> Modificar Usuario</a></li>
 		</ul>
 	</li>
 	
