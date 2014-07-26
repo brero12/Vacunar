@@ -13,9 +13,8 @@
 
 <!-- Main content -->
 <section class="content">
-	
 	<div class="col-lg-3 col-xs-6">
-		<img src="img/mapa/zonas/<?php echo $_POST['codMapa']; ?>.png" width="500" height="400" border="0" usemap="#mapa" />
+		<img src="img/mapa/zonas/<?php echo $_POST['codMapa']; ?>.png" width="500" height="400" border="0" class="map" usemap="#mapa" />
 		
 		<map name="mapa">
 			<!-- #$-:Image map file created by GIMP Image Map plug-in -->
@@ -23,7 +22,7 @@
 			<!-- #$-:Please do not edit lines starting with "#$" -->
 			<!-- #$VERSION:2.3 -->
 			<!-- #$AUTHOR:bryrodpe    -->
-			<area shape="rect" coords="0,0,28,28" href="#a1" data-maphilight='{"strokeColor":"0000ff","strokeWidth":5,"fillColor":"ff0000","fillOpacity":0.6}' />
+			<area shape="rect" coords="0,0,28,28" href="#a1"  />
 			<area shape="rect" coords="28,0,56,40" href="#a2" />
 			<area shape="rect" coords="56,0,84,40" href="#a3" />
 			<area shape="rect" coords="84,0,112,40" href="#a4" />
