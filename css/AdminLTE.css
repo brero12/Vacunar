@@ -1,6 +1,6 @@
-@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic);
 
-@import url(//fonts.googleapis.com/css?family=Kaushan+Script);
+@import url(http://fonts.googleapis.com/css?family=Kaushan+Script);
 /*! 
  *   AdminLTE v1.2
  *   Author: AlmsaeedStudio.com
@@ -113,7 +113,6 @@ body.fixed .wrapper {
 .content {
   padding: 20px 15px;
   background: #f9f9f9;
-  overflow: auto;
 }
 /* Utility */
 /* H1 - H6 font */
@@ -1319,7 +1318,7 @@ body > .header .logo .icon {
   float: left;
   cursor: default;
 }
-.box .box-header a:not(.btn) {
+.box .box-header a {
   color: #444;
 }
 .box .box-header > .box-tools {
