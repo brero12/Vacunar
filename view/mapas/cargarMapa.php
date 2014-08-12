@@ -1,8 +1,70 @@
 <script type="text/javascript">
    $(document).ready(function(){
-       $('.map').maphilight();
+      /* $('.map').maphilight();*/
     })
 </script>
+
+<script type="text/javascript">
+         function getMap(elImage) {
+            // Be sure a map is specified for the image.
+            if (null != elImage.getAttribute('usemap')) {
+               // Remove the leading # from the bookmark.
+               var strMap = elImage.getAttribute('usemap').substring(1);
+               // Return the element with the specified name.
+               return strMap;
+            }
+               return null;
+         }
+
+         function zoomImage(elImage, amount) {
+            // Expand the image the specified amount.
+            var elMap = getMap(elImage);
+            elImage.width *= amount;
+            elImage.height *= amount;
+            // If an image map is available, scale it too.
+            if (null != elMap) {
+               elMap=document.getElementsByName(elMap)[0];
+               for (var intLoop = 0; intLoop < elMap.areas.length; intLoop++) {
+                  var elArea = elMap.areas[intLoop];
+                  // Break the coordinates string into an array.
+                  var coords = elArea.coords.split(",");
+                  var scaledCoords = "";
+                  // Rebuild the new scaled string.
+                  for (coord in coords) {
+                     scaledCoords += (coords[coord] * amount) + ",";
+                  }
+
+                  // Put the scaled coordinates back into the map.
+                  elArea.coords = scaledCoords;
+               }
+            }
+         }
+
+         function swapButtons(b1, b2) {
+            // Swap the enabled/disabled buttons.
+            document.getElementById(b1).disabled = true;
+            document.getElementById(b2).disabled = false;
+         }
+         function doClick(e) {
+         	var node=null;
+            if(!e) { // IE
+            	e=window.event;
+                node=e.srcElement;
+                }
+			else {
+                node = e.target;
+                while(node.nodeType != node.ELEMENT_NODE) {
+                    node = node.parentNode;
+                    }
+                }                
+
+           /*if ("AREA"==node.nodeName) {
+             alert("You clicked on an area element");
+             return false;
+           }*/
+        }
+        document.onclick=doClick;
+      </script>
 
 <section class="content-header">
 	<ol class="breadcrumb">
@@ -13,8 +75,13 @@
 
 <!-- Main content -->
 <section class="content" >
-	<div class="col-lg-3 col-xs-6" >
-		<img src="img/mapa/zonas/<?php echo $_POST['codMapa']; ?>.png" width="994" height="994" border="0" class="map" usemap="#mapa" />
+	
+	 <p>
+         <input value="Zoom In" onclick="zoomImage(document.getElementById('img1'), 2); swapButtons('zoomin', 'zoomout');" id="zoomin" type="button">
+         <input disabled="disabled" value="Zoom Out" onclick="zoomImage(document.getElementById('img1'), .1); swapButtons('zoomout', 'zoomin');" id="zoomout" type="button">
+      </p>
+	<div >
+		<img id="img1" src="img/mapa/zonas/<?php echo $_POST['codMapa']; ?>.png" width='994' height='994' border="0" class="map" usemap="#mapa" />
 		
 		<map name="mapa">
 			<!-- #$-:Image map file created by GIMP Image Map plug-in -->
