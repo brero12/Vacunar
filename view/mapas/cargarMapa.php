@@ -42,8 +42,8 @@
 
          function swapButtons(b1, b2) {
             // Swap the enabled/disabled buttons.
-            document.getElementById(b1).disabled = true;
-            document.getElementById(b2).disabled = false;
+            //document.getElementById(b1).disabled = true;
+            //document.getElementById(b2).disabled = false;
          }
          function doClick(e) {
          	var node=null;
@@ -77,8 +77,8 @@
 <section class="content" >
 	
 	 <p>
-         <input value="Zoom In" onclick="zoomImage(document.getElementById('img1'), 2); swapButtons('zoomin', 'zoomout');" id="zoomin" type="button">
-         <input disabled="disabled" value="Zoom Out" onclick="zoomImage(document.getElementById('img1'), .1); swapButtons('zoomout', 'zoomin');" id="zoomout" type="button">
+         <input value="Zoom In" onclick="zoomImage(document.getElementById('img1'), 1.5); swapButtons('zoomin', 'zoomout');" id="zoomin" type="button">
+         <input  value="Zoom Out" onclick="zoomImage(document.getElementById('img1'), .8); swapButtons('zoomout', 'zoomin');" id="zoomout" type="button">
       </p>
 	<div >
 		<img id="img1" src="img/mapa/zonas/<?php echo $_POST['codMapa']; ?>.png" width='994' height='994' border="0" class="map" usemap="#mapa" />
