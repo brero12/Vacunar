@@ -64,6 +64,8 @@
            }*/
         }
         document.onclick=doClick;
+		
+		window.onload=zoomImage(document.getElementById('img1'), .5);
       </script>
 
 <section class="content-header">
@@ -77,10 +79,10 @@
 <section class="content" >
 	
 	 <p>
-         <input value="Zoom In" onclick="zoomImage(document.getElementById('img1'), 1.5); swapButtons('zoomin', 'zoomout');" id="zoomin" type="button">
-         <input  value="Zoom Out" onclick="zoomImage(document.getElementById('img1'), .8); swapButtons('zoomout', 'zoomin');" id="zoomout" type="button">
+         <input value="Zoom In" onclick="zoomImage(document.getElementById('img1'), 1.5); swapButtons('zoomin', 'zoomout');" id="zoomin" type="image" src="img/png/zoom-in.png" border=0>
+         <input  value="Zoom Out" onclick="zoomImage(document.getElementById('img1'), .8); swapButtons('zoomout', 'zoomin');" id="zoomout" type="image" src="img/png/zoom-out.png" border=0>
       </p>
-	<div >
+	<div style="width:500px; height:400px; overflow: scroll;">
 		<img id="img1" src="img/mapa/zonas/<?php echo $_POST['codMapa']; ?>.png" width='994' height='994' border="0" class="map" usemap="#mapa" />
 		
 		<map name="mapa">
