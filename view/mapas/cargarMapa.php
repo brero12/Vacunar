@@ -4,6 +4,13 @@
     })
 </script>
 
+<style type="text/css">
+  area:focus
+		{ 
+		background-color:yellow;
+		}
+  </style>
+
 <script type="text/javascript">
          function getMap(elImage) {
             // Be sure a map is specified for the image.
@@ -91,8 +98,8 @@
 			<!-- #$-:Please do not edit lines starting with "#$" -->
 			<!-- #$VERSION:2.3 -->
 			<!-- #$AUTHOR:bryrodpe    -->
-			<area shape="rect" coords="0,0,40,40" href="#a1" />
-			<area shape="rect" coords="40,0,80,40" href="#a2" />
+			<area shape="rect" coords="0,0,40,40" href="#a1" onmouseover="this.focus();" onmouseout="this.blur();" />
+			<area shape="rect" coords="40,0,80,40" href="#a2" onmouseover="this.style.backgroundColor='#805CA6';" onmouseout="this.style.backgroundColor='transparent';"/>
 			<area shape="rect" coords="80,0,120,40" href="#a3" />
 			<area shape="rect" coords="120,0,160,40" href="#a4" />
 			<area shape="rect" coords="160,0,200,40" href="#a5" />
