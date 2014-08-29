@@ -39,7 +39,10 @@
                   // Rebuild the new scaled string.
                   for (coord in coords) {
                      scaledCoords += (coords[coord] * amount) + ",";
+                    
                   }
+                  
+                    scaledCoords = scaledCoords.substring(0, scaledCoords.length-1);
 
                   // Put the scaled coordinates back into the map.
                   elArea.coords = scaledCoords;

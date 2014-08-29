@@ -23,6 +23,13 @@
         <link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
         <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
+        <!-- iCheck for checkboxes and radio inputs -->
+        <link href="css/iCheck/all.css" rel="stylesheet" type="text/css" />
+        <!-- Bootstrap Color Picker -->
+        <link href="css/colorpicker/bootstrap-colorpicker.min.css" rel="stylesheet"/>
+        <!-- Bootstrap time Picker -->
+        <link href="css/timepicker/bootstrap-timepicker.min.css" rel="stylesheet"/>
+        
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -356,5 +363,6 @@
         </div><!-- ./wrapper -->
 
         <!-- add new calendar event modal -->
+        
     </body>
 </html>

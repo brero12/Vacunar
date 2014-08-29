@@ -56,6 +56,13 @@ function cargarMapas(){
     
 }
 
+function addChild(){
+    var ajaxurl  = 'view/add_child.php';
+    var data_form = {};
+    cargarURL("#contenedor_principal", ajaxurl, data_form);
+    
+}
+
 function cargarMapaIndividual(codMapa){
 	var ajaxurl  = 'view/mapas/cargarMapa.php';
 	
