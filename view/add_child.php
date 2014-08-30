@@ -16,7 +16,8 @@
 
                 <!-- Main content -->
                 <section class="content">
-                    <div class="row">
+                    <form role="form">
+                        <div class="row">
                         <!-- left column -->
                       <div class="col-md-6">
                             <!-- general form elements -->
@@ -25,7 +26,7 @@
                                     <h3 class="box-title">Datos del niño</h3>
                                 </div><!-- /.box-header -->
                                 <!-- form start -->
-                                <form role="form">
+                                
                                   <div class="box-body">
                                     <div class="input-group">
                                           <label for="nombres">Nombre(s)</label>
@@ -40,30 +41,30 @@
                                         </div>
                                       
                                       <br>
+                                         <div class="form-group">
+                                        
+                                        <div class="input-group">
+                                            <label>Fecha de Nacimiento:</label>
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input type="datetime" class="form-control" id="fechaNace" >
+                                        </div><!-- /.input group -->
+                                    </div><!-- /.form group -->
+                                      
+                                      
                                         <div class="input-group">
                                           <label for="edad">Edad </label>
-                                          
-                                        </div>
-                                      
-                                      
-                                    <div class="row">
-                                        <div class="col-xs-3">
-                                            <input type="text" class="form-control" id="apellidos" placeholder="Ingrese Edad">
-                                        </div>
-                                        <div class="col-xs-4">                                            
-                                             <select class="form-control">
-                                                <option>dia(s)</option>
-                                                <option>mes(es)</option>
-                                                <option>año(s)</option>                                                
-                                            </select>                                       
-                                        </div>
-                                        
-                                    </div>
+                                          <span class="input-group-addon">A&ntilde;os</span>
+                                          <input type="text" class="form-control" id="edad">                                          
+                                       </div>
+                                   <br> 
+   
                                 <br>
                                     
                                 <div class="input-group"> 
                                     <label for="edad">Tipo de Identificaci&oacute;n </label>
-                                             <select class="form-control">
+                                             <select class="form-control" id="tipoId">
                                                 <option>Certificado de nacido vivo</option>
                                                 <option>Registro civil</option>
                                                 <option>Tarjeta de identidad</option>                                                
@@ -114,9 +115,9 @@
                                 
                                <br>        
                                     <div class="input-group">
-                                        <label for="lugar_parto">Departamento de Nacimiento</label>
+                                        <label for="departNace">Departamento de Nacimiento</label>
                                           <!--<span class="input-group-addon"><i class="fa fa-check"></i></span>-->
-                                          <select class="form-control" id="lugar_parto">
+                                          <select class="form-control" id="departNace">
                                                 <option>Valle Del Cauca</option>
                                                 <option>Cauca</option>
                                                 <option>Cundinamarca</option>                                                
@@ -125,9 +126,9 @@
                                
                                <br>        
                                     <div class="input-group">
-                                        <label for="lugar_parto">Ciudad de Nacimiento</label>
+                                        <label for="ciudadNace">Ciudad de Nacimiento</label>
                                           <!--<span class="input-group-addon"><i class="fa fa-check"></i></span>-->
-                                          <select class="form-control" id="lugar_parto">
+                                          <select class="form-control" id="ciudadNace">
                                                 <option>Buenaventura</option>
                                                 <option>Cali</option>
                                                 <option>Bogota</option>                                                
@@ -138,14 +139,14 @@
                                             <label>
                                                  Esquema de Vacunaci&oacute;n al d&iacute;a 
                                             </label>
-                                            <input type="checkbox">
+                                            <input type="checkbox" id="vacunaAldia">
                                         </div>
                                   </div><!-- /.box-body -->
 
                                     <!--<div class="box-footer">
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>-->
-                                </form>
+                               
                           </div><!-- /.box -->
 
                           <!-- Form Element sizes --><!-- /.box --><!-- /.box -->
@@ -162,18 +163,18 @@
                                     <h3 class="box-title">Datos de la Madre</h3>
                                 </div><!-- /.box-header -->
                                 <div class="box-body">
-                                   <form role="form">
+                                   
                                   <div class="box-body">
                                     <div class="input-group">
-                                          <label for="nombres">Nombre(s)</label>
+                                          <label for="nombresMadre">Nombre(s)</label>
                                           <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                            <input type="text" class="form-control" id="nombres" placeholder="Ingrese Nombre(s)">
+                                            <input type="text" class="form-control" id="nombresMadre" placeholder="Ingrese Nombre(s)">
                                         </div>
                                       <br>
                                         <div class="input-group">
-                                          <label for="apellidos">Apellido(s)</label>
+                                          <label for="apellidosMadre">Apellido(s)</label>
                                           <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                            <input type="text" class="form-control" id="apellidos" placeholder="Ingrese Apellido(s)">
+                                            <input type="text" class="form-control" id="apellidosMadre" placeholder="Ingrese Apellido(s)">
                                         </div>
                                       
                                       <br>
@@ -185,20 +186,20 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="datetime" class="form-control" >
+                                            <input type="datetime" class="form-control" id="fechaNaceMadre" >
                                         </div><!-- /.input group -->
                                     </div><!-- /.form group -->
                                       
                                       
                                         <div class="input-group">
-                                          <label for="edad">Edad </label>
+                                          <label for="edadMadre">Edad </label>
                                           <span class="input-group-addon">A&ntilde;os</span>
-                                          <input type="text" class="form-control" id="edad">                                          
+                                          <input type="text" class="form-control" id="edadMadre">                                          
                                        </div>
                                    <br>                                                                          
                                 <div class="input-group"> 
-                                    <label for="edad">Tipo de Documento </label>
-                                             <select class="form-control">
+                                    <label for="tipoDocMadre">Tipo de Documento </label>
+                                    <select class="form-control" id="tipoDocMadre">
                                                 <option>Cedula</option>
                                                 <option>Cedula Extranjeria</option>
                                                 <option>Otros</option>                                                
@@ -208,11 +209,11 @@
                                 
                                 <br>
                                         <div class="input-group">
-                                            <label for="numIdetificacion">N&uacute;mero de Documento</label>
+                                            <label for="numIdetificacionMadre">N&uacute;mero de Documento</label>
                                           <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                            <input type="text" class="form-control" id="numIdetificacion" placeholder="Ingrese Identificacion">
+                                            <input type="text" class="form-control" id="numIdetificacionMadre" placeholder="Ingrese Identificacion">
                                         </div>
-                                
+                                <br>
                                   <!-- phone mask -->
                                     <div class="form-group">                                        
                                         <div class="input-group">
@@ -220,7 +221,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-phone"></i>
                                             </div>
-                                            <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask/>
+                                            <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask id="telefonoMadre"/>
                                         </div><!-- /.input group -->
                                     </div><!-- /.form group -->
                                     
@@ -232,27 +233,31 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-phone"></i>
                                             </div>
-                                            <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask/>
+                                            <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask id="celularMadre"/>
                                         </div><!-- /.input group -->
                                     </div><!-- /.form group -->
                                       <br/>
                                      <div class="input-group">
-                                         <label for='emailU'>Correo</label>
+                                         <label for='correoMadre'>Correo</label>
                                         <span class="input-group-addon">@</span>
-                                        <input type="text" class="form-control" placeholder="Username" id="emailU">
+                                        <input type="text" class="form-control" placeholder="Username" id="correoMadre">
                                     </div>
                                     <br/>
                                 
                                   </div><!-- /.box-body -->
 
                                     <div class="box-footer">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="button" class="btn btn-primary" onclick="Javascript:saveChild();">Guardar</button>
                                     </div>
-                                </form>
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->
                         </div><!--/.col (right) -->
-                    </div>   <!-- /.row -->
+                    </div>   <!-- /.row -->  
+                        
+                        
+                    </form>
+                                                                
+                   
                 </section><!-- /.content -->
                 
                  <!-- jQuery 2.0.2 -->

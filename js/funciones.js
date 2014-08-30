@@ -63,6 +63,35 @@ function addChild(){
     
 }
 
+function saveChild(){
+    var ajaxurl  = 'controller/save_child.php';
+    var data_form = {
+        nombres : document.getElementById('nombres').value
+        , apellidos : document.getElementById('apellidos').value
+        , edad : document.getElementById('edad').value
+        , fechaNace : document.getElementById('fechaNace').value
+        , tipoId : document.getElementById('tipoId').value
+        , numIdetificacion : document.getElementById('numIdetificacion').value
+        , regimen : document.getElementById('regimen').value
+        , aseguradora : document.getElementById('aseguradora').value
+        , lugar_parto : document.getElementById('lugar_parto').value
+        , departNace : document.getElementById('departNace').value
+        , ciudadNace : document.getElementById('ciudadNace').value
+        , vacunaAldia : document.getElementById('vacunaAldia').value
+        , nombresMadre : document.getElementById('nombresMadre').value
+        , apellidosMadre : document.getElementById('apellidosMadre').value
+        , fechaNaceMadre : document.getElementById('fechaNaceMadre').value
+        , edadMadre : document.getElementById('edadMadre').value
+        , tipoDocMadre : document.getElementById('tipoDocMadre').value
+        , numIdetificacionMadre : document.getElementById('numIdetificacionMadre').value
+        , telefonoMadre : document.getElementById('telefonoMadre').value
+        , celularMadre : document.getElementById('celularMadre').value
+        , correoMadre : document.getElementById('correoMadre').value
+    };
+    cargarURL("#contenedor_principal", ajaxurl, data_form);
+    
+}
+
 function cargarMapaIndividual(codMapa){
 	var ajaxurl  = 'view/mapas/cargarMapa.php';
 	
