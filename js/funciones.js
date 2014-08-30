@@ -48,6 +48,14 @@ function marcarCheckBox(id_componente){
     }
 }
 
+//############################################## DASHBOARD ##############################################
+
+function cargarDashBoard(){
+    var ajaxurl  = 'view/dashboard.php';
+    var data_form = {};
+    cargarURL("#contenedor_principal", ajaxurl, data_form);
+}
+
 //############################################## MAPAS ##############################################
 function cargarMapas(){
     var ajaxurl  = 'view/mapas/maps.php';
