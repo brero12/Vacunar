@@ -18,7 +18,7 @@
         <!-- fullCalendar -->
         <link href="css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
         <!-- <!-- Daterange picker -->
-        <link href="css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+        <!--<link href="css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />-->
         <!-- bootstrap wysihtml5 - text editor -->
         <link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
@@ -42,6 +42,9 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
         <!-- jQuery UI 1.10.3 -->
         <script src="js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
+        <!--<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>-->
+  
         <!-- Bootstrap -->
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <!-- Morris.js charts -->

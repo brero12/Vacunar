@@ -1,4 +1,22 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+<script src="js/bootstrap-datepicker.js" type="text/javascript"></script>
 
+
+<script type="text/javascript">
+    $(function() {
+        //Date range picker
+       $('#fechaNace').datepicker({
+            format: 'mm/dd/yyyy'
+        });
+        
+        //("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+       /*         //Datemask2 mm/dd/yyyy
+                $("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
+                //Money Euro
+                $("[data-mask]").inputmask();*/
+        
+    });
+</script>
 
            
                 <!-- Content Header (Page header) -->
@@ -44,11 +62,11 @@
                                          <div class="form-group">
                                         
                                         <div class="input-group">
-                                            <label>Fecha de Nacimiento:</label>
+                                            <label>Fecha de Nacimientoooo:</label>
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="datetime" class="form-control" id="fechaNace" >
+                                            <input type="text" class="form-control" id="fechaNace" />
                                         </div><!-- /.input group -->
                                     </div><!-- /.form group -->
                                       
@@ -186,7 +204,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="datetime" class="form-control" id="fechaNaceMadre" >
+                                            <input type="text"  id="fechaNaceMadre" >
                                         </div><!-- /.input group -->
                                     </div><!-- /.form group -->
                                       
