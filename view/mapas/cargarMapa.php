@@ -87,19 +87,12 @@
 
 <!-- Main content -->
 <section class="content" >
-    
-    <form role="form"></form>
-                        <div class="row">
-                        <!-- left column -->
-                      <div class="col-md-6">
-                            <!-- general form elements -->
-                            <div class="box box-primary">
-                                
-                                <p>
+	
+	 <p>
          <input value="Zoom In" onclick="zoomImage(document.getElementById('img1'), 1.5); swapButtons('zoomin', 'zoomout');" id="zoomin" type="image" src="img/png/zoom-in.png" border=0>
          <input  value="Zoom Out" onclick="zoomImage(document.getElementById('img1'), .8); swapButtons('zoomout', 'zoomin');" id="zoomout" type="image" src="img/png/zoom-out.png" border=0>
       </p>
-	<div style="width:100%; height:100%; overflow: scroll;">
+	<div style="width:500px; height:400px; overflow: scroll;">
 		<img id="img1" src="img/mapa/zonas/<?php echo $_POST['codMapa']; ?>.png" width='994' height='994' border="0" class="map" usemap="#mapa" />
 		
 		<map name="mapa">
@@ -108,8 +101,8 @@
 			<!-- #$-:Please do not edit lines starting with "#$" -->
 			<!-- #$VERSION:2.3 -->
 			<!-- #$AUTHOR:bryrodpe    -->
-			<area shape="rect" coords="0,0,40,40" href="#a1" />
-			<area shape="rect" coords="40,0,80,40" href="#a2" />
+			<area shape="rect" coords="0,0,40,40" href="#a1" onmouseover="this.focus();" onmouseout="this.blur();" />
+			<area shape="rect" coords="40,0,80,40" href="#a2" onmouseover="this.style.backgroundColor='#805CA6';" onmouseout="this.style.backgroundColor='transparent';"/>
 			<area shape="rect" coords="80,0,120,40" href="#a3" />
 			<area shape="rect" coords="120,0,160,40" href="#a4" />
 			<area shape="rect" coords="160,0,200,40" href="#a5" />
@@ -745,29 +738,7 @@
 			<area shape="rect" coords="960,960,1000,1000" href="#y25" />
 		</map>
 	</div><!-- ./col -->
-                                
-                                </div><!-- /.box -->                        
-                                
-
-                        </div><!--/.col (left) -->
-                        <!-- right column -->
-                        <!-- right column -->
-                        <div class="col-md-6">
-                            <!-- general form elements disabled -->
-                            <div class="box box-warning">
-                                
-                                </div><!-- /.box -->
-                        </div><!--/.col (right) -->
-                    </div>   <!-- /.row -->  
-                        
-                        
-                   <!-- </form> -->
-
-	
-	 
 	
 	
 </div>
 </section><!-- /.content -->
-
-

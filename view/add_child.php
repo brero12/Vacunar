@@ -83,9 +83,9 @@
                                 <div class="input-group"> 
                                     <label for="edad">Tipo de Identificaci&oacute;n </label>
                                              <select class="form-control" id="tipoId">
-                                                <option value="CNV">Certificado de nacido vivo</option>
-                                                <option value="RC">Registro civil</option>
-                                                <option value="TI">Tarjeta de identidad</option>                                                
+                                                <option>Certificado de nacido vivo</option>
+                                                <option>Registro civil</option>
+                                                <option>Tarjeta de identidad</option>                                                
                                             </select>                                       
                                         </div>
                                 
