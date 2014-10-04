@@ -1,4 +1,5 @@
 <?php
+include 'functions_child.php';
 
 /* 
  * To change this license header, choose License Headers in Project Properties.
@@ -6,28 +7,37 @@
  * and open the template in the editor.
  */
 
-        $nombres = $_POST['nombres']; 
-        $apellidos = $_POST['apellidos'];
-        $edad = $_POST['edad'];
-        $fechaNace = $_POST['fechaNace'];
-        $tipoId = $_POST['tipoId'];
-        $numIdetificacion = $_POST['numIdetificacion'];
-        $regimen = $_POST['regimen'];
+        $primer_nombre = $_POST['primerNombre']; 
+        $segundo_nombre = $_POST['segundoNombre'];
+        $primer_apellido = $_POST['primerApellido'];
+        $segundo_apellido = $_POST['segundoApellido'];
+        $fecha_nacimiento = $_POST['fechaNace'];
+        $fk_tbl_tipo_identificacion = $_POST['tipoId'];
+        $numero_identificacion = $_POST['numIdetificacion'];
+        $regimen_afiliacion = $_POST['regimen'];
         $aseguradora = $_POST['aseguradora'];
-        $lugar_parto = $_POST['lugar_parto'];
+        $fk_tbl_entidad_salud_atencioparto = $_POST['lugar_parto'];
         $departNace = $_POST['departNace'];
-        $ciudadNace = $_POST['ciudadNace'];
+        $fk_municipio_nacimiento = $_POST['ciudadNace'];
         $vacunaAldia = $_POST['vacunaAldia'];
-        $nombresMadre = $_POST['nombresMadre'];
-        $apellidosMadre = $_POST['apellidosMadre'];
+        $primerNombreMadre = $_POST['primerNombreMadre']; 
+        $segundoNombreMadre = $_POST['segundoNombre'];
+        $primerApellidoMadre = $_POST['primerApellido'];
+        $segundoApellidoMadre = $_POST['segundoApellido'];
         $fechaNaceMadre = $_POST['fechaNaceMadre'];
-        $edadMadre = $_POST['edadMadre'];
         $tipoDocMadre = $_POST['tipoDocMadre'];
         $numIdetificacionMadre = $_POST['numIdetificacionMadre'];
         $telefonoMadre = $_POST['telefonoMadre'];
         $celularMadre = $_POST['celularMadre'];
         $correoMadre = $_POST['correoMadre'];
         
+        insertChild($fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, 
+                        $segundo_nombre, $primer_apellido, 
+                        $segundo_apellido,$fecha_nacimiento,
+                        $regimen_afiliacion, $aseguradora, 
+                        $fk_tbl_entidad_salud_atencioparto,
+                        $fk_municipio_nacimiento);
         
-        echo $nombres.' - '.$apellidos;
+        
+        echo $primer_nombre.' - '.$segundo_nombre.' - '.$primer_apellido.'<br> Nacio en : '.$fk_municipio_nacimiento;
 

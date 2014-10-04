@@ -74,9 +74,10 @@ function addChild(){
 function saveChild(){
     var ajaxurl  = 'controller/save_child.php';
     var data_form = {
-        nombres : document.getElementById('nombres').value
-        , apellidos : document.getElementById('apellidos').value
-        , edad : document.getElementById('edad').value
+        primerNombre : document.getElementById('primerNombre').value
+        , segundoNombre : document.getElementById('segundoNombre').value
+        , primerApellido : document.getElementById('primerApellido').value
+        , segundoApellido : document.getElementById('segundoApellido').value
         , fechaNace : document.getElementById('fechaNace').value
         , tipoId : document.getElementById('tipoId').value
         , numIdetificacion : document.getElementById('numIdetificacion').value
@@ -86,10 +87,11 @@ function saveChild(){
         , departNace : document.getElementById('departNace').value
         , ciudadNace : document.getElementById('ciudadNace').value
         , vacunaAldia : document.getElementById('vacunaAldia').value
-        , nombresMadre : document.getElementById('nombresMadre').value
-        , apellidosMadre : document.getElementById('apellidosMadre').value
+        , primerNombreMadre : document.getElementById('primerNombreMadre').value
+        , segundoNombreMadre : document.getElementById('segundoNombreMadre').value
+        , primerApellidoMadre : document.getElementById('primerApellidoMadre').value
+        , segundoApellidoMadre : document.getElementById('segundoApellidoMadre').value
         , fechaNaceMadre : document.getElementById('fechaNaceMadre').value
-        , edadMadre : document.getElementById('edadMadre').value
         , tipoDocMadre : document.getElementById('tipoDocMadre').value
         , numIdetificacionMadre : document.getElementById('numIdetificacionMadre').value
         , telefonoMadre : document.getElementById('telefonoMadre').value
@@ -108,6 +110,21 @@ function cargarMapaIndividual(codMapa){
     };
 	
     cargarURL("#contenedor_principal", ajaxurl, data_form);
+	//include_once("view/cargarMapa.js");
+}
+
+function cargarCiudadDepartamento(){
+	var ajaxurl  = 'controller/getCiudadDepartamento.php';
+        
+        var id_departamento = document.getElementById('departNace').value;
+        
+        //alert(id_departamento);
+	
+	var data_form= {
+        id_departamento : id_departamento
+    };
+	
+    cargarURL("#ciudadNace", ajaxurl, data_form);
 	//include_once("view/cargarMapa.js");
 }
 

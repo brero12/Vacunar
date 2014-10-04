@@ -1,3 +1,4 @@
+<?php include '../controller/functions_child.php'; ?>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
 <script src="js/bootstrap-datepicker.js" type="text/javascript"></script>
 
@@ -47,45 +48,47 @@
                                 
                                   <div class="box-body">
                                     <div class="input-group">
-                                          <label for="nombres">Nombre(s)</label>
+                                          <label for="primerNombre">Primer Nombre</label>
                                           <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                            <input type="text" class="form-control" id="nombres" placeholder="Ingrese Nombre(s)">
+                                            <input type="text" class="form-control" id="primerNombre" placeholder="Ingrese Primer Nombre">
+                                        </div>
+                                      <br>
+                                      <div class="input-group">
+                                          <label for="segundoNombre">Segundo Nombre</label>
+                                          <span class="input-group-addon"><i class="fa fa-check"></i></span>
+                                            <input type="text" class="form-control" id="segundoNombre" placeholder="Ingrese Segundo Nombre">
                                         </div>
                                       <br>
                                         <div class="input-group">
-                                          <label for="apellidos">Apellido(s)</label>
+                                          <label for="primerApellido">Primer Apellido</label>
                                           <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                            <input type="text" class="form-control" id="apellidos" placeholder="Ingrese Apellido(s)">
-                                        </div>
-                                      
+                                            <input type="text" class="form-control" id="primerApellido" placeholder="Ingrese Primer Apellido">
+                                        </div>                                      
+                                      <br>
+                                       <div class="input-group">
+                                          <label for="segundoApellido">Segundo Apellido</label>
+                                          <span class="input-group-addon"><i class="fa fa-check"></i></span>
+                                            <input type="text" class="form-control" id="segundoApellido" placeholder="Ingrese Segundo Apellido">
+                                        </div>                                      
                                       <br>
                                          <div class="form-group">
                                         
                                         <div class="input-group">
-                                            <label>Fecha de Nacimientoooo:</label>
+                                            <label>Fecha de Nacimiento:</label>
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
                                             <input type="text" class="form-control" id="fechaNace" />
                                         </div><!-- /.input group -->
                                     </div><!-- /.form group -->
-                                      
-                                      
-                                        <div class="input-group">
-                                          <label for="edad">Edad </label>
-                                          <span class="input-group-addon">A&ntilde;os</span>
-                                          <input type="text" class="form-control" id="edad">                                          
-                                       </div>
-                                   <br> 
+                                                                                                                   
    
                                 <br>
                                     
                                 <div class="input-group"> 
                                     <label for="edad">Tipo de Identificaci&oacute;n </label>
                                              <select class="form-control" id="tipoId">
-                                                <option>Certificado de nacido vivo</option>
-                                                <option>Registro civil</option>
-                                                <option>Tarjeta de identidad</option>                                                
+                                                <?php getTipoIdentificacion(1); ?>                                                  
                                             </select>                                       
                                         </div>
                                 
@@ -124,10 +127,8 @@
                                         <label for="lugar_parto">Lugar de Atención del Parto</label>
                                           <!--<span class="input-group-addon"><i class="fa fa-check"></i></span>-->
                                           <select class="form-control" id="lugar_parto">
-                                                <option>Clínica Confamar</option>
-                                                <option>Clinica Santa sofia</option>
-                                                <option>Hospital luis ablaque</option>                                                
-                                            </select>   
+                                                <?php getEntidadesSalud(); ?>                                                 
+                                            <!--  --></select>  
                                         </div>
                                 
                                 
@@ -135,10 +136,8 @@
                                     <div class="input-group">
                                         <label for="departNace">Departamento de Nacimiento</label>
                                           <!--<span class="input-group-addon"><i class="fa fa-check"></i></span>-->
-                                          <select class="form-control" id="departNace">
-                                                <option>Valle Del Cauca</option>
-                                                <option>Cauca</option>
-                                                <option>Cundinamarca</option>                                                
+                                        <select class="form-control" id="departNace" onchange="cargarCiudadDepartamento()">
+                                                 <?php getDepartamentos(); ?>                                                        
                                             </select>   
                                         </div>
                                
@@ -183,18 +182,29 @@
                                 <div class="box-body">
                                    
                                   <div class="box-body">
-                                    <div class="input-group">
-                                          <label for="nombresMadre">Nombre(s)</label>
+                                   <div class="input-group">
+                                          <label for="primerNombreMadre">Primer Nombre Madre</label>
                                           <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                            <input type="text" class="form-control" id="nombresMadre" placeholder="Ingrese Nombre(s)">
+                                            <input type="text" class="form-control" id="primerNombreMadre" placeholder="Ingrese Primer Nombre">
+                                        </div>
+                                      <br>
+                                      <div class="input-group">
+                                          <label for="segundoNombreMadre">Segundo Nombre Madre</label>
+                                          <span class="input-group-addon"><i class="fa fa-check"></i></span>
+                                            <input type="text" class="form-control" id="segundoNombreMadre" placeholder="Ingrese Segundo Nombre">
                                         </div>
                                       <br>
                                         <div class="input-group">
-                                          <label for="apellidosMadre">Apellido(s)</label>
+                                          <label for="primerApellidoMadre">Primer Apellido Madre</label>
                                           <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                            <input type="text" class="form-control" id="apellidosMadre" placeholder="Ingrese Apellido(s)">
-                                        </div>
-                                      
+                                            <input type="text" class="form-control" id="primerApellidoMadre" placeholder="Ingrese Primer Apellido">
+                                        </div>                                      
+                                      <br>
+                                       <div class="input-group">
+                                          <label for="segundoApellidoMadre">Segundo Apellido Madre</label>
+                                          <span class="input-group-addon"><i class="fa fa-check"></i></span>
+                                            <input type="text" class="form-control" id="segundoApellidoMadre" placeholder="Ingrese Segundo Apellido">
+                                        </div>                                      
                                       <br>
                                        <!-- Date dd/mm/yyyy -->
                                     <div class="form-group">
@@ -207,20 +217,11 @@
                                             <input type="text"  id="fechaNaceMadre" >
                                         </div><!-- /.input group -->
                                     </div><!-- /.form group -->
-                                      
-                                      
-                                        <div class="input-group">
-                                          <label for="edadMadre">Edad </label>
-                                          <span class="input-group-addon">A&ntilde;os</span>
-                                          <input type="text" class="form-control" id="edadMadre">                                          
-                                       </div>
-                                   <br>                                                                          
+                                                                                                    
                                 <div class="input-group"> 
                                     <label for="tipoDocMadre">Tipo de Documento </label>
                                     <select class="form-control" id="tipoDocMadre">
-                                                <option>Cedula</option>
-                                                <option>Cedula Extranjeria</option>
-                                                <option>Otros</option>                                                
+                                                <?php getTipoIdentificacion(2); ?>                                                   
                                             </select>                                       
                                         </div>
                                 
