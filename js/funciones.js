@@ -88,6 +88,20 @@ function addChild(){
     
 }
 
+function addSchema(){
+    var ajaxurl  = 'view/add_schema.php';
+    var data_form = {};
+    cargarURL("#contenedor_principal", ajaxurl, data_form);
+    
+}
+
+function viewChild(){
+    var ajaxurl  = 'view/view_child.php';
+    var data_form = {};
+    cargarURL("#contenedor_principal", ajaxurl, data_form);
+    
+}
+
 function saveChild(){
     var ajaxurl  = 'controller/save_child.php';
     var data_form = {

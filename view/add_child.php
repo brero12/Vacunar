@@ -154,7 +154,7 @@
                                 <br>
                                 <div class="input-group">
                                             <label>
-                                                 Esquema de Vacunaci&oacute;n al d&iacute;a 
+                                                 Registrar esquema de Vacunaci&oacute;n 
                                             </label>
                                             <input type="checkbox" id="vacunaAldia">
                                         </div>

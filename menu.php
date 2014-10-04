@@ -20,8 +20,8 @@
 		</a>
 		<ul class="treeview-menu">
 			<li><a href="JavaScript:addChild(this);"><i class="fa fa-angle-double-right"></i> Crear Usuario</a></li>
-			<li><a href="#pages/tables/data.html"><i class="fa fa-angle-double-right"></i> Adicionar Familia</a></li>
-			<li><a href="#pages/tables/data.html"><i class="fa fa-angle-double-right"></i> Modificar Usuario</a></li>
+			<li><a href="JavaScript:viewChild(this);"><i class="fa fa-angle-double-right"></i> Ver Niños</a></li>
+			<li><a href="JavaScript:addSchema(this);"><i class="fa fa-angle-double-right"></i> Ver esquema</a></li>
 		</ul>
 	</li>
 	
