@@ -1,14 +1,27 @@
 <section class="content-header">
-	<!--<h1>
-		Mapas
-		<small></small>
-	</h1>-->
 	<ol class="breadcrumb">
-		<li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
+		<li><a href="index.php"><i class="fa fa-dashboard"></i> Principal</a></li>
 		<li class="active">Mapas</li>
 	</ol>
 </section>
+<!-- Search content -->
+<section class="content" style="padding: 0px 15px;">
+    <h5>B&uacute;squeda</h5>
+    <div class="input-group" style="width:50%;">
+        <input id="addressInput" type="text" class="form-control" placeholder="Ingresa la direcci&oacute;n a buscar. Ejemplo: Cra 60C #10-25" />
+        <span class="input-group-btn">
+            <button class="btn btn-default btn-flat" type="button" onclick="buscarUbicaciones()">Buscar direcci&oacute;n</button>
+        </span>
+    </div>
+    
+    <table width='90%' align="center" border="1">
+        <tr id="trError">
+            <td id="tdError" style="visibility:hidden" align="center">
 
+            </td>
+        </tr>
+    </table>
+</section>
 <!-- Main content -->
 <section class="content">
 	

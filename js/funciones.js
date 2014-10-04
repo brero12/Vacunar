@@ -48,6 +48,23 @@ function marcarCheckBox(id_componente){
     }
 }
 
+function buscarUbicaciones() {
+	document.getElementById("tdError").style.visibility = "hidden";
+	var address = document.getElementById("addressInput").value + ", Buenaventura - Valle del cauca, Colombia";
+	var geocoder = new google.maps.Geocoder();
+	geocoder.geocode({address: address}, function(results, status) {
+		if (status == google.maps.GeocoderStatus.OK) {
+			//buscarUbicacionesCercanas(results[0].geometry.location, address);
+            var cebt = results[0].geometry.location;
+            alert(cebt.lat() + " * " + cebt.lng());
+		} 
+		else {
+			document.getElementById("tdError").style.visibility = "visible";
+			document.getElementById("tdError").innerHTML = "<p class='fuente_error'>No se pudo encontrar la direcci&oacute;n en la base de datos. Intente de nuevo por favor siendo m&aacute;s espec&iacute;fico</p>";
+		}
+	});
+}
+
 //############################################## DASHBOARD ##############################################
 
 function cargarDashBoard(){

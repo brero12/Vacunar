@@ -29,6 +29,8 @@
         <link href="css/colorpicker/bootstrap-colorpicker.min.css" rel="stylesheet"/>
         <!-- Bootstrap time Picker -->
         <link href="css/timepicker/bootstrap-timepicker.min.css" rel="stylesheet"/>
+        <!-- JQuery Smooth -->
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" media="screen">
         
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -48,7 +50,7 @@
         <!-- Bootstrap -->
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <!-- Morris.js charts -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
         <script src="js/plugins/morris/morris.min.js" type="text/javascript"></script>
         <!-- Sparkline -->
         <script src="js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
@@ -74,6 +76,8 @@
 		<!--<script src="js/jquery.maphilight.js" type="text/javascript"></script>-->
 		<!--<script src="ajax/FuncionesAjax.js" type="text/javascript" ></script>	-->
         <script type="application/javascript" src="js/funciones.js"></script>
+        <!-- Referente a los mapas y direcciones -->
+        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 		
     </head>
     <body class="skin-blue">

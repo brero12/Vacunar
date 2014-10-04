@@ -6,7 +6,7 @@
 	</li>
 	<li>
 		<a href="JavaScript:cargarMapas(this)">
-			<i class="fa fa-th"></i> <span>Ver Mapa</span> <small class="badge pull-right bg-green">new</small>
+			<i class="fa fa-th"></i> <span>Ver Mapa</span>
 		</a>
 	</li>
 	
