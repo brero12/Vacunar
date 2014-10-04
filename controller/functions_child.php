@@ -53,6 +53,50 @@ function insertChild($fk_tbl_tipo_identificacion, $numero_identificacion, $prime
     
 }
 
+function insertMomChild($fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, 
+                        $segundo_nombre, $primer_apellido, 
+                        $segundo_apellido,$fecha_nacimiento,
+                        $telefono, $celular, 
+                        $correo_electronico){
+    
+    global $bd_host;
+    global $bd_usuario;
+    global $bd_password;
+    global $bd_base;
+        
+    $mysqli = new mysqli($bd_host, $bd_usuario, $bd_password, $bd_base); 
+    
+    echo 'on sqlput Mom<br>';
+   
+    
+    $consulta = 'insert into tbl_personas (fk_tbl_tipo_identificacion, 
+						numero_identificacion, primer_nombre, 
+                        segundo_nombre, primer_apellido, 
+                        segundo_apellido,fecha_nacimiento,
+                        telefono, correo_electronico ,is_mom) values (?,?,?,?,?,?,?,?,?,1)';
+    
+    /*echo '<option>'.$consulta.'</option>';*/
+    
+     
+     
+    $query = $mysqli->prepare($consulta);
+        //if ($result = $mysqli->query($consulta)) {
+        // execute
+    
+    var_dump($query);
+        
+        $query->bind_param('issssssss', $fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, 
+                        $segundo_nombre, $primer_apellido, 
+                        $segundo_apellido,$fecha_nacimiento,
+                        $telefono, $correo_electronico);
+        
+        $query->execute(); 
+        
+        echo 'succes Mom<br>';        
+    
+    
+}
+
 function getEntidadesSalud(){
     
     

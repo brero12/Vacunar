@@ -20,13 +20,13 @@ include 'functions_child.php';
         $departNace = $_POST['departNace'];
         $fk_municipio_nacimiento = $_POST['ciudadNace'];
         $vacunaAldia = $_POST['vacunaAldia'];
-        $primerNombreMadre = $_POST['primerNombreMadre']; 
-        $segundoNombreMadre = $_POST['segundoNombre'];
-        $primerApellidoMadre = $_POST['primerApellido'];
-        $segundoApellidoMadre = $_POST['segundoApellido'];
-        $fechaNaceMadre = $_POST['fechaNaceMadre'];
-        $tipoDocMadre = $_POST['tipoDocMadre'];
-        $numIdetificacionMadre = $_POST['numIdetificacionMadre'];
+        $primer_nombreMadre = $_POST['primerNombreMadre']; 
+        $segundo_nombreMadre = $_POST['segundoNombreMadre'];
+        $primer_apellidoMadre = $_POST['primerApellidoMadre'];
+        $segundo_apellidoMadre = $_POST['segundoApellidoMadre'];
+        $fecha_nacimientoMadre = $_POST['fechaNaceMadre'];
+        $fk_tbl_tipo_identificacionMadre = $_POST['tipoDocMadre'];
+        $numero_identificacionMadre = $_POST['numIdetificacionMadre'];
         $telefonoMadre = $_POST['telefonoMadre'];
         $celularMadre = $_POST['celularMadre'];
         $correoMadre = $_POST['correoMadre'];
@@ -38,6 +38,13 @@ include 'functions_child.php';
                         $fk_tbl_entidad_salud_atencioparto,
                         $fk_municipio_nacimiento);
         
+        insertMomChild($fk_tbl_tipo_identificacionMadre, $numero_identificacionMadre, $primer_nombreMadre, 
+                        $segundo_nombreMadre, $primer_apellidoMadre, 
+                        $segundo_apellidoMadre,$fecha_nacimientoMadre,
+                        $telefonoMadre, $celularMadre, 
+                        $correoMadre);
+        
         
         echo $primer_nombre.' - '.$segundo_nombre.' - '.$primer_apellido.'<br> Nacio en : '.$fk_municipio_nacimiento;
 
+        
