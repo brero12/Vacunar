@@ -1,3 +1,24 @@
+<style type="text/css" media="all">@import "css/marker.css";</style>
+
+
+<!--<script type="text/javascript" src="js/libs/jquery/jquery.js"></script>-->
+<script type="text/javascript" src="js/libs/jquery/jquery-ui.js"></script>
+<script type="text/javascript" src="js/libs/jquery.fs.zoetrope.min.js"></script>
+<script type="text/javascript" src="js/libs/toe.min.js"></script>
+<script type="text/javascript" src="js/libs/jquery.mousewheel.min.js"></script>
+<script type="text/javascript" src="js/libs/imgViewer.min.js"></script>
+<script type="text/javascript" src="js/imgNotes.js"></script>
+
+<script type="text/javascript">
+/*(function($) {
+	$(document).ready(function() {
+		var $img = $("#img_principal").imgNotes({
+            clear:{}
+        });        
+  });
+})(jQuery);*/
+</script>
+
 <section class="content-header">
 	<ol class="breadcrumb">
 		<li><a href="index.php"><i class="fa fa-dashboard"></i> Principal</a></li>
@@ -5,9 +26,9 @@
 	</ol>
 </section>
 <!-- Search content -->
-<section class="content" style="padding: 0px 15px;">
+<!--<section class="content" style="padding: 0px 15px;">
     <h5>B&uacute;squeda</h5>
-    <div class="input-group" style="width:50%;">
+    <div class="input-group" style="width:70%;">
         <input id="addressInput" type="text" class="form-control" placeholder="Ingresa la direcci&oacute;n a buscar. Ejemplo: Cra 60C #10-25" />
         <span class="input-group-btn">
             <button class="btn btn-default btn-flat" type="button" onclick="buscarUbicaciones()">Buscar direcci&oacute;n</button>
@@ -21,12 +42,13 @@
             </td>
         </tr>
     </table>
-</section>
+</section>-->
 <!-- Main content -->
 <section class="content">
 	
 	<div class="col-lg-3 col-xs-6">
-		<img src="img/mapa/Plano_buenaventura.jpg" width="1024" height="724" border="0" usemap="#map" />
+        <input id="cargarMapaRegistro" type="hidden" value="<?php echo $_POST['cargarMapaRegistro']; ?>" />
+		<img id="img_principal" src="img/mapa/Plano_buenaventura.jpg" width="1024" height="724" border="0" usemap="#map" />
 
 <map name="map">
 <!-- #$-:Image map file created by GIMP Image Map plug-in -->
@@ -58,7 +80,7 @@
 <area shape="rect" coords="103,146,206,219" href="JavaScript:cargarMapaIndividual('c2')" />
 <area shape="rect" coords="206,146,309,219" href="JavaScript:cargarMapaIndividual('c3')" />
 <area shape="rect" coords="309,146,412,219" href="JavaScript:cargarMapaIndividual('c4')" />
-<area shape="rect" coords="412,146,515,219" href="JavaScript:cargarMapaIndividual('c5')c5" />
+<area shape="rect" coords="412,146,515,219" href="JavaScript:cargarMapaIndividual('c5')" />
 <area shape="rect" coords="515,146,618,219" href="JavaScript:cargarMapaIndividual('c6')" />
 <area shape="rect" coords="618,146,721,219" href="#c7" />
 <area shape="rect" coords="721,146,824,219" href="#c8" />

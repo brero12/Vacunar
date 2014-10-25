@@ -1,8 +1,8 @@
 <?php
 
-include ("../model/conexion.php");
+include (dirname(__FILE__)."\\..\\model\\conexion.php");
 
-function insertChild($fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $regimen_afiliacion, $aseguradora, $fk_tbl_entidad_salud_atencioparto, $fk_municipio_nacimiento) {
+function insertChild($fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $regimen_afiliacion, $aseguradora, $fk_tbl_entidad_salud_atencioparto, $fk_municipio_nacimiento, $idMapa, $etiquetaPunto) {
 
     global $bd_host;
     global $bd_usuario;
@@ -20,7 +20,8 @@ function insertChild($fk_tbl_tipo_identificacion, $numero_identificacion, $prime
                         segundo_apellido,fecha_nacimiento,
                         regimen_afiliacion, aseguradora, 
                         fk_tbl_entidad_salud_atencioparto,
-                        fk_municipio_nacimiento) values (?,?,?,?,?,?,?,?,?,?,?)';
+                        fk_municipio_nacimiento, 
+                        fk_tbl_mapas, fk_tbl_puntos_etiqueta_punto) values (?,?,?,?,?,?,?,?,?,?,?,?,?)';
 
     /* echo '<option>'.$consulta.'</option>'; */
 
@@ -32,14 +33,14 @@ function insertChild($fk_tbl_tipo_identificacion, $numero_identificacion, $prime
 
     var_dump($query);
 
-    $query->bind_param('issssssssii', $fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $regimen_afiliacion, $aseguradora, $fk_tbl_entidad_salud_atencioparto, $fk_municipio_nacimiento);
+    $query->bind_param('issssssssiiis', $fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $regimen_afiliacion, $aseguradora, $fk_tbl_entidad_salud_atencioparto, $fk_municipio_nacimiento, $idMapa, $etiquetaPunto);
 
     $query->execute();
 
     echo 'succes <br>';
 }
 
-function insertMomChild($fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $telefono, $celular, $correo_electronico) {
+function insertMomChild($fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $telefono, $celular, $correo_electronico, $idMapa, $etiquetaPunto) {
 
     global $bd_host;
     global $bd_usuario;
@@ -55,7 +56,8 @@ function insertMomChild($fk_tbl_tipo_identificacion, $numero_identificacion, $pr
 						numero_identificacion, primer_nombre, 
                         segundo_nombre, primer_apellido, 
                         segundo_apellido,fecha_nacimiento,
-                        telefono, correo_electronico ,is_mom) values (?,?,?,?,?,?,?,?,?,1)';
+                        telefono, correo_electronico ,is_mom,
+                        fk_tbl_mapas, fk_tbl_puntos_etiqueta_punto) values (?,?,?,?,?,?,?,?,?,1,?,?)';
 
     /* echo '<option>'.$consulta.'</option>'; */
 
@@ -67,7 +69,7 @@ function insertMomChild($fk_tbl_tipo_identificacion, $numero_identificacion, $pr
 
     var_dump($query);
 
-    $query->bind_param('issssssss', $fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $telefono, $correo_electronico);
+    $query->bind_param('issssssssis', $fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $telefono, $correo_electronico, $idMapa, $etiquetaPunto);
 
     $query->execute();
 
@@ -240,4 +242,64 @@ echo 'entre';
                                             </tr>';
         }
     }
+}
+
+function getIdMapa($nombreMapa){
+    global $bd_host;
+    global $bd_usuario;
+    global $bd_password;
+    global $bd_base;
+
+    $resultado = "";
+
+    $mysqli = new mysqli($bd_host, $bd_usuario, $bd_password, $bd_base);
+
+    $consulta = "select id_tbl_mapas from tbl_mapas where nombre_mapa='".$nombreMapa.".png' LIMIT 1;";
+
+    if ($query = $mysqli->prepare($consulta)) {
+        $query->execute();
+        $query->bind_result($id_tbl_mapas);
+
+        while ($query->fetch()) {
+            $resultado =  $id_tbl_mapas;
+        }
+    }
+    
+    return $resultado;
+}
+
+function getDataChildren($codMapa){
+    global $bd_host;
+    global $bd_usuario;
+    global $bd_password;
+    global $bd_base;
+
+    $idMapa = getIdMapa($codMapa);
+    $resultChildren = array();
+    
+    $mysqli = new mysqli($bd_host, $bd_usuario, $bd_password, $bd_base);
+
+    $consulta = 'select numero_identificacion, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento, fk_tbl_puntos_etiqueta_punto from tbl_personas where is_mom=0 AND fk_tbl_mapas = '.$idMapa.' order by primer_nombre';
+
+
+    if ($query = $mysqli->prepare($consulta)) {
+        $query->execute();
+        $query->bind_result($numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido , $fecha_nacimiento, $etiqueta_punto);
+
+        while ($query->fetch()) {
+            $a = array(
+                'numero_identificacion'  => mysql_real_escape_string($numero_identificacion),
+                'primer_nombre'          => mysql_real_escape_string($primer_nombre),
+                'segundo_nombre'         => mysql_real_escape_string($segundo_nombre),
+                'primer_apellido'        => mysql_real_escape_string($primer_apellido),
+                'segundo_apellido'       => mysql_real_escape_string($segundo_apellido),
+                'fecha_nacimiento'       => mysql_real_escape_string($fecha_nacimiento),
+                'etiqueta_punto'         => mysql_real_escape_string($etiqueta_punto)
+            );
+            
+            array_push ($resultChildren , $a);
+        }
+    }
+    
+    return $resultChildren;
 }

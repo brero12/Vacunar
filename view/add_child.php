@@ -6,7 +6,11 @@
 <script type="text/javascript">
     $(function() {
         //Date range picker
-       $('#fechaNace').datepicker({
+        $('#fechaNace').datepicker({
+            format: 'mm/dd/yyyy'
+        });
+        
+        $('#fechaNaceMadre').datepicker({
             format: 'mm/dd/yyyy'
         });
         
@@ -42,122 +46,198 @@
                             <!-- general form elements -->
                         <div class="box box-primary">
                                 <div class="box-header">
-                                    <h3 class="box-title">Datos del niño</h3>
+                                    <h3 class="box-title">Datos del ni&ntilde;o  </h3>
+                                    <input id="cargarMapaRegistro" type="hidden" value="1" />
+                                    <input id="id_mapa" type="hidden" value="<?php echo getIdMapa($_POST['codMapa']); ?>" />
+                                    <input id="etiqueta_punto" type="hidden" value="<?php echo $_POST['etiquetaPunto'] ?>" />
                                 </div><!-- /.box-header -->
                                 <!-- form start -->
                                 
                                   <div class="box-body">
-                                    <div class="input-group">
-                                          <label for="primerNombre">Primer Nombre</label>
-                                          <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                            <input type="text" class="form-control" id="primerNombre" placeholder="Ingrese Primer Nombre">
-                                        </div>
-                                      <br>
-                                      <div class="input-group">
-                                          <label for="segundoNombre">Segundo Nombre</label>
-                                          <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                            <input type="text" class="form-control" id="segundoNombre" placeholder="Ingrese Segundo Nombre">
-                                        </div>
-                                      <br>
-                                        <div class="input-group">
-                                          <label for="primerApellido">Primer Apellido</label>
-                                          <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                            <input type="text" class="form-control" id="primerApellido" placeholder="Ingrese Primer Apellido">
-                                        </div>                                      
-                                      <br>
-                                       <div class="input-group">
-                                          <label for="segundoApellido">Segundo Apellido</label>
-                                          <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                            <input type="text" class="form-control" id="segundoApellido" placeholder="Ingrese Segundo Apellido">
-                                        </div>                                      
-                                      <br>
-                                         <div class="form-group">
-                                        
-                                        <div class="input-group">
-                                            <label>Fecha de Nacimiento:</label>
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-xs-12"> 
+                                                        <label for="primerNombre" >Primer Nombre</label>
+                                                </div>
+                                                <div class="col-xs-12"> 
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-check"></i></span>
+                                                        <input type="text" class="form-control" id="primerNombre" placeholder="Ingrese Primer Nombre" />
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <input type="text" class="form-control" id="fechaNace" />
-                                        </div><!-- /.input group -->
-                                    </div><!-- /.form group -->
-                                                                                                                   
-   
-                                <br>
-                                    
-                                <div class="input-group"> 
-                                    <label for="edad">Tipo de Identificaci&oacute;n </label>
-                                             <select class="form-control" id="tipoId">
-                                                <?php getTipoIdentificacion(1); ?>                                                  
-                                            </select>                                       
                                         </div>
-                                
-                                
-                                <br>
-                                        <div class="input-group">
-                                            <label for="numIdetificacion">N&uacute;mero de Identificaci&oacute;n</label>
-                                          <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                            <input type="text" class="form-control" id="numIdetificacion" placeholder="Ingrese Identificacion">
-                                        </div>
-                                <br>        
-                                    <div class="input-group">
-                                        <label for="regimen">R&eacute;gimen de aseguramiento</label>
-                                          <!--<span class="input-group-addon"><i class="fa fa-check"></i></span>-->
-                                          <select class="form-control" id="regimen">
-                                                <option>Contributivo</option>
-                                                <option>No Contributivo</option>
-                                                <option>Otros</option>                                                
-                                            </select>   
-                                        </div>
-                                
-                                
-                                <br>        
-                                    <div class="input-group">
-                                        <label for="aseguradora">Aseguradora</label>
-                                          <!--<span class="input-group-addon"><i class="fa fa-check"></i></span>-->
-                                          <select class="form-control" id="aseguradora">
-                                                <option>Comfenalco</option>
-                                                <option>Comfandi</option>
-                                                <option>Otros</option>                                                
-                                            </select>   
-                                        </div>
-                                
-                                <br>        
-                                    <div class="input-group">
-                                        <label for="lugar_parto">Lugar de Atención del Parto</label>
-                                          <!--<span class="input-group-addon"><i class="fa fa-check"></i></span>-->
-                                          <select class="form-control" id="lugar_parto">
-                                                <?php getEntidadesSalud(); ?>                                                 
-                                            <!--  --></select>  
-                                        </div>
-                                
-                                
-                               <br>        
-                                    <div class="input-group">
-                                        <label for="departNace">Departamento de Nacimiento</label>
-                                          <!--<span class="input-group-addon"><i class="fa fa-check"></i></span>-->
-                                        <select class="form-control" id="departNace" onchange="cargarCiudadDepartamento()">
-                                                 <?php getDepartamentos(); ?>                                                        
-                                            </select>   
-                                        </div>
-                               
-                               <br>        
-                                    <div class="input-group">
-                                        <label for="ciudadNace">Ciudad de Nacimiento</label>
-                                          <!--<span class="input-group-addon"><i class="fa fa-check"></i></span>-->
-                                          <select class="form-control" id="ciudadNace">
-                                                <option>Buenaventura</option>
-                                                <option>Cali</option>
-                                                <option>Bogota</option>                                                
-                                            </select>   
-                                        </div>
-                                <br>
-                                <div class="input-group">
-                                            <label>
-                                                 Registrar esquema de Vacunaci&oacute;n 
-                                            </label>
-                                            <input type="checkbox" id="vacunaAldia">
-                                        </div>
+                                      <div class="form-group">
+                                          <div class="row">
+                                                <div class="col-xs-12"> 
+                                                        <label for="segundoNombre">Segundo Nombre</label>
+                                                </div>
+                                                <div class="col-xs-12"> 
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-check"></i></span>
+                                                        <input type="text" class="form-control" id="segundoNombre" placeholder="Ingrese Segundo Nombre" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <div class="row">
+                                                <div class="col-xs-12">    
+                                                    <label for="primerApellido">Primer Apellido</label>
+                                                </div>
+                                                <div class="col-xs-12"> 
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-check"></i></span>
+                                                        <input type="text" class="form-control" id="primerApellido" placeholder="Ingrese Primer Apellido">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <div class="row">
+                                                <div class="col-xs-12">    
+                                                    <label for="segundoApellido">Segundo Apellido</label>
+                                                </div>
+                                                <div class="col-xs-12"> 
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-check"></i></span>
+                                                        <input type="text" class="form-control" id="segundoApellido" placeholder="Ingrese Segundo Apellido">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <div class="row">
+                                                <div class="col-xs-12">    
+                                                    <label>Fecha de Nacimiento:</label>
+                                                </div>
+                                                <div class="col-xs-12"> 
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                                        <input type="text" class="form-control" id="fechaNace" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <div class="row">
+                                                <div class="col-xs-12">    
+                                                    <label for="edad">Tipo de Identificaci&oacute;n </label>
+                                                </div>
+                                                <div class="col-xs-12"> 
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon" ><i class="fa fa-caret-square-o-down"></i></span>
+                                                        <select class="form-control" id="tipoId">
+                                                            <?php getTipoIdentificacion(1); ?>                                                  
+                                                        </select>  
+                                                    </div>
+                                                </div>
+                                            </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <div class="row">
+                                                <div class="col-xs-12">    
+                                                    <label for="numIdetificacion">N&uacute;mero de Identificaci&oacute;n</label>
+                                                </div>
+                                                <div class="col-xs-12"> 
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-check"></i></span>
+                                                        <input type="text" class="form-control" id="numIdetificacion" placeholder="Ingrese Identificacion" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <div class="row">
+                                                <div class="col-xs-12">    
+                                                    <label for="regimen">R&eacute;gimen de aseguramiento</label>
+                                                </div>
+                                                <div class="col-xs-12"> 
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon" ><i class="fa fa-caret-square-o-down"></i></span>
+                                                        <select class="form-control" id="regimen">
+                                                            <option>Contributivo</option>
+                                                            <option>No Contributivo</option>
+                                                            <option>Otros</option>                                                
+                                                        </select>   
+                                                    </div>
+                                                </div>
+                                            </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <div class="row">
+                                                <div class="col-xs-12">    
+                                                    <label for="aseguradora">Aseguradora</label>
+                                                </div>
+                                                <div class="col-xs-12"> 
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon" ><i class="fa fa-caret-square-o-down"></i></span>
+                                                        <select class="form-control" id="aseguradora">
+                                                            <option>Comfenalco</option>
+                                                            <option>Comfandi</option>
+                                                            <option>Otros</option>                                                
+                                                        </select> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                      </div>   
+                                      <div class="form-group">
+                                          <div class="row">
+                                                <div class="col-xs-12">    
+                                                    <label for="lugar_parto">Lugar de Atención del Parto</label>
+                                                </div>
+                                                <div class="col-xs-12"> 
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon" ><i class="fa fa-caret-square-o-down"></i></span>
+                                                        <select class="form-control" id="lugar_parto">
+                                                            <?php getEntidadesSalud(); ?>                                                 
+                                                        </select>  
+                                                    </div>
+                                                </div>
+                                            </div>
+                                      </div> 
+                                      <div class="form-group">
+                                          <div class="row">
+                                                <div class="col-xs-12">    
+                                                    <label for="departNace">Departamento de Nacimiento</label>
+                                                </div>
+                                                <div class="col-xs-12"> 
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon" ><i class="fa fa-caret-square-o-down"></i></span>
+                                                        <select class="form-control" id="departNace" onchange="cargarCiudadDepartamento()">
+                                                             <?php getDepartamentos(); ?>                                                        
+                                                        </select>    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                      </div>   
+                                      <div class="form-group">
+                                          <div class="row">
+                                                <div class="col-xs-12">    
+                                                    <label for="ciudadNace">Ciudad de Nacimiento</label>
+                                                </div>
+                                                <div class="col-xs-12"> 
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon" ><i class="fa fa-caret-square-o-down"></i></span>
+                                                        <select class="form-control" id="ciudadNace">
+                                                            <option>Buenaventura</option>
+                                                            <option>Cali</option>
+                                                            <option>Bogota</option>                                                
+                                                        </select>     
+                                                    </div>
+                                                </div>
+                                            </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <div class="row">
+                                                <div class="col-xs-12">    
+                                                    <div class="input-group">
+                                                        <label>Registrar esquema de Vacunaci&oacute;n </label>
+                                                        <input type="checkbox" id="vacunaAldia" />    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                      </div>
                                   </div><!-- /.box-body -->
 
                                     <!--<div class="box-footer">
@@ -181,92 +261,151 @@
                                 </div><!-- /.box-header -->
                                 <div class="box-body">
                                    
-                                  <div class="box-body">
-                                   <div class="input-group">
-                                          <label for="primerNombreMadre">Primer Nombre Madre</label>
-                                          <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                            <input type="text" class="form-control" id="primerNombreMadre" placeholder="Ingrese Primer Nombre">
-                                        </div>
-                                      <br>
-                                      <div class="input-group">
-                                          <label for="segundoNombreMadre">Segundo Nombre Madre</label>
-                                          <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                            <input type="text" class="form-control" id="segundoNombreMadre" placeholder="Ingrese Segundo Nombre">
-                                        </div>
-                                      <br>
-                                        <div class="input-group">
-                                          <label for="primerApellidoMadre">Primer Apellido Madre</label>
-                                          <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                            <input type="text" class="form-control" id="primerApellidoMadre" placeholder="Ingrese Primer Apellido">
-                                        </div>                                      
-                                      <br>
-                                       <div class="input-group">
-                                          <label for="segundoApellidoMadre">Segundo Apellido Madre</label>
-                                          <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                            <input type="text" class="form-control" id="segundoApellidoMadre" placeholder="Ingrese Segundo Apellido">
-                                        </div>                                      
-                                      <br>
-                                       <!-- Date dd/mm/yyyy -->
+                                <div class="box-body">
                                     <div class="form-group">
-                                        
-                                        <div class="input-group">
-                                            <label>Fecha de Nacimiento:</label>
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
+                                      <div class="row">
+                                            <div class="col-xs-12">    
+                                                <label for="primerNombreMadre">Primer Nombre Madre</label>
                                             </div>
-                                            <input type="text"  id="fechaNaceMadre" >
-                                        </div><!-- /.input group -->
-                                    </div><!-- /.form group -->
-                                                                                                    
-                                <div class="input-group"> 
-                                    <label for="tipoDocMadre">Tipo de Documento </label>
-                                    <select class="form-control" id="tipoDocMadre">
-                                                <?php getTipoIdentificacion(2); ?>                                                   
-                                            </select>                                       
+                                            <div class="col-xs-12"> 
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-check"></i></span>
+                                                    <input type="text" class="form-control" id="primerNombreMadre" placeholder="Ingrese Primer Nombre">  
+                                                </div>
+                                            </div>
                                         </div>
-                                
-                                
-                                <br>
-                                        <div class="input-group">
-                                            <label for="numIdetificacionMadre">N&uacute;mero de Documento</label>
-                                          <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                            <input type="text" class="form-control" id="numIdetificacionMadre" placeholder="Ingrese Identificacion">
-                                        </div>
-                                <br>
-                                  <!-- phone mask -->
-                                    <div class="form-group">                                        
-                                        <div class="input-group">
-                                            <label>Telefono</label>
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-phone"></i>
-                                            </div>
-                                            <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask id="telefonoMadre"/>
-                                        </div><!-- /.input group -->
-                                    </div><!-- /.form group -->
-                                    
-                                      <!-- phone mask -->
-                                    <div class="form-group">
-                                       
-                                        <div class="input-group">
-                                            <label>Celular</label>
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-phone"></i>
-                                            </div>
-                                            <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask id="celularMadre"/>
-                                        </div><!-- /.input group -->
-                                    </div><!-- /.form group -->
-                                      <br/>
-                                     <div class="input-group">
-                                         <label for='correoMadre'>Correo</label>
-                                        <span class="input-group-addon">@</span>
-                                        <input type="text" class="form-control" placeholder="Username" id="correoMadre">
                                     </div>
-                                    <br/>
-                                
+                                    <div class="form-group">
+                                          <div class="row">
+                                                <div class="col-xs-12">    
+                                                    <label for="segundoNombreMadre">Segundo Nombre Madre</label>
+                                                </div>
+                                                <div class="col-xs-12"> 
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-check"></i></span>
+                                                        <input type="text" class="form-control" id="segundoNombreMadre" placeholder="Ingrese Segundo Nombre">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <div class="row">
+                                                <div class="col-xs-12">    
+                                                    <label for="primerApellidoMadre">Primer Apellido Madre</label>
+                                                </div>
+                                                <div class="col-xs-12"> 
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-check"></i></span>
+                                                        <input type="text" class="form-control" id="primerApellidoMadre" placeholder="Ingrese Primer Apellido">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <div class="row">
+                                                <div class="col-xs-12">    
+                                                    <label for="segundoApellidoMadre">Segundo Apellido Madre</label>
+                                                </div>
+                                                <div class="col-xs-12"> 
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-check"></i></span>
+                                                        <input type="text" class="form-control" id="segundoApellidoMadre" placeholder="Ingrese Segundo Apellido">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                      </div>
+                                      
+                                       <!-- Date dd/mm/yyyy -->
+                                      <div class="form-group">
+                                          <div class="row">
+                                                <div class="col-xs-12">    
+                                                    <label>Fecha de Nacimiento:</label>
+                                                </div>
+                                                <div class="col-xs-12"> 
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                                        <input type="text" class="form-control"  id="fechaNaceMadre" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <div class="row">
+                                                <div class="col-xs-12">    
+                                                    <label for="tipoDocMadre">Tipo de Documento </label>
+                                                </div>
+                                                <div class="col-xs-12"> 
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon"><i class="fa fa-caret-square-o-down"></i></div>
+                                                        <select class="form-control" id="tipoDocMadre">
+                                                            <?php getTipoIdentificacion(2); ?>                                                   
+                                                        </select> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <div class="row">
+                                                <div class="col-xs-12">    
+                                                    <label for="numIdetificacionMadre">N&uacute;mero de Documento</label>
+                                                </div>
+                                                <div class="col-xs-12"> 
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-check"></i></span>
+                                                        <input type="text" class="form-control" id="numIdetificacionMadre" placeholder="Ingrese Identificacion">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                      </div>
+                                 
+                                  <!-- phone mask -->
+                                    <div class="form-group">
+                                          <div class="row">
+                                                <div class="col-xs-12">    
+                                                    <label>Tel&eacute;fono</label>
+                                                </div>
+                                                <div class="col-xs-12"> 
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon"><i class="fa fa-phone"></i></div>
+                                                        <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask id="telefonoMadre"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                      </div>
+                                    
+                                    
+                                    <!-- phone mask -->
+                                    <div class="form-group">
+                                          <div class="row">
+                                                <div class="col-xs-12">    
+                                                    <label>Celular</label>
+                                                </div>
+                                                <div class="col-xs-12"> 
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon"><i class="fa fa-phone"></i></div>
+                                                        <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask id="celularMadre"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <div class="row">
+                                                <div class="col-xs-12">    
+                                                    <label for='correoMadre'>Correo</label>
+                                                </div>
+                                                <div class="col-xs-12"> 
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon"><i class="fa fa-envelope-o"></i></div>
+                                                        <input type="text" class="form-control" placeholder="Username" id="correoMadre">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                      </div>
                                   </div><!-- /.box-body -->
 
-                                    <div class="box-footer">
+                                    <div class="box-footer" align="center">
                                         <button type="button" class="btn btn-primary" onclick="Javascript:saveChild();">Guardar</button>
+                                        <button type="button" class="btn btn-danger" onclick="JavaScript:cargarMapaIndividual('<?php echo $_POST['codMapa'] ?>')">Cancelar</button>
                                     </div>
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->

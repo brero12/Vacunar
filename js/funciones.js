@@ -1,4 +1,6 @@
 //############################################## UTILIDADES ##############################################
+var etiqueta_puntos = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","aa","bb","cc","dd","ee","ff","gg","hh","ii","jj","kk","ll","mm","nn","oo","pp","qq","rr","ss","tt","uu","vv","ww","xx","yy"];
+
 function cargarURL(contenedor, ajaxurl, datos) {
     $(contenedor).fadeOut(50, function () {
             // Completa el efecto fadeout, carga el nuevo contenido mientras se oculta
@@ -65,6 +67,50 @@ function buscarUbicaciones() {
 	});
 }
 
+function getEtiquetaPunto(posX, posY){
+    var posTemp = "", etiqTemp = "";
+    
+    for(var i=1; i<=50; i++){
+        if(posX >= ((i-1)/50) && posX <= (i/50) ){
+            posTemp = i;
+            break;
+        }
+    }
+    
+    //Hay 51 etiquetas, debido que empieza en la letra "a" y termina en "yy"
+    for(var j=0; j<=50; j++){
+        if(posY >= (j/51) && posY < ((j+1)/51) ){
+            etiqTemp = j;
+            break;
+        }
+    }
+    
+    return (etiqueta_puntos[etiqTemp]+posTemp);
+}
+
+
+function getPuntoEtiqueta(etiquetaPunto){
+    var etiqueta = etiquetaPunto.split("");
+    
+    var letraEtiqueta  = "";
+    var numeroEtiqueta = "";
+    for(var i=0; i<etiqueta.length; i++){
+        if($.isNumeric(etiqueta[i])){
+            numeroEtiqueta += etiqueta[i];
+        }else if (isLetter(etiqueta[i])){
+            letraEtiqueta += etiqueta[i];
+        }
+    }
+    
+    var pos_X = (parseInt(numeroEtiqueta)/50);
+    var pos_Y = (jQuery.inArray( letraEtiqueta, etiqueta_puntos ))/51;
+    
+    return new Array(pos_X,pos_Y);
+}
+
+function isLetter(s){
+    return s.match("^[a-zA-Z\(\)]+$");    
+}
 //############################################## DASHBOARD ##############################################
 
 function cargarDashBoard(){
@@ -74,18 +120,40 @@ function cargarDashBoard(){
 }
 
 //############################################## MAPAS ##############################################
-function cargarMapas(){
+function cargarMapas(cargarMapaRegistro){
     var ajaxurl  = 'view/mapas/maps.php';
-    var data_form = {};
+    var data_form = {
+        cargarMapaRegistro: cargarMapaRegistro
+    };
     cargarURL("#contenedor_principal", ajaxurl, data_form);
     
+}
+
+function cargarMapaIndividual(codMapa){
+    var cargarMapaRegistro = document.getElementById('cargarMapaRegistro').value;
+	var ajaxurl  = (cargarMapaRegistro == 0)?"view/mapas/cargarMapa.php":"view/mapas/cargarMapaRegistro.php";
+    
+	var data_form= {
+        codMapa : codMapa
+    };
+	
+    cargarURL("#contenedor_principal", ajaxurl, data_form);
 }
 
 function addChild(){
     var ajaxurl  = 'view/add_child.php';
     var data_form = {};
     cargarURL("#contenedor_principal", ajaxurl, data_form);
+}
+
+function addChildMap(nombre_mapa, etiqueta_punto){
+    var ajaxurl  = 'view/add_child.php';
+    var data_form = {
+        codMapa : nombre_mapa,
+        etiquetaPunto : etiqueta_punto
+    };
     
+    cargarURL("#contenedor_principal", ajaxurl, data_form);
 }
 
 function addSchema(){
@@ -128,20 +196,11 @@ function saveChild(){
         , telefonoMadre : document.getElementById('telefonoMadre').value
         , celularMadre : document.getElementById('celularMadre').value
         , correoMadre : document.getElementById('correoMadre').value
+        , codMapa : document.getElementById('id_mapa').value
+        , etiquetaPunto : document.getElementById('etiqueta_punto').value
     };
     cargarURL("#contenedor_principal", ajaxurl, data_form);
     
-}
-
-function cargarMapaIndividual(codMapa){
-	var ajaxurl  = 'view/mapas/cargarMapa.php';
-	
-	var data_form= {
-        codMapa : codMapa
-    };
-	
-    cargarURL("#contenedor_principal", ajaxurl, data_form);
-	//include_once("view/cargarMapa.js");
 }
 
 function cargarCiudadDepartamento(){

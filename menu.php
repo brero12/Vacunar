@@ -1,3 +1,4 @@
+<script type="application/javascript" src="js/funciones.js"></script>
 <ul class="sidebar-menu">
 	<li class="active">
 		<a href="index.php">
@@ -5,7 +6,7 @@
 		</a>
 	</li>
 	<li>
-		<a href="JavaScript:cargarMapas(this)">
+		<a href="javascript:cargarMapas(0);">
 			<i class="fa fa-th"></i> <span>Ver Mapa</span>
 		</a>
 	</li>
@@ -19,7 +20,7 @@
 			<i class="fa fa-angle-left pull-right"></i>
 		</a>
 		<ul class="treeview-menu">
-			<li><a href="JavaScript:addChild(this);"><i class="fa fa-angle-double-right"></i> Crear Usuario</a></li>
+			<li><a href="JavaScript:cargarMapas(1);"><i class="fa fa-angle-double-right"></i> Crear Usuario</a></li>
 			<li><a href="JavaScript:viewChild(this);"><i class="fa fa-angle-double-right"></i> Ver Niños</a></li>
 			<li><a href="JavaScript:addSchema(this);"><i class="fa fa-angle-double-right"></i> Ver esquema</a></li>
 		</ul>

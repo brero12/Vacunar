@@ -1,3 +1,6 @@
+<?php
+    include (dirname(__FILE__).'\\..\\..\\controller\\functions_child.php');
+?>
 <style type="text/css" media="all">@import "css/marker.css";</style>
 
 
@@ -13,43 +16,70 @@
 <script type="text/javascript">
 (function($) {
 	$(document).ready(function() {
+        var listChildren = <?php echo json_encode(getDataChildren($_POST['codMapa']), JSON_PRETTY_PRINT); ?>;
+        
 		var $img = $("#img1").imgNotes({
-            onShow: function(ev, elem) {
+            onShow: function() {
+                    //cargar ajax 
+                        alert("En construccion");
+                        //addChild('#contenedor_principal');
+                        //showChild
+                    //fin cargar ajax
+                }/*$.noop*/,
+            onAdd: function() {
+							this.options.vAll = "bottom";
+							this.options.hAll = "middle";
+							var elem = $(document.createElement('span')).addClass("marker black")
+                                                                        .html("")
+                                                                        .attr("title", "");
+							var self = this;
+							$(elem).tooltip({
+									content: function() {
+												return $(elem).data("note");
+											}
+							});
+							return elem;
+					} 
+            /*
+                //Muestra una ventana emergente en el punto más personalizada 
+                onShow: function(ev, elem) {
                     var $elem = $(elem);
                     $('#NoteDialog').remove();
                         return $('<div id="NoteDialog"></div>').dialog({
-                            title: "Ventana emergente",
+                            //title: "Ventana emergente",
                             modal: false,
                             resizable: false,
                             height: 100,
                             width: 250,
                             position: { my: "left bottom", at: "right top", of: elem},
                             buttons: {
-                                /*"Close" : function() {
-                                    $(this).dialog("close");
-                                }*/
+                                //"Close" : function() {
+                                //    $(this).dialog("close");
+                                //}
                             },
                             open: function() {
-                        //			Get the note text and put it into the textarea for editing
                                 $(this).html($elem.data("note"));
                                 $(this).closest(".ui-dialog").find(".ui-dialog-titlebar:first").show();
-
+                                //cargar ajax 
+                                    addChild('#contenedor_principal');
+                                //fin cargar ajax
                             },
                             close: function() {
                                 $(this).dialog("destroy");
                             }
                         });
 
-                }
-            
-            
+                }  */
         });
-		$img.imgNotes("import", [	{x: "0.5", y:"0.5", note:"AFL Grand Final Trophy"}, 
-									{x: "0.322", y:"0.269", note: "Brisbane Lions Flag"},
-									{x: "0.824", y: "0.593", note: "Fluffy microphone"}]);
         
-        $img.imgNotes("import", [	{x: "0.9", y:"0.9", note:"AFL Gran"}]);
-        
+        for(var i=0; i< listChildren.length; i++){
+            var posicionesEtiqueta = getPuntoEtiqueta(""+listChildren[i].etiqueta_punto);
+            $img.imgNotes("import", [	{x: posicionesEtiqueta[0], y:posicionesEtiqueta[1], note:(listChildren[i].primer_nombre + " " +listChildren[i].segundo_nombre + " " +listChildren[i].primer_apellido + " " +listChildren[i].segundo_apellido)}]);
+        }
+      
+        /*
+            $img.imgNotes("import", [	{x: "0.9", y:"0.9", note:"AFL Gran"}]);
+        */
         
   });
 })(jQuery);
@@ -128,13 +158,18 @@
             <li class="active">Mapas</li>
         </ol>
     </section>
-
+    
     <!-- Main content -->
     <section class="content" >
         <!--<p>
             <input value="Zoom In" onclick="zoomImage(document.getElementById('img1'), 1.5); swapButtons('zoomin', 'zoomout');" id="zoomin" type="image" src="img/png/zoom-in.png" border=0>
             <input  value="Zoom Out" onclick="zoomImage(document.getElementById('img1'), .8); swapButtons('zoomout', 'zoomin');" id="zoomout" type="image" src="img/png/zoom-out.png" border=0>
         </p>-->
+        <aside style="float: right; width: 53%; display: block;">
+            <div id='contenedor_aux_1'>
+                
+            </div>
+        </aside>
         <div style="width:500px; height:400px; overflow: scroll;">
             <img id="img1" src="img/mapa/zonas/<?php echo $_POST['codMapa']; ?>.png" width='994' height='994' border="0" class="map" usemap="#mapa" />
 
@@ -145,7 +180,7 @@
                 <!-- #$VERSION:2.3 -->
                 <!-- #$AUTHOR:bryrodpe    -->
                 <area shape="rect" coords="20,0,40,20" href="#a1" />
-                <area shape="rect" coords="40,0,60,20" href="#a2" onmouseover="this.style.backgroundColor='#805CA6';" onmouseout="this.style.backgroundColor='transparent';"/>
+                <area shape="rect" coords="40,0,60,20" href="#a2" />
                 <area shape="rect" coords="40,0,60,20" href="#a3" />
                 <area shape="rect" coords="60,0,80,20" href="#a4" />
                 <area shape="rect" coords="80,0,100,20" href="#a5" />
@@ -2646,4 +2681,8 @@
                 <area shape="rect" coords="980,980,1000,1000" href="#yy50" />
             </map>
         </div><!-- ./col -->
-    </section><!-- /.content -->
+    </section><!-- /.content --> -->
+
+<!--<section style="float: right;">
+    <div id='contenedor_aux_1'></div>
+</section>-->
