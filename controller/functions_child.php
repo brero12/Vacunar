@@ -2,7 +2,7 @@
 
 include ("../model/conexion.php");
 
-function insertChild($fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $regimen_afiliacion, $aseguradora, $fk_tbl_entidad_salud_atencioparto, $fk_municipio_nacimiento) {
+function insertChild($fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $regimen_afiliacion, $aseguradora, $fk_tbl_entidad_salud_atencioparto, $fk_municipio_nacimiento,$id_mom) {
 
     global $bd_host;
     global $bd_usuario;
@@ -11,8 +11,7 @@ function insertChild($fk_tbl_tipo_identificacion, $numero_identificacion, $prime
 
     $mysqli = new mysqli($bd_host, $bd_usuario, $bd_password, $bd_base);
 
-    echo 'on sqlput <br>';
-
+   // echo 'on sqlput <br>';
 
     $consulta = 'insert into tbl_personas (fk_tbl_tipo_identificacion, 
 						numero_identificacion, primer_nombre, 
@@ -20,23 +19,21 @@ function insertChild($fk_tbl_tipo_identificacion, $numero_identificacion, $prime
                         segundo_apellido,fecha_nacimiento,
                         regimen_afiliacion, aseguradora, 
                         fk_tbl_entidad_salud_atencioparto,
-                        fk_municipio_nacimiento) values (?,?,?,?,?,?,?,?,?,?,?)';
+                        fk_municipio_nacimiento, is_mom) values (?,?,?,?,?,?,?,?,?,?,?,?)';
 
     /* echo '<option>'.$consulta.'</option>'; */
-
-
 
     $query = $mysqli->prepare($consulta);
     //if ($result = $mysqli->query($consulta)) {
     // execute
 
-    var_dump($query);
+    //var_dump($query);
 
-    $query->bind_param('issssssssii', $fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $regimen_afiliacion, $aseguradora, $fk_tbl_entidad_salud_atencioparto, $fk_municipio_nacimiento);
+    $query->bind_param('issssssssiii', $fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $regimen_afiliacion, $aseguradora, $fk_tbl_entidad_salud_atencioparto, $fk_municipio_nacimiento,$id_mom);
 
     $query->execute();
 
-    echo 'succes <br>';
+    //echo 'succes <br>';
 }
 
 function insertMomChild($fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $telefono, $celular, $correo_electronico) {
@@ -48,7 +45,7 @@ function insertMomChild($fk_tbl_tipo_identificacion, $numero_identificacion, $pr
 
     $mysqli = new mysqli($bd_host, $bd_usuario, $bd_password, $bd_base);
 
-    echo 'on sqlput Mom<br>';
+    //echo 'on sqlput Mom<br>';
 
 
     $consulta = 'insert into tbl_personas (fk_tbl_tipo_identificacion, 
@@ -60,18 +57,21 @@ function insertMomChild($fk_tbl_tipo_identificacion, $numero_identificacion, $pr
     /* echo '<option>'.$consulta.'</option>'; */
 
 
-
     $query = $mysqli->prepare($consulta);
     //if ($result = $mysqli->query($consulta)) {
     // execute
 
-    var_dump($query);
+    //var_dump($query);
 
     $query->bind_param('issssssss', $fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $telefono, $correo_electronico);
 
     $query->execute();
+    
+    $id_result = $mysqli->insert_id;
+    
+    return $id_result;
 
-    echo 'succes Mom<br>';
+    //echo 'succes Mom<br>';
 }
 
 function getEntidadesSalud() {
@@ -217,7 +217,7 @@ function getDataChild() {
 
     
 
-    $consulta = 'select numero_identificacion, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento from tbl_personas where is_mom=0 order by primer_nombre';
+    $consulta = 'select numero_identificacion, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento from tbl_personas where is_mom !=0 order by primer_nombre';
 
     /* echo '<option>'.$consulta.'</option>'; */
 

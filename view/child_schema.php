@@ -69,7 +69,8 @@
                                             <th>Tipo</th>
                                         </tr
                                         
-                                         <?php getDataSchema(); ?>
+                                         <?php getDataSchemaChild(); ?>                                        
+                                        
                                         <!--<tr>
                                             <td>183</td>
                                             <td>John Doe</td>

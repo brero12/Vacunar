@@ -19,7 +19,10 @@ include 'functions_child.php';
         $fk_tbl_entidad_salud_atencioparto = $_POST['lugar_parto'];
         $departNace = $_POST['departNace'];
         $fk_municipio_nacimiento = $_POST['ciudadNace'];
-        $vacunaAldia = $_POST['vacunaAldia'];
+        
+        /* Valida si registrara vacunacion al momento del registro */
+        $registraVacunacion = $_POST['registraVacunacion'];
+        
         $primer_nombreMadre = $_POST['primerNombreMadre']; 
         $segundo_nombreMadre = $_POST['segundoNombreMadre'];
         $primer_apellidoMadre = $_POST['primerApellidoMadre'];
@@ -31,20 +34,25 @@ include 'functions_child.php';
         $celularMadre = $_POST['celularMadre'];
         $correoMadre = $_POST['correoMadre'];
         
-        insertChild($fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, 
-                        $segundo_nombre, $primer_apellido, 
-                        $segundo_apellido,$fecha_nacimiento,
-                        $regimen_afiliacion, $aseguradora, 
-                        $fk_tbl_entidad_salud_atencioparto,
-                        $fk_municipio_nacimiento);
         
-        insertMomChild($fk_tbl_tipo_identificacionMadre, $numero_identificacionMadre, $primer_nombreMadre, 
+        $id_mom =  insertMomChild($fk_tbl_tipo_identificacionMadre, $numero_identificacionMadre, $primer_nombreMadre, 
                         $segundo_nombreMadre, $primer_apellidoMadre, 
                         $segundo_apellidoMadre,$fecha_nacimientoMadre,
                         $telefonoMadre, $celularMadre, 
                         $correoMadre);
         
+        insertChild($fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, 
+                        $segundo_nombre, $primer_apellido, 
+                        $segundo_apellido,$fecha_nacimiento,
+                        $regimen_afiliacion, $aseguradora, 
+                        $fk_tbl_entidad_salud_atencioparto,
+                        $fk_municipio_nacimiento,$id_mom);
+        
+        if($registraVacunacion=='on')
+        {
+            include '../view/child_schema.php';
+        }else{             
         
         echo $primer_nombre.' - '.$segundo_nombre.' - '.$primer_apellido.'<br> Nacio en : '.$fk_municipio_nacimiento;
-
+        }
         

@@ -156,7 +156,7 @@
                                             <label>
                                                  Registrar esquema de Vacunaci&oacute;n 
                                             </label>
-                                            <input type="checkbox" id="vacunaAldia">
+                                            <input type="checkbox" id="registraVacunacion">
                                         </div>
                                   </div><!-- /.box-body -->
 

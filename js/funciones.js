@@ -117,7 +117,6 @@ function saveChild(){
         , lugar_parto : document.getElementById('lugar_parto').value
         , departNace : document.getElementById('departNace').value
         , ciudadNace : document.getElementById('ciudadNace').value
-        , vacunaAldia : document.getElementById('vacunaAldia').value
         , primerNombreMadre : document.getElementById('primerNombreMadre').value
         , segundoNombreMadre : document.getElementById('segundoNombreMadre').value
         , primerApellidoMadre : document.getElementById('primerApellidoMadre').value
@@ -128,7 +127,10 @@ function saveChild(){
         , telefonoMadre : document.getElementById('telefonoMadre').value
         , celularMadre : document.getElementById('celularMadre').value
         , correoMadre : document.getElementById('correoMadre').value
+        , registraVacunacion : document.getElementById('registraVacunacion').value
     };
+    
+    alert(document.getElementById('registraVacunacion').value);
     cargarURL("#contenedor_principal", ajaxurl, data_form);
     
 }
