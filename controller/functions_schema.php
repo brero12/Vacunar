@@ -147,3 +147,58 @@ echo 'entre';
         }
     }
 }
+
+
+function getMonth($fech_ini,$fech_fin) {
+   
+   //SEPARO LOS VALORES DEL ANIO, MES Y DIA PARA LA FECHA INICIAL EN DIFERENTES
+   //VARIABLES PARASU MEJOR MANEJO
+
+   $fIni_yr=substr($fech_ini,0,4);
+    $fIni_mon=substr($fech_ini,5,2);
+    $fIni_day=substr($fech_ini,8,2);
+
+   //SEPARO LOS VALORES DEL ANIO, MES Y DIA PARA LA FECHA FINAL EN DIFERENTES
+   //VARIABLES PARASU MEJOR MANEJO
+   $fFin_yr=substr($fech_fin,0,4);
+    $fFin_mon=substr($fech_fin,5,2);
+    $fFin_day=substr($fech_fin,8,2);
+
+   $yr_dif=$fFin_yr - $fIni_yr;
+   echo "la diferencia de años es -> ".$yr_dif."<br>";
+   //LA FUNCION strtotime NOS PERMITE COMPARAR CORRECTAMENTE LAS FECHAS
+   //TAMBIEN ES UTIL CON LA FUNCION date
+   if(strtotime($fech_ini) > strtotime($fech_fin)){
+      echo 'ERROR -> la fecha inicial es mayor a la fecha final <br>';
+      exit();
+   }
+   else{
+       if($yr_dif == 1){
+         $fIni_mon = 12 - $fIni_mon;
+         $meses = $fFin_mon + $fIni_mon;
+         return $meses;
+         //LA FUNCION utf8_encode NOS SIRVE PARA PODER MOSTRAR ACENTOS Y
+         //CARACTERES RAROS
+         //echo utf8_encode("la diferencia de meses con un año de diferencia es -> ".$meses."<br>");
+      }
+      else{
+          if($yr_dif == 0){
+             $meses=$fFin_mon - $fIni_mon;
+            return $meses;
+            //echo utf8_encode("la diferencia de meses con cero años de diferencia es -> ".$meses.", donde el mes inicial es ".$fIni_mon.", el mes final es ".$fFin_mon."<br>");
+         }
+         else{
+             if($yr_dif > 1){
+               $fIni_mon = 12 - $fIni_mon;
+               $meses = $fFin_mon + $fIni_mon + (($yr_dif - 1) * 12);
+               return $meses;
+               //echo utf8_encode("la diferencia de meses con mas de un año de diferencia es -> ".$meses."<br>");
+            }
+            else
+               echo "ERROR -> la fecha inicial es mayor a la fecha final <br>";
+               exit();
+         }
+      }
+   }
+
+}
