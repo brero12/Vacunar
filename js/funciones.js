@@ -146,6 +146,12 @@ function addChild(){
     cargarURL("#contenedor_principal", ajaxurl, data_form);
 }
 
+function viewDataChild( data_label){
+    var ajaxurl  = 'view/view_data_child.php';
+    var data_form = { label : data_label};
+    cargarURL("#contenedor_aux_1", ajaxurl, data_form);
+}
+
 function addChildMap(nombre_mapa, etiqueta_punto){
     var ajaxurl  = 'view/add_child.php';
     var data_form = {

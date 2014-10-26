@@ -33,19 +33,28 @@ include 'functions_child.php';
         $codMapa = $_POST['codMapa'];
         $etiquetaPunto = $_POST['etiquetaPunto'];
         
-        insertChild($fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, 
-                        $segundo_nombre, $primer_apellido, 
-                        $segundo_apellido,$fecha_nacimiento,
-                        $regimen_afiliacion, $aseguradora, 
-                        $fk_tbl_entidad_salud_atencioparto,
-                        $fk_municipio_nacimiento,$codMapa,$etiquetaPunto);
         
-        insertMomChild($fk_tbl_tipo_identificacionMadre, $numero_identificacionMadre, $primer_nombreMadre, 
+        $id_mom =  insertMomChild($fk_tbl_tipo_identificacionMadre, $numero_identificacionMadre, $primer_nombreMadre, 
                         $segundo_nombreMadre, $primer_apellidoMadre, 
                         $segundo_apellidoMadre,$fecha_nacimientoMadre,
                         $telefonoMadre, $celularMadre, 
                         $correoMadre,$codMapa,$etiquetaPunto);
         
+        insertChild($fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, 
+                        $segundo_nombre, $primer_apellido, 
+                        $segundo_apellido,$fecha_nacimiento,
+                        $regimen_afiliacion, $aseguradora, 
+                        $fk_tbl_entidad_salud_atencioparto,
+                        $fk_municipio_nacimiento,$id_mom,$codMapa,$etiquetaPunto);
+        
+        if($registraVacunacion=='on')
+        {
+            include '../view/child_schema.php';
+        }else{             
+        
+        echo $primer_nombre.' - '.$segundo_nombre.' - '.$primer_apellido.'<br> Nacio en : '.$fk_municipio_nacimiento;
+
+        }               
         
         echo $primer_nombre.' - '.$segundo_nombre.' - '.$primer_apellido.'<br> Nacio en : '.$fk_municipio_nacimiento;
 

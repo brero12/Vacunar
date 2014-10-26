@@ -1,5 +1,7 @@
 <?php
-    include (dirname(__FILE__).'\\..\\..\\controller\\functions_child.php');
+    //include (dirname(__FILE__).'\\..\\..\\controller\\functions_child.php');
+    include ('../../controller/functions_child.php');
+
 ?>
 <style type="text/css" media="all">@import "css/marker.css";</style>
 
@@ -21,8 +23,8 @@
 		var $img = $("#img1").imgNotes({
             onShow: function() {
                     //cargar ajax 
-                        alert("En construccion");
-                        //addChild('#contenedor_principal');
+                       // alert("En construccion");
+                        viewDataChild('g30');
                         //showChild
                     //fin cargar ajax
                 }/*$.noop*/,

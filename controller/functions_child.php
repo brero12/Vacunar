@@ -1,6 +1,24 @@
 <?php
 
-include (dirname(__FILE__)."\\..\\model\\conexion.php");
+//include (dirname(__FILE__)."\\..\\model\\conexion.php");
+
+
+$dataInclFile = get_included_files();
+
+/* print_r($dataInclFile);
+  die(); */
+
+$resultInclFile = preg_grep('~' . 'conexion.php' . '~', $dataInclFile);
+
+
+if (count($resultInclFile) == 0) {
+    if (file_exists("../model/conexion.php")) {
+    include ("../model/conexion.php");       
+} else {
+    include ("../../model/conexion.php");      
+}
+
+}
 
 function insertChild($fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $regimen_afiliacion, $aseguradora, $fk_tbl_entidad_salud_atencioparto, $fk_municipio_nacimiento, $idMapa, $etiquetaPunto) {
 
@@ -72,8 +90,12 @@ function insertMomChild($fk_tbl_tipo_identificacion, $numero_identificacion, $pr
     $query->bind_param('issssssssis', $fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $telefono, $correo_electronico, $idMapa, $etiquetaPunto);
 
     $query->execute();
+    
+    $id_result = $mysqli->insert_id;
+    
+    return $id_result;
 
-    echo 'succes Mom<br>';
+   // echo 'succes Mom<br>';
 }
 
 function getEntidadesSalud() {
@@ -288,13 +310,13 @@ function getDataChildren($codMapa){
 
         while ($query->fetch()) {
             $a = array(
-                'numero_identificacion'  => mysql_real_escape_string($numero_identificacion),
-                'primer_nombre'          => mysql_real_escape_string($primer_nombre),
-                'segundo_nombre'         => mysql_real_escape_string($segundo_nombre),
-                'primer_apellido'        => mysql_real_escape_string($primer_apellido),
-                'segundo_apellido'       => mysql_real_escape_string($segundo_apellido),
-                'fecha_nacimiento'       => mysql_real_escape_string($fecha_nacimiento),
-                'etiqueta_punto'         => mysql_real_escape_string($etiqueta_punto)
+                'numero_identificacion'  => $mysqli->real_escape_string($numero_identificacion),
+                'primer_nombre'          => $mysqli->real_escape_string($primer_nombre),
+                'segundo_nombre'         => $mysqli->real_escape_string($segundo_nombre),
+                'primer_apellido'        => $mysqli->real_escape_string($primer_apellido),
+                'segundo_apellido'       => $mysqli->real_escape_string($segundo_apellido),
+                'fecha_nacimiento'       => $mysqli->real_escape_string($fecha_nacimiento),
+                'etiqueta_punto'         => $mysqli->real_escape_string($etiqueta_punto)
             );
             
             array_push ($resultChildren , $a);
@@ -302,4 +324,44 @@ function getDataChildren($codMapa){
     }
     
     return $resultChildren;
+}
+
+function getDataMapChild($codMapa){
+   
+    global $bd_host;
+    global $bd_usuario;
+    global $bd_password;
+    global $bd_base;
+
+    //$idMapa = getIdMapa($codMapa);
+    //$resultChildren = array();
+    
+    $mysqli = new mysqli($bd_host, $bd_usuario, $bd_password, $bd_base);
+
+    $consulta = 'select per.numero_identificacion, per.primer_nombre, '
+            . 'per.segundo_nombre, per.primer_apellido, '
+            . 'per.segundo_apellido, per.fecha_nacimiento, '
+            . 'per.regimen_afiliacion, per.aseguradora '
+            . 'from tbl_personas per '
+            . 'where per.is_mom <> 0 and per.fk_tbl_puntos_etiqueta_punto="'.$codMapa.'"  order by per.primer_nombre';
+
+
+    if ($query = $mysqli->prepare($consulta)) {
+        $query->execute();
+        $query->bind_result($numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido , $fecha_nacimiento, $regimen_afiliacion,$aseguradora);
+
+        while($query->fetch())
+        { 
+            echo 'numero_identificacion : '.$numero_identificacion.'<br>'.
+                'primer_nombre  : '          .$primer_nombre.'<br>'.
+                'segundo_nombre : '         .$segundo_nombre.'<br>'.
+                'primer_apellido : '        .$primer_apellido.'<br>'.
+                'segundo_apellido : '       .$segundo_apellido.'<br>'.
+                'fecha_nacimiento : '       .$fecha_nacimiento.'<br>'.
+                'regimen_afiliacion : '         .$regimen_afiliacion.'<br>'.
+                'aseguradora : '         .$aseguradora;      
+        }     
+    }
+    
+    
 }
