@@ -21,9 +21,14 @@
         var listChildren = <?php echo json_encode(getDataChildren($_POST['codMapa']), JSON_PRETTY_PRINT); ?>;
         
 		var $img = $("#img1").imgNotes({
-            onShow: function() {
+            onShow: function(ev, elem) {
+                var $elem = $(elem);
+                var posX = $elem.data("relx");
+                var posY = $elem.data("rely");
+                              
+                alert(getEtiquetaPunto(posX, posY));
+                
                     //cargar ajax 
-                       // alert("En construccion");
                         viewDataChild('g30');
                         //showChild
                     //fin cargar ajax
@@ -42,9 +47,10 @@
 							});
 							return elem;
 					} 
-            /*
+            
+        
                 //Muestra una ventana emergente en el punto más personalizada 
-                onShow: function(ev, elem) {
+                /*onShow: function(ev, elem) {
                     var $elem = $(elem);
                     $('#NoteDialog').remove();
                         return $('<div id="NoteDialog"></div>').dialog({
@@ -63,7 +69,7 @@
                                 $(this).html($elem.data("note"));
                                 $(this).closest(".ui-dialog").find(".ui-dialog-titlebar:first").show();
                                 //cargar ajax 
-                                    addChild('#contenedor_principal');
+                                   // addChild('#contenedor_principal');
                                 //fin cargar ajax
                             },
                             close: function() {
