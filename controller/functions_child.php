@@ -352,15 +352,41 @@ function getDataMapChild($codMapa){
 
         while($query->fetch())
         { 
-            echo 'numero_identificacion : '.$numero_identificacion.'<br>'.
+           /* echo 'numero_identificacion : '.$numero_identificacion.'<br>'.
                 'primer_nombre  : '          .$primer_nombre.'<br>'.
                 'segundo_nombre : '         .$segundo_nombre.'<br>'.
                 'primer_apellido : '        .$primer_apellido.'<br>'.
                 'segundo_apellido : '       .$segundo_apellido.'<br>'.
                 'fecha_nacimiento : '       .$fecha_nacimiento.'<br>'.
                 'regimen_afiliacion : '         .$regimen_afiliacion.'<br>'.
-                'aseguradora : '         .$aseguradora;      
-        }     
+                'aseguradora : '         .$aseguradora;    */
+            
+            
+        
+        
+        echo ' <!-- Warning box -->
+                            <div class="box box-warning">
+                                <div class="box-header">
+                                    <h3 class="box-title">'.$primer_nombre.' '.$segundo_nombre.' '.$primer_apellido.' '.$segundo_apellido.'</h3>
+                                    <div class="box-tools pull-right">
+                                        <ul class="pagination pagination-sm inline">
+                                            <li><a href="#">&laquo;</a></li>
+                                            <li><a href="#">1</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">&raquo;</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="box-body">
+                                    Fecha de Nacimiento: <code>'.$fecha_nacimiento.'</code>
+                                    <p>
+                                        Regimen de Afiliacion   :     '.$regimen_afiliacion.'<br/>
+                                        Aseguradora             :     '.$aseguradora.'<br/>
+                                    </p>
+                                </div><!-- /.box-body -->
+                            </div><!-- /.box -->';
+    }
+    
     }
     
     
