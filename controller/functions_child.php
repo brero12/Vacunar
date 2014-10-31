@@ -29,7 +29,7 @@ function insertChild($fk_tbl_tipo_identificacion, $numero_identificacion, $prime
 
     $mysqli = new mysqli($bd_host, $bd_usuario, $bd_password, $bd_base);
 
-    echo 'on sqlput <br>';
+    //echo 'on sqlput <br>';
 
 
     $consulta = 'insert into tbl_personas (fk_tbl_tipo_identificacion, 
@@ -49,13 +49,13 @@ function insertChild($fk_tbl_tipo_identificacion, $numero_identificacion, $prime
     //if ($result = $mysqli->query($consulta)) {
     // execute
 
-    var_dump($query);
+   // var_dump($query);
 
     $query->bind_param('issssssssiiis', $fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $regimen_afiliacion, $aseguradora, $fk_tbl_entidad_salud_atencioparto, $fk_municipio_nacimiento, $idMapa, $etiquetaPunto);
 
     $query->execute();
 
-    echo 'succes <br>';
+    //echo 'succes <br>';
 }
 
 function insertMomChild($fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $telefono, $celular, $correo_electronico, $idMapa, $etiquetaPunto) {
@@ -67,7 +67,7 @@ function insertMomChild($fk_tbl_tipo_identificacion, $numero_identificacion, $pr
 
     $mysqli = new mysqli($bd_host, $bd_usuario, $bd_password, $bd_base);
 
-    echo 'on sqlput Mom<br>';
+    //echo 'on sqlput Mom<br>';
 
 
     $consulta = 'insert into tbl_personas (fk_tbl_tipo_identificacion, 
@@ -85,7 +85,7 @@ function insertMomChild($fk_tbl_tipo_identificacion, $numero_identificacion, $pr
     //if ($result = $mysqli->query($consulta)) {
     // execute
 
-    var_dump($query);
+    //var_dump($query);
 
     $query->bind_param('issssssssis', $fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $telefono, $correo_electronico, $idMapa, $etiquetaPunto);
 
@@ -301,7 +301,7 @@ function getDataChildren($codMapa){
     
     $mysqli = new mysqli($bd_host, $bd_usuario, $bd_password, $bd_base);
 
-    $consulta = 'select numero_identificacion, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento, fk_tbl_puntos_etiqueta_punto from tbl_personas where is_mom=0 AND fk_tbl_mapas = '.$idMapa.' order by primer_nombre';
+    $consulta = 'select numero_identificacion, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento, fk_tbl_puntos_etiqueta_punto from tbl_personas where is_mom <> 1 AND fk_tbl_mapas = '.$idMapa.' order by primer_nombre';
 
 
     if ($query = $mysqli->prepare($consulta)) {
@@ -383,6 +383,129 @@ function getDataMapChild($codMapa){
                                         Regimen de Afiliacion   :     '.$regimen_afiliacion.'<br/>
                                         Aseguradora             :     '.$aseguradora.'<br/>
                                     </p>
+                                    
+                                    <table class="table table-hover">
+                                        <tr>
+                                            <th>Nombre Vacuna</th>
+                                            <th>Aplicada</th>
+                                            <th>Dosis</th>
+                                            <th>Fecha Aplicaci&oacute;n</th>
+                                        </tr
+                                        <tr>
+                                            <td>TUBERCULOSIS EXTRAPULMONAR</td>
+                                            <td><span class="label label-success">Aplicada</span></td>
+                                            <td>1</td>
+                                            <td>11-7-2014</td>
+                                        </tr>
+                                        <tr>
+                                            <td>HEPATITIS B</td>
+                                            <td><span class="label label-danger">No aplicada</span></td>
+                                            <td>0</td>
+                                            <td>00-00-0000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>POLIOMIELITIS</td>
+                                            <td><span class="label label-danger">No aplicada</span></td>
+                                            <td>0</td>
+                                            <td>00-00-0000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>HAEMOPHILUS INFLUENZAE TIPO B</td>
+                                            <td><span class="label label-danger">No aplicada</span></td>
+                                            <td>0</td>
+                                            <td>00-00-0000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>DIFTERIA, TETANO Y TOSFERINA</td>
+                                            <td><span class="label label-success">Aplicada</span></td>
+                                            <td>2</td>
+                                            <td>11-7-2014</td>
+                                        </tr>
+                                        <tr>
+                                            <td>ROTAVIRUS</td>
+                                            <td><span class="label label-danger">No aplicada</span></td>
+                                            <td>0</td>
+                                            <td>00-00-0000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>NEUMOCOCO</td>
+                                            <td><span class="label label-danger">No aplicada</span></td>
+                                            <td>0</td>
+                                            <td>00-00-0000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>INFLUENZA (GRIPE)</td>
+                                            <td><span class="label label-danger">No aplicada</span></td>
+                                            <td>0</td>
+                                            <td>00-00-0000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>TÉTANO Y DIFTERIA</td>
+                                            <td><span class="label label-success">Aplicada</span></td>
+                                            <td>2</td>
+                                            <td>11-7-2014</td>
+                                        </tr>
+                                        <tr>
+                                            <td>SARAMPION, RUBEOLA Y PAPERAS</td>
+                                            <td><span class="label label-success">Aplicada</span></td>
+                                            <td>1</td>
+                                            <td>11-7-2014</td>
+                                        </tr>
+                                        <tr>
+                                            <td>FIEBRE AMARILLA</td>
+                                            <td><span class="label label-danger">No aplicada</span></td>
+                                            <td>0</td>
+                                            <td>00-00-0000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>HEPATITIS A</td>
+                                            <td><span class="label label-danger">No aplicada</span></td>
+                                            <td>0</td>
+                                            <td>00-00-0000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>VARICELA</td>
+                                            <td><span class="label label-danger">No aplicada</span></td>
+                                            <td>0</td>
+                                            <td>00-00-0000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>SARAMPIÓN Y RUBEOLA</td>
+                                            <td><span class="label label-success">Aplicada</span></td>
+                                            <td>1</td>
+                                            <td>11-7-2014</td>
+                                        </tr>
+                                        <tr>
+                                            <td>VIRUS PAPILOMA HUMANO</td>
+                                            <td><span class="label label-danger">No aplicada</span></td>
+                                            <td>0</td>
+                                            <td>00-00-0000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>RABIA HUMANA</td>
+                                            <td><span class="label label-danger">No aplicada</span></td>
+                                            <td>0</td>
+                                            <td>11-7-2014</td>
+                                        </tr>
+                                        <tr>
+                                            <td>FIEBRE TIFOIDEA</td>
+                                            <td><span class="label label-danger">No aplicada</span></td>
+                                            <td>0</td>
+                                            <td>11-7-2014</td>
+                                        </tr>
+                                        <tr>
+                                            <td>MENINGOCOCO</td>
+                                            <td><span class="label label-success">Aplicada</span></td>
+                                            <td>1</td>
+                                            <td>11-7-2014</td>
+                                        </tr>
+                                        <tr>
+                                            <td>TÉTANO Y DIFTERIA</td>
+                                            <td><span class="label label-success">Aplicada</span></td>
+                                            <td>2</td>
+                                            <td>11-7-2014</td>
+                                        </tr>
+                                    </table>    
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->';
     }

@@ -26,10 +26,10 @@
                 var posX = $elem.data("relx");
                 var posY = $elem.data("rely");
                               
-                alert(getEtiquetaPunto(posX, posY));
+                //alert(getEtiquetaPunto(posX, posY));
                 
                     //cargar ajax 
-                        viewDataChild('g30');
+                        viewDataChild(getEtiquetaPunto(posX, posY));
                         //showChild
                     //fin cargar ajax
                 }/*$.noop*/,

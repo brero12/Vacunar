@@ -19,7 +19,7 @@ include 'functions_child.php';
         $fk_tbl_entidad_salud_atencioparto = $_POST['lugar_parto'];
         $departNace = $_POST['departNace'];
         $fk_municipio_nacimiento = $_POST['ciudadNace'];
-        $vacunaAldia = $_POST['vacunaAldia'];
+        $registraVacunacion = $_POST['registraVacunacion'];
         $primer_nombreMadre = $_POST['primerNombreMadre']; 
         $segundo_nombreMadre = $_POST['segundoNombreMadre'];
         $primer_apellidoMadre = $_POST['primerApellidoMadre'];
