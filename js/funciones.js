@@ -191,7 +191,7 @@ function saveChild(){
         , lugar_parto : document.getElementById('lugar_parto').value
         , departNace : document.getElementById('departNace').value
         , ciudadNace : document.getElementById('ciudadNace').value
-        , vacunaAldia : document.getElementById('vacunaAldia').value
+        , registraVacunacion : document.getElementById('registraVacunacion').value
         , primerNombreMadre : document.getElementById('primerNombreMadre').value
         , segundoNombreMadre : document.getElementById('segundoNombreMadre').value
         , primerApellidoMadre : document.getElementById('primerApellidoMadre').value

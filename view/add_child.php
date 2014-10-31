@@ -233,7 +233,7 @@
                                                 <div class="col-xs-12">    
                                                     <div class="input-group">
                                                         <label>Registrar esquema de Vacunaci&oacute;n </label>
-                                                        <input type="checkbox" id="vacunaAldia" />    
+                                                        <input type="checkbox" id="registraVacunacion" />    
                                                     </div>
                                                 </div>
                                             </div>
