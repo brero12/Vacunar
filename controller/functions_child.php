@@ -241,7 +241,7 @@ function getDataChild() {
 
     
 
-    $consulta = 'select numero_identificacion, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento from tbl_personas where is_mom=0 order by primer_nombre';
+    $consulta = 'select numero_identificacion, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento from tbl_personas where is_mom<>1 order by primer_nombre';
 
     /* echo '<option>'.$consulta.'</option>'; */
 
