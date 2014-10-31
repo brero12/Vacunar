@@ -205,6 +205,8 @@ function saveChild(){
         , codMapa : document.getElementById('id_mapa').value
         , etiquetaPunto : document.getElementById('etiqueta_punto').value
     };
+	
+	alert(document.getElementById('registraVacunacion').value);
     cargarURL("#contenedor_principal", ajaxurl, data_form);
     
 }
