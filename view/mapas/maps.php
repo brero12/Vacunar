@@ -21,8 +21,20 @@
 
 <section class="content-header">
 	<ol class="breadcrumb">
-		<li><a href="index.php"><i class="fa fa-dashboard"></i> Principal</a></li>
-		<li class="active">Mapas</li>
+        <?php
+            
+            if($_POST['cargarMapaRegistro'] == "0"){
+                echo "<li><a href='index.php'><i class='fa fa-dashboard'></i> Principal </a></li>";
+                echo "<li class='active'>Ver Mapa</li>";
+            }
+            else if($_POST['cargarMapaRegistro'] == "1"){
+                echo "<li><a href='index.php'><i class='fa fa-dashboard'></i> Principal </a></li>";
+                echo "<li><a href='#'>Administraci&oacute;n</a></li>";
+                echo "<li class='active'>Registrar ni&ntilde;o</li>";
+            }
+
+        ?>        
+		
 	</ol>
 </section>
 <!-- Search content -->

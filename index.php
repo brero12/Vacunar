@@ -30,7 +30,8 @@
         <!-- Bootstrap time Picker -->
         <link href="css/timepicker/bootstrap-timepicker.min.css" rel="stylesheet"/>
         <!-- JQuery Smooth -->
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" media="screen">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" media="screen" />
+        
         
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -85,7 +86,7 @@
         <header class="header">
             <a href="index.php" class="logo">
                 <!-- Add the class icon to your logo image or logo icon to add the margining -->
-                Vacunaci&otilde;n
+                GESVACUN
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
@@ -178,24 +179,24 @@
                         <li class="dropdown notifications-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-warning"></i>
-                                <span class="label label-warning">10</span>
+                                <span class="label label-warning">2</span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li class="header">Usted tiene 10 notificaciones</li>
+                                <li class="header">Usted tiene 2 notificaciones</li>
                                 <li>
                                     <!-- inner menu: contains the actual data -->
                                     <ul class="menu">
                                         <li>
                                             <a href="#">
-                                                <i class="ion ion-ios7-people info"></i> 5 nuevas familias hoy
+                                                <i class="ion ion-ios7-people info"></i> Se han registrado (1) ni&ntilde;o (s) hoy.
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <i class="fa fa-warning danger"></i> Very long description here that may not fit into the page and may cause design problems
+                                                <i class="fa fa-warning warning"></i> Lentitud en conexi&oacute;n al servidor.
                                             </a>
                                         </li>
-                                        <li>
+                                        <!--<li>
                                             <a href="#">
                                                 <i class="fa fa-users warning"></i> 5 new members joined
                                             </a>
@@ -210,13 +211,14 @@
                                             <a href="#">
                                                 <i class="ion ion-ios7-person danger"></i> You changed your username
                                             </a>
-                                        </li>
+                                        </li>-->
                                     </ul>
                                 </li>
-                                <li class="footer"><a href="#">View all</a></li>
+                                <li class="footer"><a href="#">Ver todas</a></li>
                             </ul>
                         </li>
                         <!-- Tasks: style can be found in dropdown.less -->
+                        <!--
                         <li class="dropdown tasks-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-tasks"></i>
@@ -225,9 +227,8 @@
                             <ul class="dropdown-menu">
                                 <li class="header">Ud tiene 9 tareas</li>
                                 <li>
-                                    <!-- inner menu: contains the actual data -->
                                     <ul class="menu">
-                                        <li><!-- Task item -->
+                                        <li>
                                             <a href="#">
                                                 <h3>
                                                     Tarea 1
@@ -239,8 +240,7 @@
                                                     </div>
                                                 </div>
                                             </a>
-                                        </li><!-- end task item -->
-                                        <li><!-- Task item -->
+                                        <li>
                                             <a href="#">
                                                 <h3>
                                                     Tarea 2
@@ -252,8 +252,8 @@
                                                     </div>
                                                 </div>
                                             </a>
-                                        </li><!-- end task item -->
-                                        <li><!-- Task item -->
+                                        </li>
+                                        <li>
                                             <a href="#">
                                                 <h3>
                                                     Tarea 3
@@ -265,8 +265,8 @@
                                                     </div>
                                                 </div>
                                             </a>
-                                        </li><!-- end task item -->
-                                        <li><!-- Task item -->
+                                        </li>
+                                        <li>
                                             <a href="#">
                                                 <h3>
                                                     Tarea 4
@@ -278,14 +278,14 @@
                                                     </div>
                                                 </div>
                                             </a>
-                                        </li><!-- end task item -->
+                                        </li>
                                     </ul>
                                 </li>
                                 <li class="footer">
                                     <a href="#">Ver Todas las tareas</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li>-->
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -341,18 +341,18 @@
                         <div class="pull-left info">
                             <p>Hola, Bryan</p>
 
-                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                            <a href="#"><i class="fa fa-circle text-success"></i> En l&iacute;nea</a>
                         </div>
                     </div>
                     <!-- search form -->
-                    <form action="#" method="get" class="sidebar-form">
+                    <!--<form action="#" method="get" class="sidebar-form">
                         <div class="input-group">
                             <input type="text" name="q" class="form-control" placeholder="Search..."/>
                             <span class="input-group-btn">
                                 <button type='submit' name='seach' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
                             </span>
                         </div>
-                    </form>
+                    </form>-->
                     <!-- /.search form -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <?php include_once "menu.php"; ?>
@@ -371,8 +371,7 @@
                             <smallPanel de control</small>
                         </h1>
                         <ol class="breadcrumb">
-                            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                            <li class="active">Principal</li>
+                            <li class="active" ><a href="#"><i class="fa fa-dashboard"></i> Principal</a></li>
                         </ol>
                     </section>
 

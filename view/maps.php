@@ -4,8 +4,8 @@
 		<small></small>
 	</h1>-->
 	<ol class="breadcrumb">
-		<li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li class="active">Mapas</li>
+		<li><a href="index.php"><i class="fa fa-dashboard"></i> Principal</a></li>
+		<li class="active">Ver Mapa</li>
 	</ol>
 </section>
 

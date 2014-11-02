@@ -75,19 +75,19 @@ echo 'entre';
                 $tipo_e = 'pai';
             }
 
-            echo '<tr>
-                       <td>'.$nombre_vacuna.'</td>
-                                                <td>'.$dosis1.'</td>
-                                               <td>'.$dosis2.'</td>
-                                                   <td>'.$dosis3.'</td>
-                                                       <td>'.$dosis4.'</td>
-                                                           <td>'.$dosis5.'</td>
-                                                               <td>'.$refuerzo1.'</td>
-                                                                   <td>'.$refuerzo2.'</td>
-                                                                       <td>'.$adicional1.'</td>
-                                                                           <td>'.$adicional2.'</td>
-                                                                       <td>'.$tipo_e.'</td>
-                                                                           </tr>';
+            echo ' <tr>
+                        <td>'.$nombre_vacuna.'</td>
+                        <td>'.$dosis1.'</td>
+                        <td>'.$dosis2.'</td>
+                        <td>'.$dosis3.'</td>
+                        <td>'.$dosis4.'</td>
+                        <td>'.$dosis5.'</td>
+                        <td>'.$refuerzo1.'</td>
+                        <td>'.$refuerzo2.'</td>
+                        <td>'.$adicional1.'</td>
+                        <td>'.$adicional2.'</td>
+                        <td>'.$tipo_e.'</td>
+                   </tr>';
         }
     }
 }

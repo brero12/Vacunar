@@ -7,11 +7,11 @@
     $(function() {
         //Date range picker
         $('#fechaNace').datepicker({
-            format: 'mm/dd/yyyy'
+            format: 'yyyy/mm/dd'
         });
         
         $('#fechaNaceMadre').datepicker({
-            format: 'mm/dd/yyyy'
+            format: 'yyyy/mm/dd'
         });
         
         //("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
@@ -31,8 +31,8 @@
                         <small>Registro</small>
                     </h1>
                     <ol class="breadcrumb">
-                        <li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li><a href="#">Administracion</a></li>
+                        <li><a href="index.php"><i class="fa fa-dashboard"></i> Principal </a></li>
+                        <li><a href="#">Administraci&oacute;n</a></li>
                         <li class="active">Registro</li>
                     </ol>
                 </section>
@@ -109,7 +109,7 @@
                                       <div class="form-group">
                                           <div class="row">
                                                 <div class="col-xs-12">    
-                                                    <label>Fecha de Nacimiento:</label>
+                                                    <label>Fecha de Nacimiento: (Formato AAAA/MM/DD)</label>
                                                 </div>
                                                 <div class="col-xs-12"> 
                                                     <div class="input-group">
@@ -396,7 +396,7 @@
                                                 <div class="col-xs-12"> 
                                                     <div class="input-group">
                                                         <div class="input-group-addon"><i class="fa fa-envelope-o"></i></div>
-                                                        <input type="text" class="form-control" placeholder="Username" id="correoMadre">
+                                                        <input type="text" class="form-control" placeholder="E-mail" id="correoMadre">
                                                     </div>
                                                 </div>
                                             </div>

@@ -2,48 +2,50 @@
 <ul class="sidebar-menu">
 	<li class="active">
 		<a href="index.php">
-			<i class="fa fa-dashboard"></i> <span>Principal</span>
+			<i class="fa fa-dashboard" style="content:url(img/menu/home_menu.png); height:14px; width:14px"></i> <span>Principal</span>
 		</a>
 	</li>
 	<li>
 		<a href="javascript:cargarMapas(0);">
-			<i class="fa fa-th"></i> <span>Ver Mapa</span>
+			<i class="fa fa-th" style="content:url(img/menu/map_menu.png); height:14px; width:14px"></i> <span>Ver Mapa</span>
 		</a>
 	</li>
 	
 	
 	
 	
-	<li class="treeview">
+	<li class="treeview active">
 		<a href="#">
-			<i class="fa fa-table"></i> <span>Administraci&oacute;n</span>
+			<i class="fa fa-table" style="content:url(img/menu/gear_menu.png); height:14px; width:14px"></i> 
+                <span>Administraci&oacute;n</span>
 			<i class="fa fa-angle-left pull-right"></i>
 		</a>
 		<ul class="treeview-menu">
-			<li><a href="JavaScript:cargarMapas(1);"><i class="fa fa-angle-double-right"></i> Crear Usuario</a></li>
-			<li><a href="JavaScript:viewChild(this);"><i class="fa fa-angle-double-right"></i> Ver Niños</a></li>
-			<li><a href="JavaScript:addSchema(this);"><i class="fa fa-angle-double-right"></i> Ver esquema</a></li>
+			<li><a href="JavaScript:cargarMapas(1);"><i class="fa" style="content:url(img/menu/child_item_menu.png); height:14px; width:14px"></i> Registrar ni&ntilde;o</a></li>
+			<li><a href="JavaScript:viewChild(this);"><i class="fa" style="content:url(img/menu/search_item_menu.png); height:14px; width:14px"></i> Ver Ni&ntilde;os</a></li>
+			<li><a href="JavaScript:addSchema(this);"><i class="fa" style="content:url(img/menu/checklist_item_menu.png); height:14px; width:14px"></i> Ver esquema</a></li>
 		</ul>
 	</li>
 	
 	<li>
 		<a href="JavaScript:cargarCalendario(this)">
-			<i class="fa fa-calendar"></i> <span>Calendario</span>
-			<small class="badge pull-right bg-red">3</small>
+			<i class="fa fa-calendar" style="content:url(img/menu/calendar_menu.png); height:14px; width:14px"></i> <span>Calendario</span>
+			<small class="badge pull-right bg-red">En construcci&oacute;n</small>
 		</a>
 	</li>
 	
 	<li class="treeview">
 		<a href="#">
-			<i class="fa fa-bar-chart-o"></i>
+			<i class="fa fa-bar-chart-o" style="content:url(img/menu/reports_menu.png); height:14px; width:14px"></i>
 			<span>Reportes</span>
-			<i class="fa fa-angle-left pull-right"></i>
+			<!--<i class="fa fa-angle-left pull-right"></i>-->
+            <small class="badge pull-right bg-red">En construcci&oacute;n</small>
 		</a>
-		<ul class="treeview-menu">
+		<!--<ul class="treeview-menu">
 			<li><a href="JavaScript:cargarReporte1(this)"><i class="fa fa-angle-double-right"></i> Reporte 1</a></li>
 			<li><a href="JavaScript:cargarReporte1(this)"><i class="fa fa-angle-double-right"></i> Reporte 2 </a></li>
 			<li><a href="JavaScript:cargarReporte1(this)"><i class="fa fa-angle-double-right"></i> Reporte 3 </a></li>
-		</ul>
+		</ul>-->
 	</li>
 	
 	<!-- 

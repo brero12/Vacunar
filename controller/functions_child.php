@@ -20,7 +20,7 @@ if (count($resultInclFile) == 0) {
 
 }
 
-function insertChild($fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $regimen_afiliacion, $aseguradora, $fk_tbl_entidad_salud_atencioparto, $fk_municipio_nacimiento, $idMapa, $etiquetaPunto) {
+function insertChild($fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $regimen_afiliacion, $aseguradora, $fk_tbl_entidad_salud_atencioparto, $fk_municipio_nacimiento, $isMom, $idMapa, $etiquetaPunto) {
 
     global $bd_host;
     global $bd_usuario;
@@ -32,14 +32,21 @@ function insertChild($fk_tbl_tipo_identificacion, $numero_identificacion, $prime
     //echo 'on sqlput <br>';
 
 
-    $consulta = 'insert into tbl_personas (fk_tbl_tipo_identificacion, 
-						numero_identificacion, primer_nombre, 
-                        segundo_nombre, primer_apellido, 
-                        segundo_apellido,fecha_nacimiento,
-                        regimen_afiliacion, aseguradora, 
-                        fk_tbl_entidad_salud_atencioparto,
-                        fk_municipio_nacimiento, 
-                        fk_tbl_mapas, fk_tbl_puntos_etiqueta_punto) values (?,?,?,?,?,?,?,?,?,?,?,?,?)';
+    $consulta = 'insert into tbl_personas ( fk_tbl_tipo_identificacion, 
+						                    numero_identificacion, 
+                                            primer_nombre, 
+                                            segundo_nombre, 
+                                            primer_apellido, 
+                                            segundo_apellido,
+                                            fecha_nacimiento,
+                                            regimen_afiliacion, 
+                                            aseguradora, 
+                                            fk_tbl_entidad_salud_atencioparto,
+                                            fk_municipio_nacimiento, 
+                                            is_mom,
+                                            fk_tbl_mapas, 
+                                            fk_tbl_puntos_etiqueta_punto) 
+                 values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
 
     /* echo '<option>'.$consulta.'</option>'; */
 
@@ -51,7 +58,7 @@ function insertChild($fk_tbl_tipo_identificacion, $numero_identificacion, $prime
 
    // var_dump($query);
 
-    $query->bind_param('issssssssiiis', $fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $regimen_afiliacion, $aseguradora, $fk_tbl_entidad_salud_atencioparto, $fk_municipio_nacimiento, $idMapa, $etiquetaPunto);
+    $query->bind_param('issssssssiiiis', $fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $regimen_afiliacion, $aseguradora, $fk_tbl_entidad_salud_atencioparto, $fk_municipio_nacimiento, $isMom, $idMapa, $etiquetaPunto);
 
     $query->execute();
 
@@ -70,12 +77,19 @@ function insertMomChild($fk_tbl_tipo_identificacion, $numero_identificacion, $pr
     //echo 'on sqlput Mom<br>';
 
 
-    $consulta = 'insert into tbl_personas (fk_tbl_tipo_identificacion, 
-						numero_identificacion, primer_nombre, 
-                        segundo_nombre, primer_apellido, 
-                        segundo_apellido,fecha_nacimiento,
-                        telefono, correo_electronico ,is_mom,
-                        fk_tbl_mapas, fk_tbl_puntos_etiqueta_punto) values (?,?,?,?,?,?,?,?,?,1,?,?)';
+    $consulta = 'insert into tbl_personas ( fk_tbl_tipo_identificacion, 
+                                            numero_identificacion, 
+                                            primer_nombre, 
+                                            segundo_nombre, 
+                                            primer_apellido, 
+                                            segundo_apellido,
+                                            fecha_nacimiento,
+                                            telefono, 
+                                            correo_electronico ,
+                                            is_mom,
+                                            fk_tbl_mapas, 
+                                            fk_tbl_puntos_etiqueta_punto) 
+                  values (?,?,?,?,?,?,?,?,?,1,?,?)';
 
     /* echo '<option>'.$consulta.'</option>'; */
 
@@ -252,7 +266,6 @@ function getDataChild() {
         // bind results
         $query->bind_result($numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido , $fecha_nacimiento);
 
-echo 'entre';
         while ($query->fetch()) {
 
             echo '<tr>
@@ -339,11 +352,11 @@ function getDataMapChild($codMapa){
     $mysqli = new mysqli($bd_host, $bd_usuario, $bd_password, $bd_base);
 
     $consulta = 'select per.numero_identificacion, per.primer_nombre, '
-            . 'per.segundo_nombre, per.primer_apellido, '
-            . 'per.segundo_apellido, per.fecha_nacimiento, '
-            . 'per.regimen_afiliacion, per.aseguradora '
-            . 'from tbl_personas per '
-            . 'where per.is_mom <> 0 and per.fk_tbl_puntos_etiqueta_punto="'.$codMapa.'"  order by per.primer_nombre';
+                . 'per.segundo_nombre, per.primer_apellido, '
+                . 'per.segundo_apellido, per.fecha_nacimiento, '
+                . 'per.regimen_afiliacion, per.aseguradora '
+                . 'from tbl_personas per '
+                . 'where per.is_mom <> 1 and per.fk_tbl_puntos_etiqueta_punto="'.$codMapa.'"  order by per.primer_nombre';
 
 
     if ($query = $mysqli->prepare($consulta)) {
@@ -395,7 +408,7 @@ function getDataMapChild($codMapa){
                                             <td>TUBERCULOSIS EXTRAPULMONAR</td>
                                             <td><span class="label label-success">Aplicada</span></td>
                                             <td>1</td>
-                                            <td>11-7-2014</td>
+                                            <td>2014-12-07</td>
                                         </tr>
                                         <tr>
                                             <td>HEPATITIS B</td>
@@ -419,7 +432,7 @@ function getDataMapChild($codMapa){
                                             <td>DIFTERIA, TETANO Y TOSFERINA</td>
                                             <td><span class="label label-success">Aplicada</span></td>
                                             <td>2</td>
-                                            <td>11-7-2014</td>
+                                            <td>2014-12-07</td>
                                         </tr>
                                         <tr>
                                             <td>ROTAVIRUS</td>
@@ -443,13 +456,13 @@ function getDataMapChild($codMapa){
                                             <td>TÉTANO Y DIFTERIA</td>
                                             <td><span class="label label-success">Aplicada</span></td>
                                             <td>2</td>
-                                            <td>11-7-2014</td>
+                                            <td>2014-12-07</td>
                                         </tr>
                                         <tr>
                                             <td>SARAMPION, RUBEOLA Y PAPERAS</td>
                                             <td><span class="label label-success">Aplicada</span></td>
                                             <td>1</td>
-                                            <td>11-7-2014</td>
+                                            <td>2014-12-07</td>
                                         </tr>
                                         <tr>
                                             <td>FIEBRE AMARILLA</td>
@@ -473,7 +486,7 @@ function getDataMapChild($codMapa){
                                             <td>SARAMPIÓN Y RUBEOLA</td>
                                             <td><span class="label label-success">Aplicada</span></td>
                                             <td>1</td>
-                                            <td>11-7-2014</td>
+                                            <td>2014-12-07</td>
                                         </tr>
                                         <tr>
                                             <td>VIRUS PAPILOMA HUMANO</td>
@@ -485,25 +498,25 @@ function getDataMapChild($codMapa){
                                             <td>RABIA HUMANA</td>
                                             <td><span class="label label-danger">No aplicada</span></td>
                                             <td>0</td>
-                                            <td>11-7-2014</td>
+                                            <td>0000-00-00</td>
                                         </tr>
                                         <tr>
                                             <td>FIEBRE TIFOIDEA</td>
                                             <td><span class="label label-danger">No aplicada</span></td>
                                             <td>0</td>
-                                            <td>11-7-2014</td>
+                                            <td>0000-00-00</td>
                                         </tr>
                                         <tr>
                                             <td>MENINGOCOCO</td>
                                             <td><span class="label label-success">Aplicada</span></td>
                                             <td>1</td>
-                                            <td>11-7-2014</td>
+                                            <td>2014-12-07</td>
                                         </tr>
                                         <tr>
                                             <td>TÉTANO Y DIFTERIA</td>
                                             <td><span class="label label-success">Aplicada</span></td>
                                             <td>2</td>
-                                            <td>11-7-2014</td>
+                                            <td>2014-12-07</td>
                                         </tr>
                                     </table>    
                                 </div><!-- /.box-body -->

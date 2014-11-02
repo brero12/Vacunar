@@ -5,8 +5,6 @@
 ?>
 <style type="text/css" media="all">@import "css/marker.css";</style>
 
-
-<!--<script type="text/javascript" src="js/libs/jquery/jquery.js"></script>-->
 <script type="text/javascript" src="js/libs/jquery/jquery-ui.js"></script>
 <script type="text/javascript" src="js/libs/jquery.fs.zoetrope.min.js"></script>
 <script type="text/javascript" src="js/libs/toe.min.js"></script>
@@ -25,30 +23,24 @@
                 var $elem = $(elem);
                 var posX = $elem.data("relx");
                 var posY = $elem.data("rely");
-                              
-                //alert(getEtiquetaPunto(posX, posY));
                 
-                    //cargar ajax 
-                        viewDataChild(getEtiquetaPunto(posX, posY));
-                        //showChild
-                    //fin cargar ajax
-                }/*$.noop*/,
+                viewDataChild(getEtiquetaPunto(posX, posY));
+            }/*$.noop*/,
             onAdd: function() {
-							this.options.vAll = "bottom";
-							this.options.hAll = "middle";
-							var elem = $(document.createElement('span')).addClass("marker black")
-                                                                        .html("")
-                                                                        .attr("title", "");
-							var self = this;
-							$(elem).tooltip({
-									content: function() {
-												return $(elem).data("note");
-											}
-							});
-							return elem;
-					} 
+                this.options.vAll = "bottom";
+                this.options.hAll = "middle";
+                var elem = $(document.createElement('span')).addClass("marker black")
+                                                            .html("")
+                                                            .attr("title", "");
+                var self = this;
+                $(elem).tooltip({
+                        content: function() {
+                                    return $(elem).data("note");
+                                }
+                });
+                return elem;
+            } 
             
-        
                 //Muestra una ventana emergente en el punto más personalizada 
                 /*onShow: function(ev, elem) {
                     var $elem = $(elem);
@@ -133,11 +125,7 @@
 		}
 	}
 	
-	function swapButtons(b1, b2) {
-		// Swap the enabled/disabled buttons.
-		//document.getElementById(b1).disabled = true;
-		//document.getElementById(b2).disabled = false;
-	}
+
 	function doClick(e) {
 		var node=null;
 		if(!e) { // IE
@@ -163,7 +151,7 @@
     <section class="content-header">
         <ol class="breadcrumb">
             <li><a href="index.php"><i class="fa fa-dashboard"></i> Principal</a></li>
-            <li class="active">Mapas</li>
+            <li class="active">Ver Mapa</li>
         </ol>
     </section>
     

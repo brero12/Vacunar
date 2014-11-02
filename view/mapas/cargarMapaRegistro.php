@@ -89,8 +89,9 @@
 </script>
     <section class="content-header">
         <ol class="breadcrumb">
-            <li><a href="index.php"><i class="fa fa-dashboard"></i> Principal</a></li>
-            <li class="active">Mapas</li>
+            <li><a href="index.php"><i class="fa fa-dashboard"></i> Principal </a></li>
+            <li><a href="#">Administraci&oacute;n</a></li>
+            <li class="active">Registrar ni&ntilde;o</li>
         </ol>
     </section>
     
