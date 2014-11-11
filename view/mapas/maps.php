@@ -9,16 +9,6 @@
 <script type="text/javascript" src="js/libs/imgViewer.min.js"></script>
 <script type="text/javascript" src="js/imgNotes.js"></script>
 
-<script type="text/javascript">
-/*(function($) {
-	$(document).ready(function() {
-		var $img = $("#img_principal").imgNotes({
-            clear:{}
-        });        
-  });
-})(jQuery);*/
-</script>
-
 <section class="content-header">
 	<ol class="breadcrumb">
         <?php

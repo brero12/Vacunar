@@ -37,6 +37,14 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Listado de ni&ntilde;os registrados</h3>
+                    <div class="box-tools">
+                        <div class="input-group">
+                            <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Buscar"/>
+                            <div class="input-group-btn">
+                                <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive">
                     <table id="example2" class="table table-bordered table-striped">

@@ -81,6 +81,19 @@
             $img.imgNotes("import", [	{x: "0.9", y:"0.9", note:"AFL Gran"}]);
         */
         
+        
+        $('.panel').on('hide.bs.collapse', function (e) {
+            
+            //alert("hide");
+            //$(this).find(".close_link_content").hide();
+            //$(this).find(".open_link_content").show();
+        })
+
+        $('.panel').on('show.bs.collapse', function (e) {
+            //alert("show");
+            //$(this).find(".close_link_content").show();
+            //$(this).find(".open_link_content").hide();
+        })
   });
 })(jQuery);
 </script>
@@ -162,9 +175,13 @@
             <input  value="Zoom Out" onclick="zoomImage(document.getElementById('img1'), .8); swapButtons('zoomout', 'zoomin');" id="zoomout" type="image" src="img/png/zoom-out.png" border=0>
         </p>-->
         <aside style="float: right; width: 53%; display: block;">
-            <div id='contenedor_aux_1'>
-                
-            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-solid" id='contenedor_aux_1'>
+                        
+                    </div><!-- /.box -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
         </aside>
         <div style="width:500px; height:400px; overflow: scroll;">
             <img id="img1" src="img/mapa/zonas/<?php echo $_POST['codMapa']; ?>.png" width='994' height='994' border="0" class="map" usemap="#mapa" />

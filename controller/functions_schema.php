@@ -52,7 +52,7 @@ function getDataSchema() {
                     dova.refuerzo2, dova.adicional1, dova.adicional2, esva.tipo
                     from tbl_dosis_vacuna dova, 
                     tbl_esquema_vacunacion esva
-                    where dova.id_tbl_esquema_vacunacion = esva.id_tbl_esquema_vacunacion order by esva.tipo desc';
+                    where dova.id_tbl_esquema_vacunacion = esva.id_tbl_esquema_vacunacion order by esva.nombre_vacuna asc';
 
     /* echo '<option>'.$consulta.'</option>'; */
 

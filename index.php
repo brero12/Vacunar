@@ -51,8 +51,8 @@
         <!-- Bootstrap -->
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <!-- Morris.js charts -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
-        <script src="js/plugins/morris/morris.min.js" type="text/javascript"></script>
+        <!--<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>-->
+        <!--<script src="js/plugins/morris/morris.min.js" type="text/javascript"></script>-->
         <!-- Sparkline -->
         <script src="js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
         <!-- jvectormap -->
@@ -72,7 +72,7 @@
         <!-- AdminLTE App -->
         <script src="js/AdminLTE/app.js" type="text/javascript"></script>
 		<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        <script src="js/AdminLTE/dashboard.js" type="text/javascript"></script>
+        <!--<script src="js/AdminLTE/dashboard.js" type="text/javascript"></script>-->
 	
 		<!--<script src="js/jquery.maphilight.js" type="text/javascript"></script>-->
 		<!--<script src="ajax/FuncionesAjax.js" type="text/javascript" ></script>	-->
@@ -217,75 +217,6 @@
                                 <li class="footer"><a href="#">Ver todas</a></li>
                             </ul>
                         </li>
-                        <!-- Tasks: style can be found in dropdown.less -->
-                        <!--
-                        <li class="dropdown tasks-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-tasks"></i>
-                                <span class="label label-danger">9</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">Ud tiene 9 tareas</li>
-                                <li>
-                                    <ul class="menu">
-                                        <li>
-                                            <a href="#">
-                                                <h3>
-                                                    Tarea 1
-                                                    <small class="pull-right">20%</small>
-                                                </h3>
-                                                <div class="progress xs">
-                                                    <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                        <span class="sr-only">20% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        <li>
-                                            <a href="#">
-                                                <h3>
-                                                    Tarea 2
-                                                    <small class="pull-right">40%</small>
-                                                </h3>
-                                                <div class="progress xs">
-                                                    <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                        <span class="sr-only">40% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <h3>
-                                                    Tarea 3
-                                                    <small class="pull-right">60%</small>
-                                                </h3>
-                                                <div class="progress xs">
-                                                    <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                        <span class="sr-only">60% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <h3>
-                                                    Tarea 4
-                                                    <small class="pull-right">80%</small>
-                                                </h3>
-                                                <div class="progress xs">
-                                                    <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                        <span class="sr-only">80% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="footer">
-                                    <a href="#">Ver Todas las tareas</a>
-                                </li>
-                            </ul>
-                        </li>-->
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -467,73 +398,7 @@
                             <!-- /.row -->
 
                             <!-- Main row -->
-                            <div class="row">
-                                <!-- Left col -->
-                                <section class="col-lg-6 connectedSortable"> 
-                                    <!-- Box (with bar chart) -->
-                                    <div class="box box-danger" id="loading-example">
-                                        <div class="box-header">
-                                            <!-- tools box -->
-                                            <div class="pull-right box-tools">
-                                                <!--<button class="btn btn-danger btn-sm refresh-btn" data-toggle="tooltip" title="Reload"><i class="fa fa-refresh"></i></button>
-                                                <button class="btn btn-danger btn-sm" data-widget='collapse' data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-                                                <button class="btn btn-danger btn-sm" data-widget='remove' data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>-->
-                                            </div><!-- /. tools -->
-                                            <i class="fa fa-cloud"></i>
-
-                                            <h3 class="box-title">Cuadro comparativo</h3>
-                                        </div><!-- /.box-header -->
-                                        <div class="box-body no-padding">
-                                            <div class="row">
-                                                <div class="col-sm-7">
-                                                    <!-- bar chart -->
-                                                    <div class="chart" id="bar-chart" style="height: 250px;"></div>
-                                                </div>
-                                                <div class="col-sm-5">
-                                                    <div class="pad">
-                                                        <!-- Progress bars -->
-                                                        <div class="clearfix">
-                                                            <span class="pull-left">Ni&ntilde;os vacunados</span>
-                                                            
-                                                        </div>
-                                                        <div class="progress xs">
-                                                            <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
-                                                        </div>
-
-                                                        <div class="clearfix">
-                                                            <span class="pull-left">Ni&ntilde;os sin vacunar</span>
-                                                            
-                                                        </div>
-                                                        <div class="progress xs">
-                                                            <div class="progress-bar progress-bar-red" style="width: 70%;"></div>
-                                                        </div>
-                                                        <!-- Buttons -->
-                                                        <p>
-                                                            <button class="btn btn-default btn-sm"><i class="fa fa-cloud-download"></i> Generar PDF</button>
-                                                        </p>
-                                                    </div><!-- /.pad -->
-                                                </div><!-- /.col -->
-                                            </div><!-- /.row - inside box -->
-                                        </div><!-- /.box-body -->
-                                    </div><!-- /.box -->        
-                                </section><!-- /.Left col -->
-                                <!-- right col (We are only adding the ID to make the widgets sortable)-->
-                                <section class="col-lg-6 connectedSortable">
-                                    <!-- Custom tabs (Charts with tabs)-->
-                                    <div class="nav-tabs-custom">
-                                        <!-- Tabs within a box -->
-                                        <ul class="nav nav-tabs pull-right">
-                                            <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
-                                            <li class="pull-left header"><i class="fa fa-inbox"></i> Ni&ntilde;os vacunados</li>
-                                        </ul>
-                                        <div class="tab-content no-padding">
-                                            <!-- Morris chart - Sales -->
-                                            <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
-                                            <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
-                                        </div>
-                                    </div><!-- /.nav-tabs-custom -->
-                                </section><!-- right col -->
-                            </div><!-- /.row (main row) -->
+                            
 
                         </section><!-- /.content -->
                     </aside><!-- /.right-side -->

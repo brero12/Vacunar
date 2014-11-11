@@ -140,6 +140,16 @@ function cargarMapaIndividual(codMapa){
     cargarURL("#contenedor_principal", ajaxurl, data_form);
 }
 
+function cargarInfoSelectedChild(idPersona){
+	var ajaxurl  = "view/mapas/cargarMapaInfoChild.php";
+    
+	var data_form= {
+        idPersona : idPersona
+    };
+	
+    cargarURL("#contenedor_aux_1", ajaxurl, data_form);
+}
+
 function addChild(){
     var ajaxurl  = 'view/add_child.php';
     var data_form = {};

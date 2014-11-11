@@ -340,190 +340,106 @@ function getDataChildren($codMapa){
 }
 
 function getDataMapChild($codMapa){
-   
+
     global $bd_host;
     global $bd_usuario;
     global $bd_password;
     global $bd_base;
 
     //$idMapa = getIdMapa($codMapa);
-    //$resultChildren = array();
-    
+    $resultChildren = array();
+
     $mysqli = new mysqli($bd_host, $bd_usuario, $bd_password, $bd_base);
 
-    $consulta = 'select per.numero_identificacion, per.primer_nombre, '
-                . 'per.segundo_nombre, per.primer_apellido, '
-                . 'per.segundo_apellido, per.fecha_nacimiento, '
-                . 'per.regimen_afiliacion, per.aseguradora '
+    $consulta = 'select    per.id_tbl_personas, ' 
+                        . 'per.numero_identificacion, '
+                        . 'per.primer_nombre, '
+                        . 'per.segundo_nombre, '
+                        . 'per.primer_apellido, '
+                        . 'per.segundo_apellido, '
+                        . 'per.fecha_nacimiento, '
+                        . 'per.regimen_afiliacion, '
+                        . 'per.aseguradora '
                 . 'from tbl_personas per '
-                . 'where per.is_mom <> 1 and per.fk_tbl_puntos_etiqueta_punto="'.$codMapa.'"  order by per.primer_nombre';
+                . 'where per.is_mom <> 1 and per.fk_tbl_puntos_etiqueta_punto="'.$codMapa.'"  order by per.primer_apellido';
 
 
     if ($query = $mysqli->prepare($consulta)) {
         $query->execute();
-        $query->bind_result($numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido , $fecha_nacimiento, $regimen_afiliacion,$aseguradora);
+        $query->bind_result($id_tbl_personas, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido , $fecha_nacimiento, $regimen_afiliacion, $aseguradora);
 
-        while($query->fetch())
-        { 
-           /* echo 'numero_identificacion : '.$numero_identificacion.'<br>'.
-                'primer_nombre  : '          .$primer_nombre.'<br>'.
-                'segundo_nombre : '         .$segundo_nombre.'<br>'.
-                'primer_apellido : '        .$primer_apellido.'<br>'.
-                'segundo_apellido : '       .$segundo_apellido.'<br>'.
-                'fecha_nacimiento : '       .$fecha_nacimiento.'<br>'.
-                'regimen_afiliacion : '         .$regimen_afiliacion.'<br>'.
-                'aseguradora : '         .$aseguradora;    */
-            
-            
-        
-        
-        echo ' <!-- Warning box -->
-                            <div class="box box-warning">
-                                <div class="box-header">
-                                    <h3 class="box-title">'.$primer_nombre.' '.$segundo_nombre.' '.$primer_apellido.' '.$segundo_apellido.'</h3>
-                                    <div class="box-tools pull-right">
-                                        <ul class="pagination pagination-sm inline">
-                                            <li><a href="#">&laquo;</a></li>
-                                            <li><a href="#">1</a></li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">&raquo;</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="box-body">
-                                    Fecha de Nacimiento: <code>'.$fecha_nacimiento.'</code>
-                                    <p>
-                                        Regimen de Afiliacion   :     '.$regimen_afiliacion.'<br/>
-                                        Aseguradora             :     '.$aseguradora.'<br/>
-                                    </p>
-                                    
-                                    <table class="table table-hover">
-                                        <tr>
-                                            <th>Nombre Vacuna</th>
-                                            <th>Aplicada</th>
-                                            <th>Dosis</th>
-                                            <th>Fecha Aplicaci&oacute;n</th>
-                                        </tr
-                                        <tr>
-                                            <td>TUBERCULOSIS EXTRAPULMONAR</td>
-                                            <td><span class="label label-success">Aplicada</span></td>
-                                            <td>1</td>
-                                            <td>2014-12-07</td>
-                                        </tr>
-                                        <tr>
-                                            <td>HEPATITIS B</td>
-                                            <td><span class="label label-danger">No aplicada</span></td>
-                                            <td>0</td>
-                                            <td>00-00-0000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>POLIOMIELITIS</td>
-                                            <td><span class="label label-danger">No aplicada</span></td>
-                                            <td>0</td>
-                                            <td>00-00-0000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>HAEMOPHILUS INFLUENZAE TIPO B</td>
-                                            <td><span class="label label-danger">No aplicada</span></td>
-                                            <td>0</td>
-                                            <td>00-00-0000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>DIFTERIA, TETANO Y TOSFERINA</td>
-                                            <td><span class="label label-success">Aplicada</span></td>
-                                            <td>2</td>
-                                            <td>2014-12-07</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ROTAVIRUS</td>
-                                            <td><span class="label label-danger">No aplicada</span></td>
-                                            <td>0</td>
-                                            <td>00-00-0000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>NEUMOCOCO</td>
-                                            <td><span class="label label-danger">No aplicada</span></td>
-                                            <td>0</td>
-                                            <td>00-00-0000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>INFLUENZA (GRIPE)</td>
-                                            <td><span class="label label-danger">No aplicada</span></td>
-                                            <td>0</td>
-                                            <td>00-00-0000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>TÉTANO Y DIFTERIA</td>
-                                            <td><span class="label label-success">Aplicada</span></td>
-                                            <td>2</td>
-                                            <td>2014-12-07</td>
-                                        </tr>
-                                        <tr>
-                                            <td>SARAMPION, RUBEOLA Y PAPERAS</td>
-                                            <td><span class="label label-success">Aplicada</span></td>
-                                            <td>1</td>
-                                            <td>2014-12-07</td>
-                                        </tr>
-                                        <tr>
-                                            <td>FIEBRE AMARILLA</td>
-                                            <td><span class="label label-danger">No aplicada</span></td>
-                                            <td>0</td>
-                                            <td>00-00-0000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>HEPATITIS A</td>
-                                            <td><span class="label label-danger">No aplicada</span></td>
-                                            <td>0</td>
-                                            <td>00-00-0000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>VARICELA</td>
-                                            <td><span class="label label-danger">No aplicada</span></td>
-                                            <td>0</td>
-                                            <td>00-00-0000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>SARAMPIÓN Y RUBEOLA</td>
-                                            <td><span class="label label-success">Aplicada</span></td>
-                                            <td>1</td>
-                                            <td>2014-12-07</td>
-                                        </tr>
-                                        <tr>
-                                            <td>VIRUS PAPILOMA HUMANO</td>
-                                            <td><span class="label label-danger">No aplicada</span></td>
-                                            <td>0</td>
-                                            <td>00-00-0000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>RABIA HUMANA</td>
-                                            <td><span class="label label-danger">No aplicada</span></td>
-                                            <td>0</td>
-                                            <td>0000-00-00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>FIEBRE TIFOIDEA</td>
-                                            <td><span class="label label-danger">No aplicada</span></td>
-                                            <td>0</td>
-                                            <td>0000-00-00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>MENINGOCOCO</td>
-                                            <td><span class="label label-success">Aplicada</span></td>
-                                            <td>1</td>
-                                            <td>2014-12-07</td>
-                                        </tr>
-                                        <tr>
-                                            <td>TÉTANO Y DIFTERIA</td>
-                                            <td><span class="label label-success">Aplicada</span></td>
-                                            <td>2</td>
-                                            <td>2014-12-07</td>
-                                        </tr>
-                                    </table>    
-                                </div><!-- /.box-body -->
-                            </div><!-- /.box -->';
+        while($query->fetch()){ 
+
+            $a = array(
+                'id_tbl_personas'        => $mysqli->real_escape_string($id_tbl_personas),
+                'numero_identificacion'  => $mysqli->real_escape_string($numero_identificacion),
+                'primer_nombre'          => $mysqli->real_escape_string($primer_nombre),
+                'segundo_nombre'         => $mysqli->real_escape_string($segundo_nombre),
+                'primer_apellido'        => $mysqli->real_escape_string($primer_apellido),
+                'segundo_apellido'       => $mysqli->real_escape_string($segundo_apellido),
+                'fecha_nacimiento'       => $mysqli->real_escape_string($fecha_nacimiento),
+                'regimen_afiliacion'     => $mysqli->real_escape_string($regimen_afiliacion),
+                'aseguradora'            => $mysqli->real_escape_string($aseguradora)
+            );
+
+            array_push ($resultChildren , $a);
+        }
+
+
+
     }
-    
+
+    return $resultChildren;
+}
+
+
+function getDataSelectedChild($idPersona){
+    global $bd_host;
+    global $bd_usuario;
+    global $bd_password;
+    global $bd_base;
+
+    $resultChildren = array();
+
+    $mysqli = new mysqli($bd_host, $bd_usuario, $bd_password, $bd_base);
+
+    $consulta = 'select    per.id_tbl_personas, ' 
+                        . 'per.numero_identificacion, '
+                        . 'per.primer_nombre, '
+                        . 'per.segundo_nombre, '
+                        . 'per.primer_apellido, '
+                        . 'per.segundo_apellido, '
+                        . 'per.fecha_nacimiento, '
+                        . 'per.regimen_afiliacion, '
+                        . 'per.aseguradora '
+                . 'from tbl_personas per '
+                . 'where per.is_mom <> 1 and per.id_tbl_personas="'.$idPersona.'" ';
+
+
+    if ($query = $mysqli->prepare($consulta)) {
+        $query->execute();
+        $query->bind_result($id_tbl_personas, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido , $fecha_nacimiento, $regimen_afiliacion, $aseguradora);
+
+        while($query->fetch()){ 
+
+            $resultChildren = array(
+                'id_tbl_personas'        => $mysqli->real_escape_string($id_tbl_personas),
+                'numero_identificacion'  => $mysqli->real_escape_string($numero_identificacion),
+                'primer_nombre'          => $mysqli->real_escape_string($primer_nombre),
+                'segundo_nombre'         => $mysqli->real_escape_string($segundo_nombre),
+                'primer_apellido'        => $mysqli->real_escape_string($primer_apellido),
+                'segundo_apellido'       => $mysqli->real_escape_string($segundo_apellido),
+                'fecha_nacimiento'       => $mysqli->real_escape_string($fecha_nacimiento),
+                'regimen_afiliacion'     => $mysqli->real_escape_string($regimen_afiliacion),
+                'aseguradora'            => $mysqli->real_escape_string($aseguradora)
+            );
+
+            //array_push ($resultChildren , $a);
+        }
+
+
+
     }
-    
-    
+
+    return $resultChildren;
 }
