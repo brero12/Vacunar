@@ -8,6 +8,6 @@
 
 $bd_host = "localhost"; 
 	$bd_usuario = "root"; 
-	$bd_password = ""; 
-	$bd_base = "bd_vacunas"; 
+	$bd_password = "diseno&desarrollo"; 
+	$bd_base = "bd_vacunar"; 
 

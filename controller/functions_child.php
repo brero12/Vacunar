@@ -393,7 +393,7 @@ function getDataMapChild($codMapa){
 }
 
 
-function getDataSelectedChild($idPersona){
+function getDataSelectedPerson($idPersona){
     global $bd_host;
     global $bd_usuario;
     global $bd_password;
@@ -405,33 +405,41 @@ function getDataSelectedChild($idPersona){
 
     $consulta = 'select    per.id_tbl_personas, ' 
                         . 'per.numero_identificacion, '
+                        . 'tid.descripcion, '
                         . 'per.primer_nombre, '
                         . 'per.segundo_nombre, '
                         . 'per.primer_apellido, '
                         . 'per.segundo_apellido, '
                         . 'per.fecha_nacimiento, '
                         . 'per.regimen_afiliacion, '
-                        . 'per.aseguradora '
-                . 'from tbl_personas per '
-                . 'where per.is_mom <> 1 and per.id_tbl_personas="'.$idPersona.'" ';
+                        . 'per.aseguradora, '
+                        . 'per.is_mom, '
+                        . 'per.telefono, '
+                        . 'per.correo_electronico '
+                . 'from tbl_personas per INNER JOIN tbl_tipo_identificacion tid ON tid.id_tbl_tipo_identificacion = per.fk_tbl_tipo_identificacion  '
+                . 'where per.id_tbl_personas="'.$idPersona.'" ';
 
 
     if ($query = $mysqli->prepare($consulta)) {
         $query->execute();
-        $query->bind_result($id_tbl_personas, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido , $fecha_nacimiento, $regimen_afiliacion, $aseguradora);
+        $query->bind_result($id_tbl_personas, $numero_identificacion, $tipo_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido , $fecha_nacimiento, $regimen_afiliacion, $aseguradora, $is_mom, $telefono, $correo_electronico);
 
         while($query->fetch()){ 
 
             $resultChildren = array(
                 'id_tbl_personas'        => $mysqli->real_escape_string($id_tbl_personas),
                 'numero_identificacion'  => $mysqli->real_escape_string($numero_identificacion),
+                'descripcion'            => $mysqli->real_escape_string($tipo_identificacion),
                 'primer_nombre'          => $mysqli->real_escape_string($primer_nombre),
                 'segundo_nombre'         => $mysqli->real_escape_string($segundo_nombre),
                 'primer_apellido'        => $mysqli->real_escape_string($primer_apellido),
                 'segundo_apellido'       => $mysqli->real_escape_string($segundo_apellido),
                 'fecha_nacimiento'       => $mysqli->real_escape_string($fecha_nacimiento),
                 'regimen_afiliacion'     => $mysqli->real_escape_string($regimen_afiliacion),
-                'aseguradora'            => $mysqli->real_escape_string($aseguradora)
+                'aseguradora'            => $mysqli->real_escape_string($aseguradora),
+                'is_mom'                 => $mysqli->real_escape_string($is_mom),
+                'telefono'               => $mysqli->real_escape_string($telefono),
+                'correo_electronico'     => $mysqli->real_escape_string($correo_electronico)
             );
 
             //array_push ($resultChildren , $a);

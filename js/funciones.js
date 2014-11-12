@@ -140,11 +140,12 @@ function cargarMapaIndividual(codMapa){
     cargarURL("#contenedor_principal", ajaxurl, data_form);
 }
 
-function cargarInfoSelectedChild(idPersona){
+function cargarInfoSelectedChild(idPersona, etiquetaPunto){
 	var ajaxurl  = "view/mapas/cargarMapaInfoChild.php";
     
 	var data_form= {
-        idPersona : idPersona
+        idPersona     : idPersona,
+        etiquetaPunto : etiquetaPunto
     };
 	
     cargarURL("#contenedor_aux_1", ajaxurl, data_form);
@@ -160,9 +161,12 @@ function viewDataChild( data_label){
     var ajaxurl  = 'view/view_data_child.php';
     var data_form = { label : data_label};
     cargarURL("#contenedor_aux_1", ajaxurl, data_form);
+    
 }
 
 function addChildMap(nombre_mapa, etiqueta_punto){
+
+    alert("hola");
     var ajaxurl  = 'view/add_child.php';
     var data_form = {
         codMapa : nombre_mapa,
@@ -216,7 +220,7 @@ function saveChild(){
         , etiquetaPunto : document.getElementById('etiqueta_punto').value
     };
 	
-	alert(document.getElementById('registraVacunacion').value);
+	//alert(document.getElementById('registraVacunacion').value);
     cargarURL("#contenedor_principal", ajaxurl, data_form);
     
 }

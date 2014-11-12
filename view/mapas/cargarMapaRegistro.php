@@ -9,6 +9,7 @@
             onClick: function(ev, imgv) {
                 var pos = imgv.cursorToImg( ev.pageX, ev.pageY);
                 var etiq = getEtiquetaPunto(pos.x, pos.y);
+                
                 addChildMap("<?php echo $_POST['codMapa']; ?>" , etiq);
             },
             zoom: 1,

@@ -81,19 +81,6 @@
             $img.imgNotes("import", [	{x: "0.9", y:"0.9", note:"AFL Gran"}]);
         */
         
-        
-        $('.panel').on('hide.bs.collapse', function (e) {
-            
-            //alert("hide");
-            //$(this).find(".close_link_content").hide();
-            //$(this).find(".open_link_content").show();
-        })
-
-        $('.panel').on('show.bs.collapse', function (e) {
-            //alert("show");
-            //$(this).find(".close_link_content").show();
-            //$(this).find(".open_link_content").hide();
-        })
   });
 })(jQuery);
 </script>

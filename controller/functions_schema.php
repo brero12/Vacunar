@@ -165,7 +165,7 @@ function getMonth($fech_ini,$fech_fin) {
     $fFin_day=substr($fech_fin,8,2);
 
    $yr_dif=$fFin_yr - $fIni_yr;
-   echo "la diferencia de años es -> ".$yr_dif."<br>";
+   //echo "la diferencia de años es -> ".$yr_dif."<br>";
    //LA FUNCION strtotime NOS PERMITE COMPARAR CORRECTAMENTE LAS FECHAS
    //TAMBIEN ES UTIL CON LA FUNCION date
    if(strtotime($fech_ini) > strtotime($fech_fin)){
