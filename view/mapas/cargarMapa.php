@@ -16,7 +16,8 @@
 <script type="text/javascript">
 (function($) {
 	$(document).ready(function() {
-        var listChildren = <?php echo json_encode(getDataChildren($_POST['codMapa']), JSON_PRETTY_PRINT); ?>;
+        // JSON_PRETTY_PRINT = 128
+        var listChildren = <?php echo json_encode(getDataChildren($_POST['codMapa']), 128); ?>;
         
 		var $img = $("#img1").imgNotes({
             onShow: function(ev, elem) {

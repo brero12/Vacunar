@@ -6,7 +6,9 @@
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
 		<!-- bootstrap 3.0.2 -->
-        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="js/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+
         <!-- font Awesome -->
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <!-- Ionicons -->
@@ -26,7 +28,7 @@
         <!-- iCheck for checkboxes and radio inputs -->
         <link href="css/iCheck/all.css" rel="stylesheet" type="text/css" />
         <!-- Bootstrap Color Picker -->
-        <link href="css/colorpicker/bootstrap-colorpicker.min.css" rel="stylesheet"/>
+        <!--<link href="css/colorpicker/bootstrap-colorpicker.min.css" rel="stylesheet"/>
         <!-- Bootstrap time Picker -->
         <link href="css/timepicker/bootstrap-timepicker.min.css" rel="stylesheet"/>
         <!-- JQuery Smooth -->
@@ -42,14 +44,20 @@
         <![endif]-->
 
 		<!-- jQuery 2.0.2 -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
         <!-- jQuery UI 1.10.3 -->
-        <script src="js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
-        <!--<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>-->
+        <!--<script src="js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
+        -->
+        <script src="//code.jquery.com/jquery-1.11.1.js"></script>
+        <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
   
         <!-- Bootstrap -->
-        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <!--<script src="js/bootstrap.min.js" type="text/javascript"></script>-->
+        <script type="text/javascript" src="js/plugins/bootstrap/moment.js"></script>
+        <!--<script type="text/javascript" src="js/plugins/bootstrap/js/transition.js"></script>
+        <script type="text/javascript" src="js/plugins/bootstrap/js/collapse.js"></script>-->
+        <script type="text/javascript" src="js/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
         <!-- Morris.js charts -->
         <!--<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>-->
         <!--<script src="js/plugins/morris/morris.min.js" type="text/javascript"></script>-->
@@ -62,7 +70,7 @@
         <script src="js/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
         <!-- jQuery Knob Chart -->
         <script src="js/plugins/jqueryKnob/jquery.knob.js" type="text/javascript"></script>
-        <!-- daterangepicker -->
+        <!-- daterangepicker 
         <script src="js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
         <!-- Bootstrap WYSIHTML5 -->
         <script src="js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>

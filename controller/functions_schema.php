@@ -108,7 +108,8 @@ function getDataSchemaChild() {
                     dova.refuerzo2, dova.adicional1, dova.adicional2, esva.tipo
                     from tbl_dosis_vacuna dova, 
                     tbl_esquema_vacunacion esva
-                    where dova.id_tbl_esquema_vacunacion = esva.id_tbl_esquema_vacunacion order by esva.tipo desc';
+                    where dova.id_tbl_esquema_vacunacion = esva.id_tbl_esquema_vacunacion 
+                    order by esva.tipo desc';
 
     /* echo '<option>'.$consulta.'</option>'; */
 
@@ -201,4 +202,76 @@ function getMonth($fech_ini,$fech_fin) {
       }
    }
 
+}
+
+function getAllVaccines(){
+
+    global $bd_host;
+    global $bd_usuario;
+    global $bd_password;
+    global $bd_base;
+
+    $mysqli = new mysqli($bd_host, $bd_usuario, $bd_password, $bd_base);
+    
+    $resultVaccines = array();
+
+    $consulta = 'select    ev.id_tbl_esquema_vacunacion, ' 
+                        . 'ev.nombre_vacuna, '
+                        . 'ev.descripcion, '
+                        . 'ev.tipo, '
+                        . 'dv.dosis1, '
+                        . 'dv.dosis2, '
+                        . 'dv.dosis3, '
+                        . 'dv.dosis4, '
+                        . 'dv.dosis5, '
+                        . 'dv.refuerzo1, '
+                        . 'dv.refuerzo2, '
+                        . 'dv.adicional1, '
+                        . 'dv.adicional2 '
+                . 'from tbl_esquema_vacunacion ev INNER JOIN tbl_dosis_vacuna dv ON dv.id_tbl_esquema_vacunacion = ev.id_tbl_esquema_vacunacion '
+                . ' order by ev.nombre_vacuna';
+
+
+    if ($query = $mysqli->prepare($consulta)) {
+        $query->execute();
+        $query->bind_result($id_tbl_esquema_vacunacion, 
+                            $nombre_vacuna, 
+                            $descripcion,
+                            $tipo, 
+                            $dosis1, 
+                            $dosis2, 
+                            $dosis3, 
+                            $dosis4, 
+                            $dosis5, 
+                            $refuerzo1, 
+                            $refuerzo2, 
+                            $adicional1, 
+                            $adicional2);
+
+        while($query->fetch()){ 
+
+            $a = array(
+                'id_tbl_esquema_vacunacion' => $mysqli->real_escape_string($id_tbl_esquema_vacunacion),
+                'nombre_vacuna'             => $mysqli->real_escape_string($nombre_vacuna),
+                'descripcion'               => $mysqli->real_escape_string($descripcion),
+                'tipo'                      => $mysqli->real_escape_string($tipo),
+                'dosis1'                    => $mysqli->real_escape_string($dosis1),
+                'dosis2'                    => $mysqli->real_escape_string($dosis2),
+                'dosis3'                    => $mysqli->real_escape_string($dosis3),
+                'dosis4'                    => $mysqli->real_escape_string($dosis4),
+                'dosis5'                    => $mysqli->real_escape_string($dosis5),
+                'refuerzo1'                 => $mysqli->real_escape_string($refuerzo1),
+                'refuerzo2'                 => $mysqli->real_escape_string($refuerzo2),
+                'adicional1'                => $mysqli->real_escape_string($adicional1),
+                'adicional2'                => $mysqli->real_escape_string($adicional2)
+            );
+
+            array_push ($resultVaccines , $a);
+        }
+
+
+
+    }
+
+    return $resultVaccines;
 }

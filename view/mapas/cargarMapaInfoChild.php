@@ -30,9 +30,9 @@
 <div class="row">
     <div class="col-md-12">
         <div class="box box-solid">
-            <div class="box-header">
-                <h3 class="box-title">Informaci&oacute;n del registro seleccionado</h3>
-                <button type="button" class="btn btn-primary" onclick="Javascript:viewDataChild('<?php echo $etiquetaPunto; ?>');">Atr&aacute;s</button>
+            <button type="button" class="btn btn-primary btn-block" onclick="Javascript:viewDataChild('<?php echo $etiquetaPunto; ?>');"><< Regresar</button>
+            <div class="box-header" valign="bottom">
+                <h3 class="box-title">Informaci&oacute;n del registro seleccionado</h3>                
             </div><!-- /.box-header -->
             <div class="box-body">
                 <!--<div class="box-body" id='contenedor_aux_1'>
