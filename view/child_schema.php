@@ -15,45 +15,128 @@ for($i = 0; $i< count($listVaccines); $i++){
 <script type="text/javascript">
     var listVaccines = <?php echo json_encode($listVaccines, 128); ?>;
     
-    function limpiarFormulario(){
     
+    function limpiarFormulario(){
+        document.getElementById("vaccine").selectedIndex = 0;
+        document.getElementById("dose").selectedIndex = 0;
+        cargarMesesDosis('dosis1');
+        document.getElementById("fechaVacunacion").value = "";
+        //DIV'S ERROR
+        document.getElementById("divError").style.display = "none";
+        document.getElementById("subDivError").innerHTML = "";
     }
     
-    function cargarMesesDosis(val){
+    function agregarErrorDiv(mensajeError){
+        document.getElementById("divError").style.display = "block";
+        var anteriorMensajeError = document.getElementById("subDivError").innerHTML;
+        
+       document.getElementById("subDivError").innerHTML = anteriorMensajeError + "#- "+mensajeError + "<br/> ";
+    }
+    
+    function cargarMesesDosis(dosis_seleccionada){
         var idVacunaSeleccionada = (document.getElementById("vaccine").selectedIndex);
-        var dosis_seleccionada = val;
         document.getElementById("edadVacunacion").value = listVaccines[idVacunaSeleccionada][dosis_seleccionada];
     }
     
+    /*
+        INICIO VALIDADORES
+    */
+    function validarVacunaDuplicada(idVacuna, dosisAplicada){
+        var duplicado = false;
+        var tbl_esquema = document.getElementById("tbl_esquema");
+        var total_filas = tbl_esquema.rows.length;
+        
+        //Se inicia el indice en 1 debido a que la primera fila (0) contiene el encabezado de la tabla y este no tiene informacion necesaria
+        for(var i = 1; i< total_filas; i++){
+            var x = tbl_esquema.rows[i].cells;
+            
+            //Compara el id de la vacuna (que se encuentra oculto) y el nombre de la dosis
+            if(x[0].innerHTML === idVacuna && x[2].innerHTML === dosisAplicada){
+                duplicado = true;
+                break;
+            }
+        }
+        
+        return duplicado;
+    }
+    
+    function validarAgregarVacunaTabla(){
+        document.getElementById("divError").style.display = "none";
+        document.getElementById("subDivError").innerHTML = "";
+        
+        var fechaVacunacion = document.getElementById("fechaVacunacion").value;
+        var patronFecha =/^([0-9]{4})\/([0-9]{1,2})\/([0-9]{1,2})$/;  //FORMATO -> YYYY/MM/DD
+        
+        if(!patronFecha.test(fechaVacunacion)){
+            agregarErrorDiv("La fecha de vacunaci&oacute;n NO cumple con el formato");
+            return;
+        }
+        else if(validarVacunaDuplicada(document.getElementById("vaccine").value, document.getElementById("dose").options[document.getElementById("dose").selectedIndex].innerHTML)){
+            //Este condicional evalua si la vacuna con la misma dosis ya fue registrada en la tabla de esquema de vacunacion
+            agregarErrorDiv("Vacuna co misma dosis duplicada. Por favor verifique los datos.");
+            return;
+        }
+        else{agregarVacunaTabla();}
+    }
+    
+    /*
+        FIN VALIDADORES
+    */
     function agregarVacunaTabla(){
-        /*
-        
-        PRUEBA PARA AGREGAR DINAMICAMENTE ELEMENTOS A LA TABLA SOLICITADA
-        */
-        
         var tbl_esquema = document.getElementById("tbl_esquema");
         var total_filas = tbl_esquema.rows.length;
         
         var row = tbl_esquema.insertRow(total_filas);
 
-        // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(3);
+        var cell0 = row.insertCell(0);
+        var cell1 = row.insertCell(1);
+        var cell2 = row.insertCell(2);
+        var cell3 = row.insertCell(3);
+        var cell4 = row.insertCell(4);
 
-        // Add some text to the new cells:
+        cell0.style.display = "none";
+        cell0.innerHTML = document.getElementById("vaccine").value;
         cell1.innerHTML = document.getElementById("vaccine").options[document.getElementById("vaccine").selectedIndex].innerHTML;
         cell2.innerHTML = document.getElementById("dose").options[document.getElementById("dose").selectedIndex].innerHTML;
         cell3.innerHTML = document.getElementById("fechaVacunacion").value;
-        cell4.innerHTML = "NEW CELL2";
+        //CREA EL BOTON DE ELIMINAR Y SE ASOCIA LA ACCION AL NUMERO DE FILA CORRESPONDIENTE EN LA TABLA DE FORMA DINAMICA
+        cell4.innerHTML = "<button type='button' class='btn btn-danger' data-dismiss='modal' onclick='javascript:borrarFilaVacunaTabla(this.parentNode.parentNode.rowIndex)'><i class='fa fa-times'></i></button>";
+        
+        limpiarFormulario();
+    }
+    
+    function borrarFilaVacunaTabla(nfila){
+        document.getElementById("tbl_esquema").deleteRow(nfila);
     }
     
     $(function() {
-       $('#fechaVacunacion').datetimepicker({
+        $('#fechaVacunacion').datetimepicker({
             format: 'YYYY/MM/DD',
             pickTime: false
         });
+        
+        $('#botonConfirmarCancelar').click(function() {
+            cargarMapas(1);
+        });
+        /*$( "#dialog" ).dialog({autoOpen: false});
+        
+        $('#botonCancelar').click(function() {
+            $( "#dialog" ).dialog({
+                title: "Cancelar esquema",
+                modal:true,
+                resizable: false,
+                buttons: {
+                    "Sí": function() {
+                        cargarMapas(1);
+                        $( this ).dialog( "close" );
+                    },
+                    "No": function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+            $('#dialog').dialog('open');
+        });*/
     });
 </script>
 
@@ -125,7 +208,7 @@ for($i = 0; $i< count($listVaccines); $i++){
                                         <td><input readonly type="text" id="edadVacunacion" class="form-control" value="<?php echo $listVaccines[0]['dosis1']; ?>" /></td>
                                     </tr>
                                     <tr>
-                                        <td><label >Fecha Vacunaci&oacute;n :</label></td>
+                                        <td><label >Fecha Vacunaci&oacute;n : (YYYY/MM/DD)</label></td>
                                         <td>
                                             <div class="input-group date">
                                                 <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
@@ -134,13 +217,54 @@ for($i = 0; $i< count($listVaccines); $i++){
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2"><br/></td>
+                                        <td colspan="2">
+                                            <br/>
+                                            <div id="divError" class="callout callout-danger" style="display:none">
+                                                <div id="subDivError"></div>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td colspan="2">
                                             <div class="col-xs-12">
-                                                <button type="button" class="btn btn-primary btn-block" onclick="Javascript:agregarVacunaTabla();">Agregar</button>
+                                                <button type="button" class="btn btn-primary btn-block" onclick="Javascript:validarAgregarVacunaTabla();">Agregar vacuna</button>
+                                                <button type="button" class="btn btn-success btn-block" onclick="Javascript:validarAgregarVacunaTabla();">Finalizar esquema</button>
+                                                <!--<button type="button" id="botonCancelar" class="btn btn-danger btn-block" >Cancelar esquema</button>-->
+                                                <button type="button" id="botonCancelar" class="btn btn-danger btn-block" data-toggle="modal" data-target="#compose-modal">Cancelar esquema</button>
                                             </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <br/>
+                                            <!--<div id="dialog" class="col-xs-12" style="display:none"> 
+                                                ¿Desea cancelar el esquema de vacunaci&oacute;n?.<br/><br/> Si lo cancela no se guardar&aacute;n los cambios realizados en el esquema
+                                            </div> 
+                                            -->
+                                            
+                                            
+                                            <div class="modal fade" id="compose-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
+                                                            <h4 class="modal-title"><i class="fa fa-chevron-right"></i> <label>Cancelar esquema</label></h4>
+                                                        </div>
+                                                        <div class="modal-body">                                                            
+                                                            <p >
+                                                                &iquest;Desea cancelar el esquema de vacunaci&oacute;n&#63;.<br/><br/> Si lo cancela no se guardar&aacute;n los cambios realizados en el esquema
+                                                            </p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-primary"><i class="fa fa-check" id="botonConfirmarCancelar"></i> S&iacute;</button>
+                                                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
+                                                        </div>
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
+                                            </div>
+                                            
+                                            
+                                            
                                         </td>
                                     </tr>
                                 </table>
@@ -148,18 +272,18 @@ for($i = 0; $i< count($listVaccines); $i++){
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-10" style="float: center">
+                        <div class="col-md-8" style="float: center">
                             <div class="table-responsive no-padding">
                                 <table id="tbl_esquema" class="table table-hover">
+                                    <thead>
                                     <tr>
+                                        <th style="display: none;">ID Vacuna</th>
                                         <th>Nombre Vacuna</th>
                                         <th>Dosis </th>
                                         <th>Fecha Vacunaci&oacute;n</th>
                                         <th>Eliminar</th>
-                                    </tr
-
-                                     <?php /*getDataSchemaChild();*/ ?>                                        
-
+                                    </tr>
+                                    </thead>
                                 </table>
                             </div>
                         </div>

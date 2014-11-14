@@ -58,7 +58,7 @@ function buscarUbicaciones() {
 		if (status == google.maps.GeocoderStatus.OK) {
 			//buscarUbicacionesCercanas(results[0].geometry.location, address);
             var cebt = results[0].geometry.location;
-            alert(cebt.lat() + " * " + cebt.lng());
+            //alert(cebt.lat() + " * " + cebt.lng());
 		} 
 		else {
 			document.getElementById("tdError").style.visibility = "visible";
@@ -228,14 +228,11 @@ function cargarCiudadDepartamento(){
         
         var id_departamento = document.getElementById('departNace').value;
         
-        //alert(id_departamento);
-	
 	var data_form= {
         id_departamento : id_departamento
     };
 	
     cargarURL("#ciudadNace", ajaxurl, data_form);
-	//include_once("view/cargarMapa.js");
 }
 
 
