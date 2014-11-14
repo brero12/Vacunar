@@ -165,8 +165,6 @@ function viewDataChild( data_label){
 }
 
 function addChildMap(nombre_mapa, etiqueta_punto){
-
-    alert("hola");
     var ajaxurl  = 'view/add_child.php';
     var data_form = {
         codMapa : nombre_mapa,
