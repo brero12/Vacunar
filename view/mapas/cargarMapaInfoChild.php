@@ -7,6 +7,8 @@
 
     $infoMomChildSelected = getDataSelectedPerson($infoChildSelected['is_mom']);
 
+    $infoListVaccines = getDataSchemaChild($idPersona);
+
 ?>
 <script type="text/javascript">
 (function($) {
@@ -167,126 +169,98 @@
                         <div id="collapseThree" class="panel-collapse collapse">
                             <div class="box-body" id="container_info_vaccination">
                                 <table class="table table-hover">
+                                    <thead>
                                     <tr>
                                         <th>Nombre Vacuna</th>
                                         <th>Aplicada</th>
                                         <th>Dosis</th>
                                         <th>Fecha Aplicaci&oacute;n</th>
-                                    </tr
-                                    <tr>
-                                        <td>TUBERCULOSIS EXTRAPULMONAR</td>
-                                        <td><span class="label label-success">Aplicada</span></td>
-                                        <td>1</td>
-                                        <td>2014-12-07</td>
                                     </tr>
-                                    <tr>
-                                        <td>HEPATITIS B</td>
-                                        <td><span class="label label-danger">No aplicada</span></td>
-                                        <td>0</td>
-                                        <td>00-00-0000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>POLIOMIELITIS</td>
-                                        <td><span class="label label-danger">No aplicada</span></td>
-                                        <td>0</td>
-                                        <td>00-00-0000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>HAEMOPHILUS INFLUENZAE TIPO B</td>
-                                        <td><span class="label label-danger">No aplicada</span></td>
-                                        <td>0</td>
-                                        <td>00-00-0000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>DIFTERIA, TETANO Y TOSFERINA</td>
-                                        <td><span class="label label-success">Aplicada</span></td>
-                                        <td>2</td>
-                                        <td>2014-12-07</td>
-                                    </tr>
-                                    <tr>
-                                        <td>ROTAVIRUS</td>
-                                        <td><span class="label label-danger">No aplicada</span></td>
-                                        <td>0</td>
-                                        <td>00-00-0000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>NEUMOCOCO</td>
-                                        <td><span class="label label-danger">No aplicada</span></td>
-                                        <td>0</td>
-                                        <td>00-00-0000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>INFLUENZA (GRIPE)</td>
-                                        <td><span class="label label-danger">No aplicada</span></td>
-                                        <td>0</td>
-                                        <td>00-00-0000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>TÉTANO Y DIFTERIA</td>
-                                        <td><span class="label label-success">Aplicada</span></td>
-                                        <td>2</td>
-                                        <td>2014-12-07</td>
-                                    </tr>
-                                    <tr>
-                                        <td>SARAMPION, RUBEOLA Y PAPERAS</td>
-                                        <td><span class="label label-success">Aplicada</span></td>
-                                        <td>1</td>
-                                        <td>2014-12-07</td>
-                                    </tr>
-                                    <tr>
-                                        <td>FIEBRE AMARILLA</td>
-                                        <td><span class="label label-danger">No aplicada</span></td>
-                                        <td>0</td>
-                                        <td>00-00-0000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>HEPATITIS A</td>
-                                        <td><span class="label label-danger">No aplicada</span></td>
-                                        <td>0</td>
-                                        <td>00-00-0000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>VARICELA</td>
-                                        <td><span class="label label-danger">No aplicada</span></td>
-                                        <td>0</td>
-                                        <td>00-00-0000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>SARAMPIÓN Y RUBEOLA</td>
-                                        <td><span class="label label-success">Aplicada</span></td>
-                                        <td>1</td>
-                                        <td>2014-12-07</td>
-                                    </tr>
-                                    <tr>
-                                        <td>VIRUS PAPILOMA HUMANO</td>
-                                        <td><span class="label label-danger">No aplicada</span></td>
-                                        <td>0</td>
-                                        <td>00-00-0000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>RABIA HUMANA</td>
-                                        <td><span class="label label-danger">No aplicada</span></td>
-                                        <td>0</td>
-                                        <td>0000-00-00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>FIEBRE TIFOIDEA</td>
-                                        <td><span class="label label-danger">No aplicada</span></td>
-                                        <td>0</td>
-                                        <td>0000-00-00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>MENINGOCOCO</td>
-                                        <td><span class="label label-success">Aplicada</span></td>
-                                        <td>1</td>
-                                        <td>2014-12-07</td>
-                                    </tr>
-                                    <tr>
-                                        <td>TÉTANO Y DIFTERIA</td>
-                                        <td><span class="label label-success">Aplicada</span></td>
-                                        <td>2</td>
-                                        <td>2014-12-07</td>
-                                    </tr>
+                                    </thead>
+                                    <?php
+                                        for($i = 0; $i< count($infoListVaccines); $i++){
+                                            //$fecha_nacimiento = new DateTime($infoListVaccines[$i]['fecha_nacimiento']);
+
+                                            echo "
+                                            <tr>
+                                                <td>".$infoListVaccines[$i]['nombre_vacuna']."</td>";
+                                            
+                                            if(!empty($infoListVaccines[$i]['dosis1'])){
+                                            echo "
+                                                <td><span class='label label-success'>Aplicada</span></td>
+                                                <td>Dosis 1</td>
+                                                <td>".$infoListVaccines[$i]['fecha_vacuna_dosis1']."</td>
+                                            </tr>
+                                            ";     
+                                            }
+                                            else if(!empty($infoListVaccines[$i]['dosis2'])){
+                                            echo "
+                                                <td><span class='label label-success'>Aplicada</span></td>
+                                                <td>Dosis 2</td>
+                                                <td>".$infoListVaccines[$i]['fecha_vacuna_dosis2']."</td>
+                                            </tr>
+                                            ";     
+                                            }
+                                            else if(!empty($infoListVaccines[$i]['dosis3'])){
+                                            echo "
+                                                <td><span class='label label-success'>Aplicada</span></td>
+                                                <td>Dosis 3</td>
+                                                <td>".$infoListVaccines[$i]['fecha_vacuna_dosis3']."</td>
+                                            </tr>
+                                            ";     
+                                            }
+                                            else if(!empty($infoListVaccines[$i]['dosis4'])){
+                                            echo "
+                                                <td><span class='label label-success'>Aplicada</span></td>
+                                                <td>Dosis 4</td>
+                                                <td>".$infoListVaccines[$i]['fecha_vacuna_dosis4']."</td>
+                                            </tr>
+                                            ";     
+                                            }
+                                            else if(!empty($infoListVaccines[$i]['dosis5'])){
+                                            echo "
+                                                <td><span class='label label-success'>Aplicada</span></td>
+                                                <td>Dosis 5</td>
+                                                <td>".$infoListVaccines[$i]['fecha_vacuna_dosis5']."</td>
+                                            </tr>
+                                            ";     
+                                            }
+                                            else if(!empty($infoListVaccines[$i]['refuerzo1'])){
+                                            echo "
+                                                <td><span class='label label-success'>Aplicada</span></td>
+                                                <td>Refuerzo 1</td>
+                                                <td>".$infoListVaccines[$i]['fecha_vacuna_refuerzo1']."</td>
+                                            </tr>
+                                            ";     
+                                            }
+                                            else if(!empty($infoListVaccines[$i]['refuerzo2'])){
+                                            echo "
+                                                <td><span class='label label-success'>Aplicada</span></td>
+                                                <td>Refuerzo 2</td>
+                                                <td>".$infoListVaccines[$i]['fecha_vacuna_refuerzo2']."</td>
+                                            </tr>
+                                            ";     
+                                            }
+                                            else if(!empty($infoListVaccines[$i]['adicional1'])){
+                                            echo "
+                                                <td><span class='label label-success'>Aplicada</span></td>
+                                                <td>Adicional 1</td>
+                                                <td>".$infoListVaccines[$i]['fecha_vacuna_adicional1']."</td>
+                                            </tr>
+                                            ";     
+                                            }
+                                            else if(!empty($infoListVaccines[$i]['adicional2'])){
+                                            echo "
+                                                <td><span class='label label-success'>Aplicada</span></td>
+                                                <td>Adicional 2</td>
+                                                <td>".$infoListVaccines[$i]['fecha_vacuna_adicional2']."</td>
+                                            </tr>
+                                            ";     
+                                            }
+                                            
+                                        }
+                                        
+                                    ?>
                                 </table>    
                             </div>
                         </div>

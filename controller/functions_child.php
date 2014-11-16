@@ -62,7 +62,9 @@ function insertChild($fk_tbl_tipo_identificacion, $numero_identificacion, $prime
 
     $query->execute();
 
-    //echo 'succes <br>';
+    $id_result = $mysqli->insert_id;
+    
+    return $id_result;
 }
 
 function insertMomChild($fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $telefono, $celular, $correo_electronico, $idMapa, $etiquetaPunto) {
@@ -450,4 +452,83 @@ function getDataSelectedPerson($idPersona){
     }
 
     return $resultChildren;
+}
+
+function getDataSchemaChild($idPersona){
+    global $bd_host;
+    global $bd_usuario;
+    global $bd_password;
+    global $bd_base;
+
+    $resultChildrenSchema = array();
+
+    $mysqli = new mysqli($bd_host, $bd_usuario, $bd_password, $bd_base);
+
+    $consulta = 'select    doper.id_tbl_dosis_vacuna, ' 
+                        . 'esqvacu.nombre_vacuna, '
+                        . 'doper.dosis1, '
+                        . 'doper.fecha_vacuna_dosis1, '
+                        . 'doper.dosis2, '
+                        . 'doper.fecha_vacuna_dosis2, '
+                        . 'doper.dosis3, '
+                        . 'doper.fecha_vacuna_dosis3, '
+                        . 'doper.dosis4, '
+                        . 'doper.fecha_vacuna_dosis4, '
+                        . 'doper.dosis5, '
+                        . 'doper.fecha_vacuna_dosis5, '
+                        . 'doper.refuerzo1, '
+                        . 'doper.fecha_vacuna_refuerzo1, '
+                        . 'doper.refuerzo2, '
+                        . 'doper.fecha_vacuna_refuerzo2, '
+                        . 'doper.adicional1, '
+                        . 'doper.fecha_vacuna_adicional1, '
+                        . 'doper.adicional2, '
+                        . 'doper.fecha_vacuna_adicional2 '
+                . 'from tbl_dosis_persona doper INNER JOIN tbl_esquema_vacunacion esqvacu ON doper.id_tbl_esquema_vacunacion = esqvacu.id_tbl_esquema_vacunacion  '
+                . 'where doper.id_tbl_personas="'.$idPersona.'" ';
+
+
+    if ($query = $mysqli->prepare($consulta)) {
+        $query->execute();
+        $query->bind_result($id_tbl_dosis_vacuna, $nombre_vacuna, 
+                            $dosis1, $fecha_vacuna_dosis1, 
+                            $dosis2, $fecha_vacuna_dosis2, 
+                            $dosis3, $fecha_vacuna_dosis3, 
+                            $dosis4, $fecha_vacuna_dosis4, 
+                            $dosis5, $fecha_vacuna_dosis5, 
+                            $refuerzo1, $fecha_vacuna_refuerzo1, 
+                            $refuerzo2, $fecha_vacuna_refuerzo2, 
+                            $adicional1, $fecha_vacuna_adicional1, 
+                            $adicional2, $fecha_vacuna_adicional2);
+
+        while($query->fetch()){ 
+
+            $a = array(
+                'id_tbl_dosis_vacuna'   => $mysqli->real_escape_string($id_tbl_dosis_vacuna),
+                'nombre_vacuna'         => $mysqli->real_escape_string($nombre_vacuna),
+                'dosis1'                => $mysqli->real_escape_string($dosis1),
+                'fecha_vacuna_dosis1'   => $mysqli->real_escape_string($fecha_vacuna_dosis1),
+                'dosis2'                => $mysqli->real_escape_string($dosis2),
+                'fecha_vacuna_dosis2'   => $mysqli->real_escape_string($fecha_vacuna_dosis2),
+                'dosis3'                => $mysqli->real_escape_string($dosis3),
+                'fecha_vacuna_dosis3'   => $mysqli->real_escape_string($fecha_vacuna_dosis3),
+                'dosis4'                => $mysqli->real_escape_string($dosis4),
+                'fecha_vacuna_dosis4'   => $mysqli->real_escape_string($fecha_vacuna_dosis4),
+                'dosis5'                => $mysqli->real_escape_string($dosis5),
+                'fecha_vacuna_dosis5'   => $mysqli->real_escape_string($fecha_vacuna_dosis5),
+                'refuerzo1'             => $mysqli->real_escape_string($refuerzo1),
+                'fecha_vacuna_refuerzo1'=> $mysqli->real_escape_string($fecha_vacuna_refuerzo1),
+                'refuerzo2'             => $mysqli->real_escape_string($refuerzo2),
+                'fecha_vacuna_refuerzo2'=> $mysqli->real_escape_string($fecha_vacuna_refuerzo2),
+                'adicional1'            => $mysqli->real_escape_string($adicional1),
+                'fecha_vacuna_adicional1'=> $mysqli->real_escape_string($fecha_vacuna_adicional1),
+                'adicional2'             => $mysqli->real_escape_string($adicional2),
+                'fecha_vacuna_adicional2'=> $mysqli->real_escape_string($fecha_vacuna_adicional2)
+            );
+
+            array_push ($resultChildrenSchema , $a);
+        }
+    }
+
+    return $resultChildrenSchema;
 }

@@ -35,6 +35,7 @@ function abrirVentana (verb, url, data, target) {
             form.appendChild(input);
         }
     }
+    
     form.style.display = 'none';
     document.body.appendChild(form);
     form.submit();
@@ -235,6 +236,34 @@ function cargarCiudadDepartamento(){
     cargarURL("#ciudadNace", ajaxurl, data_form);
 }
 
+
+function saveChildSchema(){
+    var tbl_esquema = document.getElementById("tbl_esquema");
+    var total_filas = tbl_esquema.rows.length;
+
+    var listVaccines = [];
+    
+    //Se inicia el indice en 1 debido a que la primera fila (0) contiene el encabezado de la tabla y este no tiene informacion necesaria
+    for(var i = 1; i< total_filas; i++){
+        var x = tbl_esquema.rows[i].cells;
+        var selectedVaccine = [x[0].innerHTML, x[1].innerHTML, x[4].innerHTML];
+        
+        listVaccines.push(selectedVaccine);
+    }
+    
+
+    var ajaxurl  = 'controller/save_schema.php';
+            
+    var idChild = document.getElementById("idChild").value;
+    
+	var data_form= {
+        listVaccines : JSON.stringify(listVaccines), //codifica el arreglo en formato JSON para mejor lectura en archivo PHP
+        idChild : idChild
+    };
+	
+    cargarURL("#saveSchema", ajaxurl, data_form);
+    
+}
 
 
 //############################################## EMPRESAS ##############################################

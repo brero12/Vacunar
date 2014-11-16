@@ -3,13 +3,6 @@ include '../controller/functions_schema.php';
 
 $listVaccines = getAllVaccines();
 
-/*$listDescriptionVaccines = array();
-
-for($i = 0; $i< count($listVaccines); $i++){
-    array_push ($listDescriptionVaccines , $listVaccines[$i]['descripcion']);
-}*/
-
-
 ?>
 
 <script type="text/javascript">
@@ -51,7 +44,8 @@ for($i = 0; $i< count($listVaccines); $i++){
             var x = tbl_esquema.rows[i].cells;
             
             //Compara el id de la vacuna (que se encuentra oculto) y el nombre de la dosis
-            if(x[0].innerHTML === idVacuna && x[2].innerHTML === dosisAplicada){
+            //if(x[0].innerHTML === idVacuna && x[2].innerHTML === dosisAplicada){
+            if(x[0].innerHTML === idVacuna){
                 duplicado = true;
                 break;
             }
@@ -73,7 +67,7 @@ for($i = 0; $i< count($listVaccines); $i++){
         }
         else if(validarVacunaDuplicada(document.getElementById("vaccine").value, document.getElementById("dose").options[document.getElementById("dose").selectedIndex].innerHTML)){
             //Este condicional evalua si la vacuna con la misma dosis ya fue registrada en la tabla de esquema de vacunacion
-            agregarErrorDiv("Vacuna co misma dosis duplicada. Por favor verifique los datos.");
+            agregarErrorDiv("Vacuna con misma dosis duplicada. Por favor verifique los datos.");
             return;
         }
         else{agregarVacunaTabla();}
@@ -93,14 +87,17 @@ for($i = 0; $i< count($listVaccines); $i++){
         var cell2 = row.insertCell(2);
         var cell3 = row.insertCell(3);
         var cell4 = row.insertCell(4);
+        var cell5 = row.insertCell(5);
 
         cell0.style.display = "none";
         cell0.innerHTML = document.getElementById("vaccine").value;
-        cell1.innerHTML = document.getElementById("vaccine").options[document.getElementById("vaccine").selectedIndex].innerHTML;
-        cell2.innerHTML = document.getElementById("dose").options[document.getElementById("dose").selectedIndex].innerHTML;
-        cell3.innerHTML = document.getElementById("fechaVacunacion").value;
+        cell1.style.display = "none";
+        cell1.innerHTML = document.getElementById("dose").value;
+        cell2.innerHTML = document.getElementById("vaccine").options[document.getElementById("vaccine").selectedIndex].innerHTML;
+        cell3.innerHTML = document.getElementById("dose").options[document.getElementById("dose").selectedIndex].innerHTML;
+        cell4.innerHTML = document.getElementById("fechaVacunacion").value;
         //CREA EL BOTON DE ELIMINAR Y SE ASOCIA LA ACCION AL NUMERO DE FILA CORRESPONDIENTE EN LA TABLA DE FORMA DINAMICA
-        cell4.innerHTML = "<button type='button' class='btn btn-danger' data-dismiss='modal' onclick='javascript:borrarFilaVacunaTabla(this.parentNode.parentNode.rowIndex)'><i class='fa fa-times'></i></button>";
+        cell5.innerHTML = "<button type='button' class='btn btn-danger' data-dismiss='modal' onclick='javascript:borrarFilaVacunaTabla(this.parentNode.parentNode.rowIndex)'><i class='fa fa-times'></i></button>";
         
         limpiarFormulario();
     }
@@ -117,6 +114,12 @@ for($i = 0; $i< count($listVaccines); $i++){
         
         $('#botonConfirmarCancelar').click(function() {
             cargarMapas(1);
+        });
+        
+        $('#botonConfirmarGuardar').click(function() {
+            saveChildSchema();
+            
+            document.getElementById("compose-modal-finalizar").style.display = "none";
         });
         /*$( "#dialog" ).dialog({autoOpen: false});
         
@@ -162,6 +165,7 @@ for($i = 0; $i< count($listVaccines); $i++){
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Esquema de vacunaci&oacute;n </h3> 
+                    <input type="hidden" id="idChild" value="<?php echo $idChild;?>" />
                 </div><!-- /.box-header -->
 
                 <div class="box-body" align="center">
@@ -226,9 +230,9 @@ for($i = 0; $i< count($listVaccines); $i++){
                                     </tr>
                                     <tr>
                                         <td colspan="2">
-                                            <div class="col-xs-12">
+                                            <div class="col-xs-12" id="saveSchema">
                                                 <button type="button" class="btn btn-primary btn-block" onclick="Javascript:validarAgregarVacunaTabla();">Agregar vacuna</button>
-                                                <button type="button" class="btn btn-success btn-block" onclick="Javascript:validarAgregarVacunaTabla();">Finalizar esquema</button>
+                                                <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#compose-modal-finalizar">Finalizar esquema</button>
                                                 <!--<button type="button" id="botonCancelar" class="btn btn-danger btn-block" >Cancelar esquema</button>-->
                                                 <button type="button" id="botonCancelar" class="btn btn-danger btn-block" data-toggle="modal" data-target="#compose-modal">Cancelar esquema</button>
                                             </div>
@@ -241,7 +245,25 @@ for($i = 0; $i< count($listVaccines); $i++){
                                                 ¿Desea cancelar el esquema de vacunaci&oacute;n?.<br/><br/> Si lo cancela no se guardar&aacute;n los cambios realizados en el esquema
                                             </div> 
                                             -->
-                                            
+                                            <div class="modal fade" id="compose-modal-finalizar" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
+                                                            <h4 class="modal-title"><i class="fa fa-chevron-right"></i> <label>Guardar esquema</label></h4>
+                                                        </div>
+                                                        <div class="modal-body">                                                            
+                                                            <p >
+                                                                &iquest;Desea guardar el esquema de vacunaci&oacute;n&#63;.<br/>
+                                                            </p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-primary"><i class="fa fa-check" id="botonConfirmarGuardar"></i> S&iacute;</button>
+                                                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> No</button>
+                                                        </div>
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
+                                            </div>
                                             
                                             <div class="modal fade" id="compose-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
                                                 <div class="modal-dialog">
@@ -278,6 +300,7 @@ for($i = 0; $i< count($listVaccines); $i++){
                                     <thead>
                                     <tr>
                                         <th style="display: none;">ID Vacuna</th>
+                                        <th style="display: none;">ID Dosis</th>
                                         <th>Nombre Vacuna</th>
                                         <th>Dosis </th>
                                         <th>Fecha Vacunaci&oacute;n</th>

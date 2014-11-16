@@ -21,20 +21,48 @@ function insertSchema($fk_tbl_tipo_identificacion, $numero_identificacion, $prim
                         fk_tbl_entidad_salud_atencioparto,
                         fk_municipio_nacimiento, is_mom) values (?,?,?,?,?,?,?,?,?,?,?,?)';
 
-    /* echo '<option>'.$consulta.'</option>'; */
-
     $query = $mysqli->prepare($consulta);
-    //if ($result = $mysqli->query($consulta)) {
-    // execute
-
-    //var_dump($query);
 
     $query->bind_param('issssssssiii', $fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $regimen_afiliacion, $aseguradora, $fk_tbl_entidad_salud_atencioparto, $fk_municipio_nacimiento,$id_mom);
 
     $query->execute();
-
-    //echo 'succes <br>';
 }
+
+function insertChildSchema($listVaccine, $idChild) {
+    global $bd_host;
+    global $bd_usuario;
+    global $bd_password;
+    global $bd_base;
+
+    $mysqli = new mysqli($bd_host, $bd_usuario, $bd_password, $bd_base);
+    
+    $array=json_decode($listVaccine);
+    
+    $lastId = -1;
+        
+    for($i = 0; $i< count($array); $i++){
+        $sentence = 'insert into tbl_dosis_persona (
+                              id_tbl_esquema_vacunacion, 
+						      id_tbl_personas,
+                              '.$array[$i][1].',
+                              fecha_vacuna_'.$array[$i][1].') 
+                      values (?,?,?,?)';
+        
+        $dose = 1; // Dosis con valor 1, lo que indica que se aplica esa dosis como tal
+        
+        $query = $mysqli->prepare($sentence);
+        $query->bind_param('iiis', $array[$i][0], $idChild, $dose, $array[$i][2]);
+
+        $query->execute();
+        
+        // Asigna ultimo id insertado
+        $lastId = $mysqli->insert_id;
+    }
+    
+    return $lastId;
+}
+
+
 
 function getDataSchema() {
 
