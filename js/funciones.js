@@ -191,37 +191,119 @@ function viewChild(){
 
 function saveChild(){
     var ajaxurl  = 'controller/save_child.php';
+    
+    
+        var primerNombre = document.getElementById('primerNombre');
+        var segundoNombre = document.getElementById('segundoNombre');
+        var primerApellido = document.getElementById('primerApellido');
+        var segundoApellido = document.getElementById('segundoApellido');
+        var fechaNace = document.getElementById('fechaNace');
+        var tipoId = document.getElementById('tipoId');
+        var numIdetificacion = document.getElementById('numIdetificacion');
+        var regimen = document.getElementById('regimen');
+        var aseguradora = document.getElementById('aseguradora');
+        var lugar_parto = document.getElementById('lugar_parto');
+        var departNace = document.getElementById('departNace');
+        var ciudadNace = document.getElementById('ciudadNace');
+        var registraVacunacion = document.getElementById('registraVacunacion');
+        var primerNombreMadre = document.getElementById('primerNombreMadre');
+        var segundoNombreMadre = document.getElementById('segundoNombreMadre');
+        var primerApellidoMadre = document.getElementById('primerApellidoMadre');
+        var segundoApellidoMadre = document.getElementById('segundoApellidoMadre');
+        var fechaNaceMadre = document.getElementById('fechaNaceMadre');
+        var tipoDocMadre = document.getElementById('tipoDocMadre');
+        var numIdetificacionMadre = document.getElementById('numIdetificacionMadre');
+        var telefonoMadre = document.getElementById('telefonoMadre');
+        var celularMadre = document.getElementById('celularMadre');
+        var correoMadre = document.getElementById('correoMadre');
+        var id_mapa = document.getElementById('id_mapa');
+        var etiqueta_punto = document.getElementById('etiqueta_punto');
+        
+        if(!requerido('primerNombre')){return false;}
+        if(!requerido('primerApellido')){return false;}
+        if(!requerido('fechaNace')){return false;}
+        if(!requerido('tipoId')){return false;}
+        if(!requerido('numIdetificacion')){return false;}
+        
+    
+        if(!requerido('primerNombreMadre')){return false;}
+        if(!requerido('primerApellidoMadre')){return false;}
+        if(!requerido('fechaNaceMadre')){return false;}
+        if(!requerido('tipoDocMadre')){return false;}
+        if(!requerido('numIdetificacionMadre')){return false;}
+        
+        
+            
     var data_form = {
-        primerNombre : document.getElementById('primerNombre').value
-        , segundoNombre : document.getElementById('segundoNombre').value
-        , primerApellido : document.getElementById('primerApellido').value
-        , segundoApellido : document.getElementById('segundoApellido').value
-        , fechaNace : document.getElementById('fechaNace').value
-        , tipoId : document.getElementById('tipoId').value
-        , numIdetificacion : document.getElementById('numIdetificacion').value
-        , regimen : document.getElementById('regimen').value
-        , aseguradora : document.getElementById('aseguradora').value
-        , lugar_parto : document.getElementById('lugar_parto').value
-        , departNace : document.getElementById('departNace').value
-        , ciudadNace : document.getElementById('ciudadNace').value
-        , registraVacunacion : document.getElementById('registraVacunacion').value
-        , primerNombreMadre : document.getElementById('primerNombreMadre').value
-        , segundoNombreMadre : document.getElementById('segundoNombreMadre').value
-        , primerApellidoMadre : document.getElementById('primerApellidoMadre').value
-        , segundoApellidoMadre : document.getElementById('segundoApellidoMadre').value
-        , fechaNaceMadre : document.getElementById('fechaNaceMadre').value
-        , tipoDocMadre : document.getElementById('tipoDocMadre').value
-        , numIdetificacionMadre : document.getElementById('numIdetificacionMadre').value
-        , telefonoMadre : document.getElementById('telefonoMadre').value
-        , celularMadre : document.getElementById('celularMadre').value
-        , correoMadre : document.getElementById('correoMadre').value
-        , codMapa : document.getElementById('id_mapa').value
-        , etiquetaPunto : document.getElementById('etiqueta_punto').value
+        primerNombre : primerNombre.value
+        , segundoNombre : segundoNombre.value
+        , primerApellido : primerApellido.value
+        , segundoApellido : segundoApellido.value
+        , fechaNace : fechaNace.value
+        , tipoId : tipoId.value
+        , numIdetificacion : numIdetificacion.value
+        , regimen : regimen.value
+        , aseguradora : aseguradora.value
+        , lugar_parto : lugar_parto.value
+        , departNace : departNace.value
+        , ciudadNace : ciudadNace.value
+        , registraVacunacion : registraVacunacion.value
+        , primerNombreMadre : primerNombreMadre.value
+        , segundoNombreMadre : segundoNombreMadre.value
+        , primerApellidoMadre : primerApellidoMadre.value
+        , segundoApellidoMadre : segundoApellidoMadre.value
+        , fechaNaceMadre : fechaNaceMadre.value
+        , tipoDocMadre : tipoDocMadre.value
+        , numIdetificacionMadre : numIdetificacionMadre.value
+        , telefonoMadre : telefonoMadre.value
+        , celularMadre : celularMadre.value
+        , correoMadre : correoMadre.value
+        , codMapa : id_mapa.value
+        , etiquetaPunto : etiqueta_punto.value
     };
 	
 	//alert(document.getElementById('registraVacunacion').value);
     cargarURL("#contenedor_principal", ajaxurl, data_form);
     
+}
+
+function requerido(campo){    
+    
+    var validado = document.getElementById(campo).value;
+    var respuesta = document.getElementById('v_'+campo);
+    
+    //alert("campo :"+campo);    
+    if(validado == '' || validado == 0)
+    {
+        //alert("Nombre no debe estar vacio");    
+        //document.getElementById(campo).focus();
+        respuesta.innerHTML = "Campo no puede estar vacio";
+        respuesta.style.background = "red";
+        respuesta.style.color = "white";
+        return false;
+    }else
+    {
+        respuesta.innerHTML = "";
+        respuesta.style.background = "white";
+        return true;
+    }
+}
+
+
+function editChild(idChild)
+{
+    var ajaxurl  = 'view/edit_child.php';
+    var data_form = {
+        idChild : idChild
+        , type : 1
+    };
+    
+    cargarURL("#contenedor_principal", ajaxurl, data_form);
+}
+
+function viewDataChild(idChild)
+{
+    alert("SE VERA "+idChild);
 }
 
 function cargarCiudadDepartamento(){

@@ -4,12 +4,12 @@
     $(function() {
         //Date range picker
         $('#fechaNace').datetimepicker({
-            format: 'YYYY/MM/DD',
+            format: 'YYYY-MM-DD',
             pickTime: false
         });
         
         $('#fechaNaceMadre').datetimepicker({
-            format: 'YYYY/MM/DD',
+            format: 'YYYY-MM-DD',
             pickTime: false
         });
         
@@ -55,7 +55,8 @@
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                        <input type="text" class="form-control" id="primerNombre" placeholder="Ingrese Primer Nombre" />
+                                        <input type="text" class="form-control" id="primerNombre" placeholder="Ingrese Primer Nombre" onblur="requerido('primerNombre')" />
+                                        <div id="v_primerNombre" style="text-align: center"></div>
                                     </div>
                                 </div>
                             </div>
@@ -81,7 +82,8 @@
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                        <input type="text" class="form-control" id="primerApellido" placeholder="Ingrese Primer Apellido">
+                                        <input type="text" class="form-control" id="primerApellido" placeholder="Ingrese Primer Apellido" onblur="requerido('primerApellido')" />
+                                        <div id="v_primerApellido" style="text-align: center"></div>
                                     </div>
                                 </div>
                             </div>
@@ -102,12 +104,13 @@
                       <div class="form-group">
                           <div class="row">
                                 <div class="col-xs-12">    
-                                    <label>Fecha de Nacimiento: (Formato AAAA/MM/DD)</label>
+                                    <label>Fecha de Nacimiento: (Formato AAAA-MM-DD)</label>
                                 </div>
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                        <input type="text" class="form-control" id="fechaNace" />
+                                        <input type="text" class="form-control" id="fechaNace" onblur="requerido('fechaNace')" />
+                                        <div id="v_fechaNace" style="text-align: center"></div>
                                     </div>
                                 </div>
                             </div>
@@ -120,9 +123,11 @@
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <span class="input-group-addon" ><i class="fa fa-caret-square-o-down"></i></span>
-                                        <select class="form-control" id="tipoId">
+                                        <select class="form-control" id="tipoId" onchange="requerido('tipoId')">
                                             <?php getTipoIdentificacion(1); ?>                                                  
-                                        </select>  
+                                        </select>
+                                        
+                                        <div id="v_tipoId" style="text-align: center"></div>
                                     </div>
                                 </div>
                             </div>
@@ -135,7 +140,8 @@
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                        <input type="text" class="form-control" id="numIdetificacion" placeholder="Ingrese Identificacion" />
+                                        <input type="text" class="form-control" id="numIdetificacion" placeholder="Ingrese Identificacion" onblur="requerido('numIdetificacion')" />
+                                        <div id="v_numIdetificacion" style="text-align: center"></div>
                                     </div>
                                 </div>
                             </div>
@@ -263,7 +269,8 @@
                             <div class="col-xs-12"> 
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                    <input type="text" class="form-control" id="primerNombreMadre" placeholder="Ingrese Primer Nombre">  
+                                    <input type="text" class="form-control" id="primerNombreMadre" placeholder="Ingrese Primer Nombre" onblur="requerido('primerNombreMadre')" />
+                                        <div id="v_primerNombreMadre" style="text-align: center"></div>  
                                 </div>
                             </div>
                         </div>
@@ -289,7 +296,8 @@
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                        <input type="text" class="form-control" id="primerApellidoMadre" placeholder="Ingrese Primer Apellido">
+                                        <input type="text" class="form-control" id="primerApellidoMadre" placeholder="Ingrese Primer Apellido" onblur="requerido('primerApellidoMadre')" />
+                                        <div id="v_primerApellidoMadre" style="text-align: center"></div>  
                                     </div>
                                 </div>
                             </div>
@@ -317,7 +325,8 @@
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                        <input type="text" class="form-control"  id="fechaNaceMadre" />
+                                        <input type="text" class="form-control"  id="fechaNaceMadre" onblur="requerido('fechaNaceMadre')" />
+                                        <div id="v_fechaNaceMadre" style="text-align: center"></div>  
                                     </div>
                                 </div>
                             </div>
@@ -330,9 +339,10 @@
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-caret-square-o-down"></i></div>
-                                        <select class="form-control" id="tipoDocMadre">
+                                        <select class="form-control" id="tipoDocMadre" onchange="requerido('tipoDocMadre')">
                                             <?php getTipoIdentificacion(2); ?>                                                   
                                         </select> 
+                                        <div id="v_tipoDocMadre" style="text-align: center"></div>  
                                     </div>
                                 </div>
                             </div>
@@ -345,7 +355,8 @@
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                        <input type="text" class="form-control" id="numIdetificacionMadre" placeholder="Ingrese Identificacion">
+                                        <input type="text" class="form-control" id="numIdetificacionMadre" placeholder="Ingrese Identificacion" onblur="requerido('numIdetificacionMadre')" />
+                                        <div id="v_numIdetificacionMadre" style="text-align: center"></div>  
                                     </div>
                                 </div>
                             </div>
@@ -360,7 +371,7 @@
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-phone"></i></div>
-                                        <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask id="telefonoMadre"/>
+                                        <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask id="telefonoMadre" 
                                     </div>
                                 </div>
                             </div>
