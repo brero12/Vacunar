@@ -114,6 +114,92 @@ function insertMomChild($fk_tbl_tipo_identificacion, $numero_identificacion, $pr
    // echo 'succes Mom<br>';
 }
 
+
+function updateMomChild($fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $telefono, $celular, $correo_electronico, $idMapa, $etiquetaPunto) {
+
+    global $bd_host;
+    global $bd_usuario;
+    global $bd_password;
+    global $bd_base;
+
+    $mysqli = new mysqli($bd_host, $bd_usuario, $bd_password, $bd_base);
+
+    //echo 'on sqlput Mom<br>';
+
+
+    $consulta = 'update tbl_personas set    primer_nombre = ?, 
+                                            segundo_nombre = ?, 
+                                            primer_apellido = ?, 
+                                            segundo_apellido = ?,
+                                            fecha_nacimiento = ?,
+                                            telefono = ?, 
+                                            correo_electronico = ?
+                                           WHERE numero_identificacion = ?';
+
+    /* echo '<option>'.$consulta.'</option>'; */
+
+
+
+    $query = $mysqli->prepare($consulta);
+    //if ($result = $mysqli->query($consulta)) {
+    // execute
+
+    //var_dump($query);
+
+    $query->bind_param('sssssssi', $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $telefono, $correo_electronico, $numero_identificacion);
+
+    $query->execute();
+    
+    $id_result = $mysqli->insert_id;
+    
+    return $id_result;
+
+   // echo 'succes Mom<br>';
+}
+
+
+function updateChild($fk_tbl_tipo_identificacion, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $regimen_afiliacion, $aseguradora, $fk_tbl_entidad_salud_atencioparto, $fk_municipio_nacimiento, $isMom, $idMapa, $etiquetaPunto) {
+
+    global $bd_host;
+    global $bd_usuario;
+    global $bd_password;
+    global $bd_base;
+
+    $mysqli = new mysqli($bd_host, $bd_usuario, $bd_password, $bd_base);
+
+    //echo 'on sqlput <br>';
+
+
+    $consulta = 'UPDATE tbl_personas   SET     primer_nombre = ?, 
+                                            segundo_nombre = ?, 
+                                            primer_apellido = ?, 
+                                            segundo_apellido = ?,
+                                            fecha_nacimiento = ?,
+                                            regimen_afiliacion = ?, 
+                                            aseguradora = ?, 
+                                            fk_tbl_entidad_salud_atencioparto = ?,
+                                            fk_municipio_nacimiento = ?
+                                            WHERE numero_identificacion = ?';
+
+    /* echo '<option>'.$consulta.'</option>'; */
+
+
+
+    $query = $mysqli->prepare($consulta);
+    //if ($result = $mysqli->query($consulta)) {
+    // execute
+
+   // var_dump($query);
+
+    $query->bind_param('sssssssiii', $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $regimen_afiliacion, $aseguradora, $fk_tbl_entidad_salud_atencioparto, $fk_municipio_nacimiento, $numero_identificacion);
+
+    $query->execute();
+
+    $id_result = $mysqli->insert_id;
+    
+    return $id_result;
+}
+
 function getEntidadesSalud() {
 
 
@@ -562,7 +648,8 @@ function getDataToChild($idChild,$type)
             . ', fk_tbl_mapas'            
             . ', fk_tbl_tipo_identificacion'  
             . ', regimen_afiliacion'
-            . ', aseguradora' 
+            . ', aseguradora'
+            . ', id_mom' 
             . ' from tbl_personas'
             . ' where numero_identificacion='.$idChild;
 
@@ -579,7 +666,8 @@ function getDataToChild($idChild,$type)
                 , $codMapa
                 , $tipo_identificacion
                 , $regimen_afiliacion
-                , $aseguradora);
+                , $aseguradora
+                , $id_mom);
 
        $query->fetch();
     }
@@ -587,7 +675,7 @@ function getDataToChild($idChild,$type)
     $readonly ='';
     
     if($type==2)
-    { $readonly = ' readonly'; }
+    { $readonly = ' disabled'; }
 
     
     echo '<section class="content">
@@ -614,7 +702,7 @@ function getDataToChild($idChild,$type)
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                        <input type="text" class="form-control" id="primerNombre" placeholder="Ingrese Primer Nombre" onblur="requerido(\'primerNombre\')" value="'.$primer_nombre.'" '.$readonly.'/>
+                                        <input type="text" class="form-control" id="primerNombre" placeholder="" onblur="requerido(\'primerNombre\')" value="'.$primer_nombre.'" '.$readonly.'/>
                                         <div id="v_primerNombre" style="text-align: center"></div>
                                     </div>
                                 </div>
@@ -628,7 +716,7 @@ function getDataToChild($idChild,$type)
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                        <input type="text" class="form-control" id="segundoNombre" placeholder="Ingrese Segundo Nombre" value="'.$segundo_nombre.'" '.$readonly.' />
+                                        <input type="text" class="form-control" id="segundoNombre" placeholder="" value="'.$segundo_nombre.'" '.$readonly.' />
                                     </div>
                                 </div>
                             </div>
@@ -641,7 +729,7 @@ function getDataToChild($idChild,$type)
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                        <input type="text" class="form-control" id="primerApellido" placeholder="Ingrese Primer Apellido" onblur="requerido(\'primerApellido\')" value="'.$primer_apellido.'" '.$readonly.' />
+                                        <input type="text" class="form-control" id="primerApellido" placeholder="" onblur="requerido(\'primerApellido\')" value="'.$primer_apellido.'" '.$readonly.' />
                                         <div id="v_primerApellido" style="text-align: center"></div>
                                     </div>
                                 </div>
@@ -655,7 +743,7 @@ function getDataToChild($idChild,$type)
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                        <input type="text" class="form-control" id="segundoApellido" placeholder="Ingrese Segundo Apellido" value="'.$segundo_apellido.'" '.$readonly.' />
+                                        <input type="text" class="form-control" id="segundoApellido" placeholder="" value="'.$segundo_apellido.'" '.$readonly.' />
                                     </div>
                                 </div>
                             </div>
@@ -682,7 +770,7 @@ function getDataToChild($idChild,$type)
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <span class="input-group-addon" ><i class="fa fa-caret-square-o-down"></i></span>
-                                        <select class="form-control" id="tipoId" onchange="requerido(\'tipoId\')" readonly>
+                                        <select class="form-control" id="tipoId" onchange="requerido(\'tipoId\')" disabled>
                                             ';  
     
                                             getTipoIdentificacion(1,$tipo_identificacion); 
@@ -703,7 +791,7 @@ function getDataToChild($idChild,$type)
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                        <input type="text" class="form-control" id="numIdetificacion" placeholder="Ingrese Identificacion" onblur="requerido(\'numIdetificacion\')" value="'.$numero_identificacion.'" readonly />
+                                        <input type="text" class="form-control" id="numIdetificacion" placeholder="" onblur="requerido(\'numIdetificacion\')" value="'.$numero_identificacion.'" disabled />
                                         <div id="v_numIdetificacion" style="text-align: center"></div>
                                     </div>
                                 </div>
@@ -778,8 +866,10 @@ function getDataToChild($idChild,$type)
                                     <div class="input-group">
                                         <span class="input-group-addon" ><i class="fa fa-caret-square-o-down"></i></span>
                                         <select class="form-control" id="lugar_parto" '.$readonly.'>
-                                            <?php getEntidadesSalud(); ?>                                                 
-                                        </select>  
+                                            ';  
+                                        getEntidadesSalud();                                             
+                                       echo'</select>  
+                                        <div id="v_lugar_parto" style="text-align: center"></div>
                                     </div>
                                 </div>
                             </div>
@@ -793,8 +883,10 @@ function getDataToChild($idChild,$type)
                                     <div class="input-group">
                                         <span class="input-group-addon" ><i class="fa fa-caret-square-o-down"></i></span>
                                         <select class="form-control" id="departNace" onchange="cargarCiudadDepartamento()" '.$readonly.'>
-                                             <?php getDepartamentos(); ?>                                                        
-                                        </select>    
+                                             '; 
+                                        getDepartamentos();                                                        
+                                       echo' </select>  
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -811,7 +903,8 @@ function getDataToChild($idChild,$type)
                                             <option>Buenaventura</option>
                                             <option>Cali</option>
                                             <option>Bogota</option>                                                
-                                        </select>     
+                                        </select>    
+                                        <div id="v_ciudadNace" style="text-align: center"></div>
                                     </div>
                                 </div>
                             </div>
@@ -832,8 +925,55 @@ function getDataToChild($idChild,$type)
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>-->
 
-          </div><!-- /.box -->';/* 
+          </div><!-- /.box -->';
+                                        
+      getDataMomChild($id_mom,$type);
+}
 
+function getDataMomChild($idMon,$type)
+{
+    
+    global $bd_host;
+    global $bd_usuario;
+    global $bd_password;
+    global $bd_base;
+
+    $mysqli = new mysqli($bd_host, $bd_usuario, $bd_password, $bd_base);
+
+    $consulta = 'select numero_identificacion'
+            . ', primer_nombre, segundo_nombre'
+            . ', primer_apellido'
+            . ', segundo_apellido'
+            . ', fecha_nacimiento'                     
+            . ', fk_tbl_tipo_identificacion'  
+            . ', telefono'
+            . ', correo_electronico' 
+            . ' from tbl_personas'
+            . ' where id_tbl_personas='.$idMon;
+
+
+    if ($query = $mysqli->prepare($consulta)) {
+        $query->execute();
+        $query->bind_result($numero_identificacion
+                , $primer_nombre
+                , $segundo_nombre
+                , $primer_apellido
+                , $segundo_apellido 
+                , $fecha_nacimiento                
+                , $tipo_identificacion
+                , $telefono
+                , $correo_electronico);
+
+       $query->fetch();
+    }
+    
+    $readonly ='';
+    
+    if($type==2)
+    { $readonly = ' disabled'; }
+    
+   
+    echo ' 
           <!-- Form Element sizes --><!-- /.box --><!-- /.box -->
 
           <!-- Input addon --><!-- /.box -->
@@ -858,7 +998,7 @@ function getDataToChild($idChild,$type)
                             <div class="col-xs-12"> 
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                    <input type="text" class="form-control" id="primerNombreMadre" placeholder="Ingrese Primer Nombre" onblur="requerido('primerNombreMadre')" />
+                                    <input type="text" class="form-control" id="primerNombreMadre" placeholder="" onblur="requerido(\'primerNombreMadre\')" '.$readonly.' value="'.$primer_nombre.'" />
                                         <div id="v_primerNombreMadre" style="text-align: center"></div>  
                                 </div>
                             </div>
@@ -872,7 +1012,7 @@ function getDataToChild($idChild,$type)
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                        <input type="text" class="form-control" id="segundoNombreMadre" placeholder="Ingrese Segundo Nombre">
+                                        <input type="text" class="form-control" id="segundoNombreMadre" placeholder="" '.$readonly.' value="'.$segundo_nombre.'" />
                                     </div>
                                 </div>
                             </div>
@@ -885,7 +1025,7 @@ function getDataToChild($idChild,$type)
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                        <input type="text" class="form-control" id="primerApellidoMadre" placeholder="Ingrese Primer Apellido" onblur="requerido('primerApellidoMadre')" />
+                                        <input type="text" class="form-control" id="primerApellidoMadre" placeholder="" onblur="requerido(\'primerApellidoMadre\')" '.$readonly.' value="'.$primer_apellido.'" />
                                         <div id="v_primerApellidoMadre" style="text-align: center"></div>  
                                     </div>
                                 </div>
@@ -899,7 +1039,7 @@ function getDataToChild($idChild,$type)
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                        <input type="text" class="form-control" id="segundoApellidoMadre" placeholder="Ingrese Segundo Apellido">
+                                        <input type="text" class="form-control" id="segundoApellidoMadre" placeholder="" '.$readonly.' value="'.$segundo_apellido.'" />
                                     </div>
                                 </div>
                             </div>
@@ -914,7 +1054,7 @@ function getDataToChild($idChild,$type)
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                        <input type="text" class="form-control"  id="fechaNaceMadre" onblur="requerido('fechaNaceMadre')" />
+                                        <input type="text" class="form-control"  id="fechaNaceMadre" onblur="requerido(\'fechaNaceMadre\')" '.$readonly.' value="'.$fecha_nacimiento.'" />
                                         <div id="v_fechaNaceMadre" style="text-align: center"></div>  
                                     </div>
                                 </div>
@@ -928,8 +1068,12 @@ function getDataToChild($idChild,$type)
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-caret-square-o-down"></i></div>
-                                        <select class="form-control" id="tipoDocMadre" onchange="requerido('tipoDocMadre')">
-                                            <?php getTipoIdentificacion(2); ?>                                                   
+                                        <select class="form-control" id="tipoDocMadre" onchange="requerido(\'tipoDocMadre\')" disabled >
+                                            ';  
+    
+                                            getTipoIdentificacion(2,$tipo_identificacion); 
+                                            
+                                            echo '                                                    
                                         </select> 
                                         <div id="v_tipoDocMadre" style="text-align: center"></div>  
                                     </div>
@@ -944,7 +1088,7 @@ function getDataToChild($idChild,$type)
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                        <input type="text" class="form-control" id="numIdetificacionMadre" placeholder="Ingrese Identificacion" onblur="requerido('numIdetificacionMadre')" />
+                                        <input type="text" class="form-control" id="numIdetificacionMadre" placeholder="" onblur="requerido(\'numIdetificacionMadre\')" disabled value="'.$numero_identificacion.'" />
                                         <div id="v_numIdetificacionMadre" style="text-align: center"></div>  
                                     </div>
                                 </div>
@@ -960,7 +1104,7 @@ function getDataToChild($idChild,$type)
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-phone"></i></div>
-                                        <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask id="telefonoMadre" 
+                                        <input type="text" class="form-control" data-inputmask=\'"mask": "(999) 999-9999"\' data-mask id="telefonoMadre" '.$readonly.' value="'.$telefono.'" />
                                     </div>
                                 </div>
                             </div>
@@ -976,7 +1120,7 @@ function getDataToChild($idChild,$type)
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-phone"></i></div>
-                                        <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask id="celularMadre"/>
+                                        <input type="text" class="form-control" data-inputmask=\'"mask": "(999) 999-9999"\' data-mask id="celularMadre" '.$readonly.' value="'.$telefono.'" />
                                     </div>
                                 </div>
                             </div>
@@ -984,23 +1128,27 @@ function getDataToChild($idChild,$type)
                       <div class="form-group">
                           <div class="row">
                                 <div class="col-xs-12">    
-                                    <label for='correoMadre'>Correo</label>
+                                    <label for="correoMadre">Correo</label>
                                 </div>
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-envelope-o"></i></div>
-                                        <input type="text" class="form-control" placeholder="E-mail" id="correoMadre">
+                                        <input type="text" class="form-control" placeholder="" id="correoMadre" '.$readonly.' value="'.$correo_electronico.'" />
                                     </div>
                                 </div>
                             </div>
                       </div>
-                  </div><!-- /.box-body -->
+                  </div><!-- /.box-body -->';
 
-                    <div class="box-footer" align="center">
-                        <button type="button" class="btn btn-primary" onclick="Javascript:saveChild();">Guardar</button>
-                        <button type="button" class="btn btn-danger" onclick="JavaScript:cargarMapaIndividual('<?php echo $_POST['codMapa'] ?>')">Cancelar</button>
-                    </div>
-                </div><!-- /.box-body -->
+                  if($type==1)
+                  {
+                  echo ' <div class="box-footer" align="center">
+                        <button type="button" class="btn btn-primary" onclick="Javascript:saveEditChild();">Guardar</button>
+                        <button type="button" class="btn btn-danger" onclick="">Cancelar</button>
+                    </div>';
+                  }
+                  
+                echo '</div><!-- /.box-body -->
             </div><!-- /.box -->
         </div><!--/.col (right) -->
     </div>   <!-- /.row -->  
@@ -1009,5 +1157,5 @@ function getDataToChild($idChild,$type)
     </form>
 
 
-</section><!-- /.content -->';   */ 
+</section><!-- /.content -->';  /*  */ 
 }
