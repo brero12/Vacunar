@@ -301,9 +301,15 @@ function editChild(idChild)
     cargarURL("#contenedor_principal", ajaxurl, data_form);
 }
 
-function viewDataChild(idChild)
+function viewDataToChild(idChild)
 {
-    alert("SE VERA "+idChild);
+    var ajaxurl  = 'view/edit_child.php';
+    var data_form = {
+        idChild : idChild
+        , type : 2
+    };
+    
+    cargarURL("#contenedor_principal", ajaxurl, data_form);
 }
 
 function cargarCiudadDepartamento(){

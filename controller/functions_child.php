@@ -213,7 +213,7 @@ function getCiudadDepartamento($id_departamento) {
     }
 }
 
-function getTipoIdentificacion($condicion) {
+function getTipoIdentificacion($condicion,$select=null) {
 
 
     echo '<option value=0>Escoger una opcion</option>';
@@ -229,7 +229,7 @@ function getTipoIdentificacion($condicion) {
 
     $consulta = 'select id_tbl_tipo_identificacion, tipo_identificacion, descripcion from tbl_tipo_identificacion where condicion=' . $condicion;
 
-    /* echo '<option>'.$consulta.'</option>'; */
+    /*echo '<option>'.$consulta.'</option>';  */
 
     if ($query = $mysqli->prepare($consulta)) {
         //if ($result = $mysqli->query($consulta)) {
@@ -241,8 +241,16 @@ function getTipoIdentificacion($condicion) {
 
         while ($query->fetch()) {
 
-            echo '<option value=' . $id_tbl_tipo_identificacion . '>' . utf8_encode($descripcion) . '</option>';
-        }
+            if($id_tbl_tipo_identificacion==$select)
+            {
+            echo '<option value=' . $id_tbl_tipo_identificacion . ' selected=true>' . utf8_encode($descripcion) . '</option>';
+            }else
+            {
+             echo '<option value=' . $id_tbl_tipo_identificacion . '>' . utf8_encode($descripcion) . '</option>';
+               
+            }
+            
+            }
     }
 }
 
@@ -276,7 +284,7 @@ function getDataChild() {
                                                 <td>'.$primer_apellido.' '.$segundo_apellido.'</td>
                                                 <td>'.$fecha_nacimiento.'</td>
                                                 <td>Estado vacunacion</td>
-                                                <td><i class="fa fa-fw fa-eye" onclick="JavaScript:viewDataChild(\''.$numero_identificacion.'\')"></i></td>
+                                                <td><i class="fa fa-fw fa-eye" onclick="JavaScript:viewDataToChild(\''.$numero_identificacion.'\')"></i></td>
                                                 <td><i class="fa fa-edit" onclick="JavaScript:editChild(\''.$numero_identificacion.'\')"></i></td>   
                                             </tr>';
         }
@@ -535,7 +543,7 @@ function getDataSchemaChild($idPersona){
     return $resultChildrenSchema;
 }
 
-function getDataByChild($idChild,$type)
+function getDataToChild($idChild,$type)
 {
     
     global $bd_host;
@@ -552,16 +560,34 @@ function getDataByChild($idChild,$type)
             . ', fecha_nacimiento'
             . ', fk_tbl_puntos_etiqueta_punto'
             . ', fk_tbl_mapas'            
+            . ', fk_tbl_tipo_identificacion'  
+            . ', regimen_afiliacion'
+            . ', aseguradora' 
             . ' from tbl_personas'
             . ' where numero_identificacion='.$idChild;
 
 
     if ($query = $mysqli->prepare($consulta)) {
         $query->execute();
-        $query->bind_result($numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido , $fecha_nacimiento, $etiqueta_punto, $codMapa);
+        $query->bind_result($numero_identificacion
+                , $primer_nombre
+                , $segundo_nombre
+                , $primer_apellido
+                , $segundo_apellido 
+                , $fecha_nacimiento
+                , $etiqueta_punto
+                , $codMapa
+                , $tipo_identificacion
+                , $regimen_afiliacion
+                , $aseguradora);
 
        $query->fetch();
     }
+    
+    $readonly ='';
+    
+    if($type==2)
+    { $readonly = ' readonly'; }
 
     
     echo '<section class="content">
@@ -579,7 +605,7 @@ function getDataByChild($idChild,$type)
                 </div><!-- /.box-header -->
                 <!-- form start -->
 
-                  <div class="box-body">
+                  <div class="box-body" >
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-xs-12"> 
@@ -588,7 +614,7 @@ function getDataByChild($idChild,$type)
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                        <input type="text" class="form-control" id="primerNombre" placeholder="Ingrese Primer Nombre" onblur="requerido(\'primerNombre\')" value="'.$primer_nombre.'"/>
+                                        <input type="text" class="form-control" id="primerNombre" placeholder="Ingrese Primer Nombre" onblur="requerido(\'primerNombre\')" value="'.$primer_nombre.'" '.$readonly.'/>
                                         <div id="v_primerNombre" style="text-align: center"></div>
                                     </div>
                                 </div>
@@ -602,7 +628,7 @@ function getDataByChild($idChild,$type)
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                        <input type="text" class="form-control" id="segundoNombre" placeholder="Ingrese Segundo Nombre" value="'.$segundo_nombre.'" />
+                                        <input type="text" class="form-control" id="segundoNombre" placeholder="Ingrese Segundo Nombre" value="'.$segundo_nombre.'" '.$readonly.' />
                                     </div>
                                 </div>
                             </div>
@@ -615,7 +641,7 @@ function getDataByChild($idChild,$type)
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                        <input type="text" class="form-control" id="primerApellido" placeholder="Ingrese Primer Apellido" onblur="requerido(\'primerApellido\')" value="'.$primer_apellido.'" />
+                                        <input type="text" class="form-control" id="primerApellido" placeholder="Ingrese Primer Apellido" onblur="requerido(\'primerApellido\')" value="'.$primer_apellido.'" '.$readonly.' />
                                         <div id="v_primerApellido" style="text-align: center"></div>
                                     </div>
                                 </div>
@@ -629,7 +655,7 @@ function getDataByChild($idChild,$type)
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                        <input type="text" class="form-control" id="segundoApellido" placeholder="Ingrese Segundo Apellido" value="'.$segundo_apellido.'" >
+                                        <input type="text" class="form-control" id="segundoApellido" placeholder="Ingrese Segundo Apellido" value="'.$segundo_apellido.'" '.$readonly.' />
                                     </div>
                                 </div>
                             </div>
@@ -642,12 +668,12 @@ function getDataByChild($idChild,$type)
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                        <input type="text" class="form-control" id="fechaNace" onblur="requerido(\'fechaNace\')" value="'.$fecha_nacimiento.'" />
+                                        <input type="text" class="form-control" id="fechaNace" onblur="requerido(\'fechaNace\')" value="'.$fecha_nacimiento.'" '.$readonly.' />
                                         <div id="v_fechaNace" style="text-align: center"></div>
                                     </div>
                                 </div>
                             </div>
-                      </div>';/*
+                      </div>
                       <div class="form-group">
                           <div class="row">
                                 <div class="col-xs-12">    
@@ -656,8 +682,12 @@ function getDataByChild($idChild,$type)
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <span class="input-group-addon" ><i class="fa fa-caret-square-o-down"></i></span>
-                                        <select class="form-control" id="tipoId" onchange="requerido('tipoId')">
-                                            <?php getTipoIdentificacion(1); ?>                                                  
+                                        <select class="form-control" id="tipoId" onchange="requerido(\'tipoId\')" readonly>
+                                            ';  
+    
+                                            getTipoIdentificacion(1,$tipo_identificacion); 
+                                            
+                                            echo '                                                   
                                         </select>
                                         
                                         <div id="v_tipoId" style="text-align: center"></div>
@@ -673,7 +703,7 @@ function getDataByChild($idChild,$type)
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-check"></i></span>
-                                        <input type="text" class="form-control" id="numIdetificacion" placeholder="Ingrese Identificacion" onblur="requerido('numIdetificacion')" />
+                                        <input type="text" class="form-control" id="numIdetificacion" placeholder="Ingrese Identificacion" onblur="requerido(\'numIdetificacion\')" value="'.$numero_identificacion.'" readonly />
                                         <div id="v_numIdetificacion" style="text-align: center"></div>
                                     </div>
                                 </div>
@@ -687,11 +717,24 @@ function getDataByChild($idChild,$type)
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <span class="input-group-addon" ><i class="fa fa-caret-square-o-down"></i></span>
-                                        <select class="form-control" id="regimen">
-                                            <option>Contributivo</option>
-                                            <option>No Contributivo</option>
-                                            <option>Otros</option>                                                
-                                        </select>   
+                                        <select class="form-control" id="regimen" '.$readonly.'>';
+                                            
+                                            $selected='';
+                                            if($regimen_afiliacion=='Contributivo')
+                                                $selected='selected';
+                                            else $selected='';
+                                            echo '<option '.$selected.'>Contributivo</option>';
+                                            
+                                            if($regimen_afiliacion=='No Contributivo')
+                                                $selected='selected';
+                                            else $selected='';
+                                            echo '<option '.$selected.'>No Contributivo</option>';
+                                            
+                                            if($regimen_afiliacion=='Otros')
+                                                $selected='selected';
+                                            else $selected='';
+                                            echo ' <option '.$selected.'>Otros</option>';                                               
+                                       echo ' </select>   
                                     </div>
                                 </div>
                             </div>
@@ -704,15 +747,28 @@ function getDataByChild($idChild,$type)
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <span class="input-group-addon" ><i class="fa fa-caret-square-o-down"></i></span>
-                                        <select class="form-control" id="aseguradora">
-                                            <option>Comfenalco</option>
-                                            <option>Comfandi</option>
-                                            <option>Otros</option>                                                
-                                        </select> 
+                                        <select class="form-control" id="aseguradora" '.$readonly.'>';
+                                            
+                                            $selected='';
+                                            if($aseguradora=='Comfenalco')
+                                                $selected='selected';
+                                            else $selected='';
+                                            echo '<option '.$selected.'>Comfenalco</option>';
+                                            
+                                            if($aseguradora=='Comfandi')
+                                                $selected='selected';
+                                            else $selected='';
+                                            echo '<option '.$selected.'>Comfandi</option>';
+                                            
+                                            if($aseguradora=='Otros')
+                                                $selected='selected';
+                                            else $selected='';
+                                            echo '<option '.$selected.'>Otros</option>  ';                                              
+                                        echo '</select> 
                                     </div>
                                 </div>
                             </div>
-                      </div>   
+                      </div>  
                       <div class="form-group">
                           <div class="row">
                                 <div class="col-xs-12">    
@@ -721,7 +777,7 @@ function getDataByChild($idChild,$type)
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <span class="input-group-addon" ><i class="fa fa-caret-square-o-down"></i></span>
-                                        <select class="form-control" id="lugar_parto">
+                                        <select class="form-control" id="lugar_parto" '.$readonly.'>
                                             <?php getEntidadesSalud(); ?>                                                 
                                         </select>  
                                     </div>
@@ -736,7 +792,7 @@ function getDataByChild($idChild,$type)
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <span class="input-group-addon" ><i class="fa fa-caret-square-o-down"></i></span>
-                                        <select class="form-control" id="departNace" onchange="cargarCiudadDepartamento()">
+                                        <select class="form-control" id="departNace" onchange="cargarCiudadDepartamento()" '.$readonly.'>
                                              <?php getDepartamentos(); ?>                                                        
                                         </select>    
                                     </div>
@@ -751,7 +807,7 @@ function getDataByChild($idChild,$type)
                                 <div class="col-xs-12"> 
                                     <div class="input-group">
                                         <span class="input-group-addon" ><i class="fa fa-caret-square-o-down"></i></span>
-                                        <select class="form-control" id="ciudadNace">
+                                        <select class="form-control" id="ciudadNace" '.$readonly.'>
                                             <option>Buenaventura</option>
                                             <option>Cali</option>
                                             <option>Bogota</option>                                                
@@ -760,7 +816,7 @@ function getDataByChild($idChild,$type)
                                 </div>
                             </div>
                       </div>
-                      <div class="form-group">
+                      <!--<div class="form-group">
                           <div class="row">
                                 <div class="col-xs-12">    
                                     <div class="input-group">
@@ -769,14 +825,14 @@ function getDataByChild($idChild,$type)
                                     </div>
                                 </div>
                             </div>
-                      </div>
+                      </div>-->
                   </div><!-- /.box-body -->
 
                     <!--<div class="box-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>-->
 
-          </div><!-- /.box -->
+          </div><!-- /.box -->';/* 
 
           <!-- Form Element sizes --><!-- /.box --><!-- /.box -->
 
