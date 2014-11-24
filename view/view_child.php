@@ -3,16 +3,16 @@
 <script src="js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
 <script src="js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
 
- <script type="text/javascript">
+<script type="text/javascript">
     $(function() {
 
         $('#example2').dataTable({
-            "bPaginate"     : true,
-            "bLengthChange" : false,
-            "bFilter"       : false,
-            "bSort"         : true,
-            "bInfo"         : true,
-            "bAutoWidth"    : false,
+            "bPaginate": true,
+            "bLengthChange": false,
+            "bFilter": false,
+            "bSort": true,
+            "bInfo": true,
+            "bAutoWidth": false,
             "iDisplayLength": 30
         });
     });
@@ -33,21 +33,14 @@
 <!-- Main content -->
 <section class="content">
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-12">                           
+
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Listado de ni&ntilde;os registrados</h3>
-                    <div class="box-tools">
-                        <div class="input-group">
-                            <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Buscar"/>
-                            <div class="input-group-btn">
-                                <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-                            </div>
-                        </div>
-                    </div>
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive">
-                    <table id="example2" class="table table-bordered table-striped">
+                    <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>No. Identificaci&oacute;n</th>
@@ -59,14 +52,49 @@
                                 <th></th>
                             </tr>
                         </thead>
+                        </thead>
                         <tbody>
-                            <?php  getDataChild();?>                                           
+                            <?php getDataChild(); ?>                                           
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
-
         </div>
     </div>
 
 </section><!-- /.content -->
+
+<!-- Bootstrap -->
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<!-- DATA TABES SCRIPT -->
+<script src="js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
+<script src="js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+<!-- AdminLTE App -->
+<!-- <script src="js/AdminLTE/app.js" type="text/javascript"></script>
+AdminLTE for demo purposes 
+<script src="js/AdminLTE/demo.js" type="text/javascript"></script>-->
+<!-- page script -->
+<script type="text/javascript">
+    $(function() {
+        $("#example1").dataTable();
+        $('#example2').dataTable({
+            "bPaginate": true,
+            "bLengthChange": false,
+            "bFilter": false,
+            "bSort": true,
+            "bInfo": true,
+            "bAutoWidth": false
+        });
+    });
+</script>
