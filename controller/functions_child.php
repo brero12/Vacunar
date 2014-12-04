@@ -929,7 +929,6 @@ function getDataMomChild($idMon, $type) {
             . ' from tbl_personas'
             . ' where id_tbl_personas=' . $idMon;
 
-
     if ($query = $mysqli->prepare($consulta)) {
         $query->execute();
         $query->bind_result($numero_identificacion

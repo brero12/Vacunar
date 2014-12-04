@@ -91,7 +91,6 @@ function getDataSchema() {
         // bind results
         $query->bind_result($nombre_vacuna, $dosis1, $dosis2, $dosis3, $dosis4 , $dosis5, $refuerzo1, $refuerzo2, $adicional1, $adicional2, $tipo);
 
-echo 'entre';
         while ($query->fetch()) {
             
             if($tipo==0)
@@ -120,7 +119,7 @@ echo 'entre';
     }
 }
 
-function getDataSchemaChild() {
+function getDataVaccineSchemaChild() {
 
     global $bd_host;
     global $bd_usuario;
@@ -148,7 +147,6 @@ function getDataSchemaChild() {
         // bind results
         $query->bind_result($nombre_vacuna, $dosis1, $dosis2, $dosis3, $dosis4 , $dosis5, $refuerzo1, $refuerzo2, $adicional1, $adicional2, $tipo);
 
-echo 'entre';
         while ($query->fetch()) {
             
             if($tipo==0)

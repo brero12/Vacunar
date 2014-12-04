@@ -6,6 +6,7 @@ $listVaccines = getAllVaccines();
 ?>
 
 <script type="text/javascript">
+    //128 = jpretty_form
     var listVaccines = <?php echo json_encode($listVaccines, 128); ?>;
     
     
