@@ -6,15 +6,22 @@
 <script type="text/javascript">
     $(function() {
 
-        $('#example2').dataTable({
+        $('#tbl_ninos').dataTable({
             "bPaginate": true,
             "bLengthChange": false,
-            "bFilter": false,
+            "bFilter": true,
             "bSort": true,
             "bInfo": true,
             "bAutoWidth": false,
             "iDisplayLength": 30
         });
+        
+        
+        $("#searchbox").keyup(function() {
+            dataTable.fnFilter(this.value);
+        });  
+        
+        document.getElementById("tbl_ninos_filter").style.display="none";
     });
 </script>
 
@@ -40,7 +47,30 @@
                     <h3 class="box-title">Listado de ni&ntilde;os registrados</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive">
-                    <table id="example1" class="table table-bordered table-striped">
+                    <div align="center">
+                        <div class="row" >
+                            <div class="col-xs-7" align="right" >
+                                
+                            </div>
+                            <div class="col-xs-5" align="right">
+                                <table border="0" width="70%" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td align="right" style="vertical-align:middle">
+                                            <label>Buscar:</label>
+                                        </td>
+                                        <td style="vertical-align:middle">
+                                            <input type="text" id="searchbox" class="form-control" style="width: 80%; margin: 10px; background-image: url(img/actions/search_icon.png); background-repeat: no-repeat; background-position:left center; padding-left: 20px" />
+                                        </td>
+                                    </tr>
+                                </table>
+                                
+                            </div>
+                        </div>
+                        <div id="contenedor_resultado_puerta" align="center">
+                        </div>
+                    </div>
+                    
+                    <table id="tbl_ninos" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>No. Identificaci&oacute;n</th>
@@ -74,27 +104,3 @@
     </div>
 
 </section><!-- /.content -->
-
-<!-- Bootstrap -->
-<script src="js/bootstrap.min.js" type="text/javascript"></script>
-<!-- DATA TABES SCRIPT -->
-<script src="js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
-<script src="js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
-<!-- AdminLTE App -->
-<!-- <script src="js/AdminLTE/app.js" type="text/javascript"></script>
-AdminLTE for demo purposes 
-<script src="js/AdminLTE/demo.js" type="text/javascript"></script>-->
-<!-- page script -->
-<script type="text/javascript">
-    $(function() {
-        $("#example1").dataTable();
-        $('#example2').dataTable({
-            "bPaginate": true,
-            "bLengthChange": false,
-            "bFilter": false,
-            "bSort": true,
-            "bInfo": true,
-            "bAutoWidth": false
-        });
-    });
-</script>
