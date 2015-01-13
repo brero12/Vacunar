@@ -175,7 +175,14 @@ function addChildMap(nombre_mapa, etiqueta_punto){
     cargarURL("#contenedor_principal", ajaxurl, data_form);
 }
 
-function addSchema(){
+function viewSchema(){
+    var ajaxurl  = 'view/view_schema.php';
+    var data_form = {};
+    cargarURL("#contenedor_principal", ajaxurl, data_form);
+    
+}
+
+function addVaccine(){
     var ajaxurl  = 'view/add_schema.php';
     var data_form = {};
     cargarURL("#contenedor_principal", ajaxurl, data_form);

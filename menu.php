@@ -23,7 +23,7 @@
 		<ul class="treeview-menu">
 			<li><a href="JavaScript:cargarMapas(1);"><i class="fa" style="content:url(img/menu/child_item_menu.png); height:14px; width:14px"></i> Registrar ni&ntilde;o</a></li>
 			<li><a href="JavaScript:viewChild(this);"><i class="fa" style="content:url(img/menu/search_item_menu.png); height:14px; width:14px"></i> Ver Ni&ntilde;os</a></li>
-			<li><a href="JavaScript:addSchema(this);"><i class="fa" style="content:url(img/menu/checklist_item_menu.png); height:14px; width:14px"></i> Ver esquema</a></li>
+			<li><a href="JavaScript:viewSchema(this);"><i class="fa" style="content:url(img/menu/checklist_item_menu.png); height:14px; width:14px"></i> Esquema vacunaci&oacute;n</a></li>
 		</ul>
 	</li>
 	

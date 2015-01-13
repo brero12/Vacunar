@@ -1,4 +1,4 @@
-<?php include '../controller/functions_child.php'; ?>
+<?php include '../controller/functions_schema.php'; ?>
 
 <script src="js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
 <script src="js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
@@ -6,7 +6,7 @@
 <script type="text/javascript">
     $(function() {
 
-        var dataTable = $('#tbl_ninos').dataTable({
+       var dataTable =  $('#tbl_esquema_vacuna').dataTable({
             "bPaginate": true,
             "bLengthChange": false,
             "bFilter": true,
@@ -21,35 +21,35 @@
             dataTable.fnFilter(this.value);
         });  
         
-        document.getElementById("tbl_ninos_filter").style.display="none";
+        document.getElementById("tbl_esquema_vacuna_filter").style.display="none";        
     });
 </script>
 
 <section class="content-header">
     <h1>
-        Administraci&oacute;n
-        <small>Ver ni&ntilde;os</small>
+        Ver Esquema
+        <small>Esquema de vacunaci&oacute;n </small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Principal</a></li>
+        <li><a href="#"><i class="fa fa-dashboard" style="content:url(img/menu/home_menu.png); height:14px; width:14px"></i> Principal</a></li>
         <li><a href="#">Administraci&oacute;n</a></li>
-        <li class="active">Ver ni&ntilde;os</li>
+        <li class="active">Ver Esquema</li>
     </ol>
 </section>
 
 <!-- Main content -->
 <section class="content">
     <div class="row">
-        <div class="col-xs-12">                           
+        <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Listado de ni&ntilde;os registrados</h3>
+                    <h3 class="box-title">Esquema Vacunas (Tiempo en meses)</h3> 
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive">
                     <div align="center">
                         <div class="row" >
                             <div class="col-xs-7" align="right" >
-                                
+
                             </div>
                             <div class="col-xs-5" align="right">
                                 <table border="0" width="70%" cellpadding="0" cellspacing="0">
@@ -58,31 +58,38 @@
                                             <label>Buscar:</label>
                                         </td>
                                         <td style="vertical-align:middle">
-                                            <input type="text" id="searchbox" class="form-control" style="width: 80%; margin: 10px; background-image: url(img/actions/search_icon.png); background-repeat: no-repeat; background-position:left center; padding-left: 20px" />
+                                           <input type="text" id="searchbox" class="form-control" style="width: 80%; margin: 10px; background-image: url(img/actions/search_icon.png); background-repeat: no-repeat; background-position:left center; padding-left: 20px" />
                                         </td>
                                     </tr>
                                 </table>
-                                
                             </div>
                         </div>
-                        <div id="contenedor_resultado_puerta" align="center">
+                        <div class="row">
+                            <button type="button" class="btn btn-primary" onclick="javascript:addVaccine(this)"><i class="fa fa-plus" id="botonConfirmarCancelar"></i> Agregar vacuna</button>
+                            <br/>
+                        </div>
+                        <div class="row" id="contenedor_resultado_esquema" align="center">
                         </div>
                     </div>
-                    
-                    <table id="tbl_ninos" class="table table-bordered table-striped">
+
+                    <table id="tbl_esquema_vacuna" class="table table-bordered table-striped" >
                         <thead>
                             <tr>
-                                <th>No. Identificaci&oacute;n</th>
-                                <th>Nombre(s)</th>
-                                <th>Apellido(s)</th>
-                                <th>Fecha Nacimiento</th>
-                                <th>Estado</th>
-                                <th></th>
-                                <th></th>
+                                <th>Nombre Vacuna</th>
+                                <th>1ra Dosis</th>
+                                <th>2do Dosis</th>
+                                <th>3er Dosis</th>
+                                <th>4ta Dosis</th>
+                                <th>5ta Dosis</th>
+                                <th>1er Refuerzo</th>
+                                <th>2do Refuerzo</th>
+                                <th>1er Adicional</th>
+                                <th>2do Adicional</th>
+                                <th>Tipo</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php getDataChild(); ?>                                           
+                            <?php getDataSchema(); ?>
                         </tbody>
                         <tfoot>
                             <tr>
@@ -96,9 +103,8 @@
                             </tr>
                         </tfoot>
                     </table>
-                </div><!-- /.box-body -->
+                </div> <!-- /.box-body -->
             </div><!-- /.box -->
         </div>
     </div>
-
 </section><!-- /.content -->

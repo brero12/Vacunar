@@ -9,73 +9,140 @@
             format: 'yyyy/mm/dd'
         });
         
-        //("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
-       /*         //Datemask2 mm/dd/yyyy
-                $("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
-                //Money Euro
-                $("[data-mask]").inputmask();*/
-        
     });
 </script>
 
-           
-           
-                <!-- Content Header (Page header) -->
-                <section class="content-header">
-                    <h1>
-                        Ver Esquema
-                        <small>Esquema de vacunaci&oacute;n </small>
-                    </h1>
-                    <ol class="breadcrumb">
-                        <li><a href="#"><i class="fa fa-dashboard" style="content:url(img/menu/home_menu.png); height:14px; width:14px"></i> Principal</a></li>
-                        <li><a href="#">Administraci&oacute;n</a></li>
-                        <li class="active">Ver Esquema</li>
-                    </ol>
-                </section>
+<section class="content-header">
+    <h1>
+        Ver Esquema
+        <small>Esquema de vacunaci&oacute;n </small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard" style="content:url(img/menu/home_menu.png); height:14px; width:14px"></i> Principal</a></li>
+        <li><a href="#">Administraci&oacute;n</a></li>
+        <li><a href="#">Esquema Vacunaci&oacute;n</a></li>
+        <li class="active">Agregar Vacuna</li>
+    </ol>
+</section>
 
-                <!-- Main content -->
-                <section class="content">
-                    
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="box">
-                                <div class="box-header">
-                                    <h3 class="box-title">Esquema Vacunas (Tiempo en meses)</h3> 
-                                    <div class="box-tools">
-                                        <div class="input-group">
-                                            <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Buscar"/>
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div><!-- /.box-header -->
-                                
-                               
-                                <div class="box-body table-responsive no-padding">
-                                    <table class="table table-hover">
-                                        <tr>
-                                            <th>Nombre Vacuna</th>
-                                            <th>1ra Dosis</th>
-                                            <th>2do Dosis</th>
-                                            <th>3er Dosis</th>
-                                            <th>4ta Dosis</th>
-                                            <th>5ta Dosis</th>
-                                            <th>1er Refuerzo</th>
-                                            <th>2do Refuerzo</th>
-                                            <th>1er Adicional</th>
-                                            <th>2do Adicional</th>
-                                            <th>Tipo</th>
-                                        </tr
-                                         <?php getDataSchema(); ?>
-                                    </table>
-                               <!-- </div> /.box-body -->
-                            </div><!-- /.box -->
-                        </div>
-                    </div>
-                </section><!-- /.content -->
-                
-                 <!-- jQuery 2.0.2 -->
-        
-                
-        
+<!-- Main content -->
+<section class="content">
+    <div class="box-body" align="center">
+        <div class="form-group"> 
+            <div class="row">
+                <div class="col-md-6" style="float: center">
+                    <table border = "0" width="100%">
+                        <tr >
+                            <td width="30%"><label for="primerNombre" >Vacuna :</label></td>
+                            <td>
+                                <div class="input-group">
+                                    <span class="input-group-addon" ><i class="fa  fa-pencil"></i></span>
+                                    <input type="text" class="form-control" id="fechaVacunacion" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label >Dosis 1 :</label></td>
+                            <td >
+                                <div class="input-group date">
+                                    <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
+                                    <input type="text" class="form-control" id="fechaVacunacion" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label >Dosis 2 :</label></td>
+                            <td>
+                                <div class="input-group date">
+                                    <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
+                                    <input type="text" class="form-control" id="fechaVacunacion" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label >Dosis 3 :</label></td>
+                            <td>
+                                <div class="input-group date">
+                                    <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
+                                    <input type="text" class="form-control" id="fechaVacunacion" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label >Dosis 4 :</label></td>
+                            <td>
+                                <div class="input-group date">
+                                    <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
+                                    <input type="text" class="form-control" id="fechaVacunacion" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label >Dosis 5 :</label></td>
+                            <td>
+                                <div class="input-group date">
+                                    <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
+                                    <input type="text" class="form-control" id="fechaVacunacion" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label >Refuerzo 1 :</label></td>
+                            <td>
+                                <div class="input-group date">
+                                    <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
+                                    <input type="text" class="form-control" id="fechaVacunacion" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label >Refuerzo 2 :</label></td>
+                            <td>
+                                <div class="input-group date">
+                                    <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
+                                    <input type="text" class="form-control" id="fechaVacunacion" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label >Adicional 1 :</label></td>
+                            <td>
+                                <div class="input-group date">
+                                    <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
+                                    <input type="text" class="form-control" id="fechaVacunacion" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label >Adicional 2 :</label></td>
+                            <td>
+                                <div class="input-group date">
+                                    <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
+                                    <input type="text" class="form-control" id="fechaVacunacion" />
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td colspan="2">
+                                <br/>
+                                <div id="divError" class="callout callout-danger" style="display:none">
+                                    <div id="subDivError"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="col-xs-12" id="saveSchema">
+                                    <button type="button" class="btn btn-primary btn-block" onclick="Javascript:validarAgregarVacunaTabla();">Agregar vacuna</button>
+                                    <button type="button" id="botonCancelar" class="btn btn-danger btn-block" data-toggle="modal" data-target="#compose-modal">Cancelar esquema</button>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- /.content -->
