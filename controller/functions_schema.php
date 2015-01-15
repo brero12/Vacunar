@@ -103,6 +103,8 @@ function getDataSchema() {
             }
 
             echo ' <tr>
+                        <td align="center"><button type="button" class="btn btn-danger" onclick="javascript:addVaccine(this)"><i class="fa fa-edit" id="botonConfirmarCancelar"></i> </button></td>
+                        <td align="center"><button type="button" class="btn btn-danger" onclick="javascript:addVaccine(this)"><i class="fa fa-times-circle" id="botonConfirmarCancelar"></i> </button></td>
                         <td>'.$nombre_vacuna.'</td>
                         <td>'.$dosis1.'</td>
                         <td>'.$dosis2.'</td>

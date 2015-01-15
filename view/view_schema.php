@@ -75,6 +75,8 @@
                     <table id="tbl_esquema_vacuna" class="table table-bordered table-striped" >
                         <thead>
                             <tr>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
                                 <th>Nombre Vacuna</th>
                                 <th>1ra Dosis</th>
                                 <th>2do Dosis</th>

@@ -27,17 +27,21 @@
 
 <!-- Main content -->
 <section class="content">
+    <div class="box box-primary">
+    <div class="box-header">
+        <h3 class="box-title">Agregar Vacuna  </h3>
+    </div><!-- /.box-header -->
     <div class="box-body" align="center">
         <div class="form-group"> 
             <div class="row">
-                <div class="col-md-6" style="float: center">
+                <div class="col-md-3" >
                     <table border = "0" width="100%">
                         <tr >
-                            <td width="30%"><label for="primerNombre" >Vacuna :</label></td>
+                            <td width="35%"><label for="primerNombre" >Vacuna :</label></td>
                             <td>
                                 <div class="input-group">
                                     <span class="input-group-addon" ><i class="fa  fa-pencil"></i></span>
-                                    <input type="text" class="form-control" id="fechaVacunacion" />
+                                    <input type="text" class="form-control" id="nombreVacuna" />
                                 </div>
                             </td>
                         </tr>
@@ -46,7 +50,7 @@
                             <td >
                                 <div class="input-group date">
                                     <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
-                                    <input type="text" class="form-control" id="fechaVacunacion" />
+                                    <input type="text" class="form-control" id="dosis1" />
                                 </div>
                             </td>
                         </tr>
@@ -55,7 +59,7 @@
                             <td>
                                 <div class="input-group date">
                                     <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
-                                    <input type="text" class="form-control" id="fechaVacunacion" />
+                                    <input type="text" class="form-control" id="dosis2" />
                                 </div>
                             </td>
                         </tr>
@@ -64,7 +68,7 @@
                             <td>
                                 <div class="input-group date">
                                     <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
-                                    <input type="text" class="form-control" id="fechaVacunacion" />
+                                    <input type="text" class="form-control" id="dosis3" />
                                 </div>
                             </td>
                         </tr>
@@ -73,7 +77,7 @@
                             <td>
                                 <div class="input-group date">
                                     <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
-                                    <input type="text" class="form-control" id="fechaVacunacion" />
+                                    <input type="text" class="form-control" id="dosis4" />
                                 </div>
                             </td>
                         </tr>
@@ -82,7 +86,7 @@
                             <td>
                                 <div class="input-group date">
                                     <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
-                                    <input type="text" class="form-control" id="fechaVacunacion" />
+                                    <input type="text" class="form-control" id="dosis5" />
                                 </div>
                             </td>
                         </tr>
@@ -91,7 +95,7 @@
                             <td>
                                 <div class="input-group date">
                                     <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
-                                    <input type="text" class="form-control" id="fechaVacunacion" />
+                                    <input type="text" class="form-control" id="refuerzo1" />
                                 </div>
                             </td>
                         </tr>
@@ -100,7 +104,7 @@
                             <td>
                                 <div class="input-group date">
                                     <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
-                                    <input type="text" class="form-control" id="fechaVacunacion" />
+                                    <input type="text" class="form-control" id="refuerzo2" />
                                 </div>
                             </td>
                         </tr>
@@ -109,7 +113,7 @@
                             <td>
                                 <div class="input-group date">
                                     <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
-                                    <input type="text" class="form-control" id="fechaVacunacion" />
+                                    <input type="text" class="form-control" id="adicional1" />
                                 </div>
                             </td>
                         </tr>
@@ -118,7 +122,7 @@
                             <td>
                                 <div class="input-group date">
                                     <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
-                                    <input type="text" class="form-control" id="fechaVacunacion" />
+                                    <input type="text" class="form-control" id="adicional2" />
                                 </div>
                             </td>
                         </tr>
@@ -133,9 +137,9 @@
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <div class="col-xs-12" id="saveSchema">
+                                <div class="col-xs-12" id="saveVaccine">
                                     <button type="button" class="btn btn-primary btn-block" onclick="Javascript:validarAgregarVacunaTabla();">Agregar vacuna</button>
-                                    <button type="button" id="botonCancelar" class="btn btn-danger btn-block" data-toggle="modal" data-target="#compose-modal">Cancelar esquema</button>
+                                    <button type="button" id="botonCancelar" class="btn btn-danger btn-block" onclick="javascript:viewSchema(this);">Cancelar</button>
                                 </div>
                             </td>
                         </tr>
@@ -144,5 +148,6 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </section><!-- /.content -->
