@@ -43,10 +43,19 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Esquema Vacunas (Tiempo en meses)</h3> 
+                    <h3 class="box-title">Esquema Vacunas (Tiempo en meses)
+                    
+                    </h3> 
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive">
                     <div align="center">
+                        <div class="row" id="contenedor_resultado_esquema" align="center">
+                            <?php 
+                                if( isset($_POST['respuesta'])){ 
+                                    echo $_POST['respuesta'];
+                                } 
+                            ?>
+                        </div>
                         <div class="row" >
                             <div class="col-xs-7" align="right" >
 
@@ -68,8 +77,7 @@
                             <button type="button" class="btn btn-primary" onclick="javascript:addVaccine(this)"><i class="fa fa-plus" id="botonConfirmarCancelar"></i> Agregar vacuna</button>
                             <br/>
                         </div>
-                        <div class="row" id="contenedor_resultado_esquema" align="center">
-                        </div>
+                        
                     </div>
 
                     <table id="tbl_esquema_vacuna" class="table table-bordered table-striped" >

@@ -175,13 +175,6 @@ function addChildMap(nombre_mapa, etiqueta_punto){
     cargarURL("#contenedor_principal", ajaxurl, data_form);
 }
 
-function viewSchema(){
-    var ajaxurl  = 'view/view_schema.php';
-    var data_form = {};
-    cargarURL("#contenedor_principal", ajaxurl, data_form);
-    
-}
-
 function viewChild(){
     var ajaxurl  = 'view/view_child.php';
     var data_form = {};
@@ -434,6 +427,13 @@ function saveChildSchema(){
 }
 
 //############################################## ESQUEMA DE VACUNACION ##############################################
+function viewSchema(datos){
+    var ajaxurl  = 'view/view_schema.php';
+    var data_form = datos;
+    cargarURL("#contenedor_principal", ajaxurl, data_form);
+    
+}
+
 
 function addVaccine(){
     var ajaxurl  = 'view/add_vaccine_schema.php';
@@ -491,8 +491,16 @@ function saveVaccineSchema(tipo_guardado){
             tipo_guardado       : tipo_guardado
         };
         
-        viewSchema();
-        cargarURL("#contenedor_resultado_esquema", ajaxurl, data_form);
+        //Se reemplaza por cargarURL para tener más control de los datos enviados cuando se cargue con éxito el archivo
+        $.ajax ( {
+                type: 'post',
+                url : ajaxurl,
+                data : data_form,
+                success : function(response) {
+                    var resp = {respuesta : response};
+                    viewSchema(resp);
+                }
+        });
     }
     else if(tipo_guardado === 2){ //MODIFICAR
         if(!requerido('nombreVacuna')){return false;}
@@ -520,8 +528,18 @@ function saveVaccineSchema(tipo_guardado){
             adicional2          : document.getElementById('adicional2').value,
             tipo_guardado       : tipo_guardado
         };
-        viewSchema();
-        cargarURL("#contenedor_resultado_esquema", ajaxurl, data_form);
+
+        $.ajax ( {
+                type: 'post',
+                url : ajaxurl,
+                data : data_form,
+                success : function(response) {
+                    var resp = {respuesta : response};
+                    viewSchema(resp);
+                }
+        });
+        
+        //cargarURL("#contenedor_principal", ajaxurl, data_form);
     }
 }
 

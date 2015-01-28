@@ -310,6 +310,8 @@ function insertVaccineSchema($nombre_vacuna){
     $query->execute();
 
     $id_result = $mysqli->insert_id;
+    
+    insertVaccineDose ($id_vaccine_schema, $dosis1, $dosis2, $dosis3, $dosis4, $dosis5, $refuerzo1, $refuerzo2, $adicional1, $adicional2);
 
     return $id_result;
 }
@@ -332,7 +334,9 @@ function updateVaccineSchema($id_vaccine_schema, $nombre_vacuna){
 
     $query->execute();
 
-    $id_result = $mysqli->insert_id;
+    $id_result = $mysqli->affected_rows;
+    
+    $mysqli->close(); 
 
     return $id_result;
 }
@@ -394,7 +398,9 @@ function updateVaccineDose($id_vaccine_schema, $dosis1, $dosis2, $dosis3, $dosis
 
     $query->execute();
 
-    $id_result = $mysqli->insert_id;
+    $id_result = $mysqli->affected_rows;
+    
+    $mysqli->close(); 
 
     return $id_result;
 }
