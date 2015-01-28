@@ -87,7 +87,6 @@
                                 <th>2do Refuerzo</th>
                                 <th>1er Adicional</th>
                                 <th>2do Adicional</th>
-                                <th>Tipo</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -95,6 +94,11 @@
                         </tbody>
                         <tfoot>
                             <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>

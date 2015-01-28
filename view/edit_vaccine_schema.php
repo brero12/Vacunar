@@ -21,7 +21,7 @@
         <li><a href="#"><i class="fa fa-dashboard" style="content:url(img/menu/home_menu.png); height:14px; width:14px"></i> Principal</a></li>
         <li><a href="#">Administraci&oacute;n</a></li>
         <li><a href="#">Esquema Vacunaci&oacute;n</a></li>
-        <li class="active">Agregar Vacuna</li>
+        <li class="active">Editar Vacuna</li>
     </ol>
 </section>
 
@@ -29,19 +29,21 @@
 <section class="content">
     <div class="box box-primary">
     <div class="box-header">
-        <h3 class="box-title">Agregar Vacuna  </h3>
+        <h3 class="box-title">Editar Vacuna  </h3>
     </div><!-- /.box-header -->
     <div class="box-body" align="center">
         <div class="form-group"> 
             <div class="row">
-                <div class="col-md-3" >
+                <div class="col-md-5" >
+                    <input type="hidden" class="form-control" id="id_vaccine_schema" value="<?php echo $_POST['id_vaccine_schema']; ?>" />
                     <table border = "0" width="100%">
                         <tr >
-                            <td width="35%"><label for="primerNombre" >Vacuna :</label></td>
+                            <td width="30%"><label for="primerNombre" >Vacuna :</label></td>
                             <td>
                                 <div class="input-group">
                                     <span class="input-group-addon" ><i class="fa  fa-pencil"></i></span>
-                                    <input type="text" class="form-control" id="nombreVacuna" />
+                                    <input type="text" class="form-control" id="nombreVacuna" value="<?php echo $_POST['nombre_vacuna']; ?>" />
+                                    <div id="v_nombreVacuna" style="text-align: center"></div>
                                 </div>
                             </td>
                         </tr>
@@ -50,7 +52,8 @@
                             <td >
                                 <div class="input-group date">
                                     <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
-                                    <input type="text" class="form-control" id="dosis1" />
+                                    <input type="text" class="form-control" style="width: 30%"  id="dosis1" value="<?php echo $_POST['dosis1']; ?>" />
+                                    <div id="v_dosis1" style="text-align: center"></div>
                                 </div>
                             </td>
                         </tr>
@@ -59,7 +62,8 @@
                             <td>
                                 <div class="input-group date">
                                     <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
-                                    <input type="text" class="form-control" id="dosis2" />
+                                    <input type="text" class="form-control" style="width: 30%" id="dosis2" value="<?php echo $_POST['dosis2']; ?>" />
+                                    <div id="v_dosis2" style="text-align: center"></div>
                                 </div>
                             </td>
                         </tr>
@@ -68,7 +72,8 @@
                             <td>
                                 <div class="input-group date">
                                     <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
-                                    <input type="text" class="form-control" id="dosis3" />
+                                    <input type="text" class="form-control" style="width: 30%" id="dosis3" value="<?php echo $_POST['dosis3']; ?>" />
+                                    <div id="v_dosis3" style="text-align: center"></div>
                                 </div>
                             </td>
                         </tr>
@@ -77,7 +82,8 @@
                             <td>
                                 <div class="input-group date">
                                     <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
-                                    <input type="text" class="form-control" id="dosis4" />
+                                    <input type="text" class="form-control" style="width: 30%" id="dosis4" value="<?php echo $_POST['dosis4']; ?>" />
+                                    <div id="v_dosis4" style="text-align: center"></div>
                                 </div>
                             </td>
                         </tr>
@@ -86,7 +92,8 @@
                             <td>
                                 <div class="input-group date">
                                     <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
-                                    <input type="text" class="form-control" id="dosis5" />
+                                    <input type="text" class="form-control" style="width: 30%" id="dosis5" value="<?php echo $_POST['dosis5']; ?>" />
+                                    <div id="v_dosis5" style="text-align: center"></div>
                                 </div>
                             </td>
                         </tr>
@@ -95,7 +102,8 @@
                             <td>
                                 <div class="input-group date">
                                     <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
-                                    <input type="text" class="form-control" id="refuerzo1" />
+                                    <input type="text" class="form-control" style="width: 30%" id="refuerzo1" value="<?php echo $_POST['refuerzo1']; ?>" />
+                                    <div id="v_refuerzo1" style="text-align: center"></div>
                                 </div>
                             </td>
                         </tr>
@@ -104,7 +112,8 @@
                             <td>
                                 <div class="input-group date">
                                     <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
-                                    <input type="text" class="form-control" id="refuerzo2" />
+                                    <input type="text" class="form-control" style="width: 30%" id="refuerzo2" value="<?php echo $_POST['refuerzo2']; ?>" />
+                                    <div id="v_refuerzo2" style="text-align: center"></div>
                                 </div>
                             </td>
                         </tr>
@@ -113,7 +122,8 @@
                             <td>
                                 <div class="input-group date">
                                     <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
-                                    <input type="text" class="form-control" id="adicional1" />
+                                    <input type="text" class="form-control" style="width: 30%" id="adicional1" value="<?php echo $_POST['adicional1']; ?>" />
+                                    <div id="v_adicional1" style="text-align: center"></div>
                                 </div>
                             </td>
                         </tr>
@@ -122,23 +132,15 @@
                             <td>
                                 <div class="input-group date">
                                     <div class="input-group-addon"><i class="fa fa-pencil"></i></div>
-                                    <input type="text" class="form-control" id="adicional2" />
-                                </div>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td colspan="2">
-                                <br/>
-                                <div id="divError" class="callout callout-danger" style="display:none">
-                                    <div id="subDivError"></div>
+                                    <input type="text" class="form-control" style="width: 30%" id="adicional2" value="<?php echo $_POST['adicional2']; ?>" />
+                                    <div id="v_adicional2" style="text-align: center"></div>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">
                                 <div class="col-xs-12" id="saveVaccine">
-                                    <button type="button" class="btn btn-primary btn-block" onclick="Javascript:validarAgregarVacunaTabla();">Agregar vacuna</button>
+                                    <button type="button" class="btn btn-primary btn-block" onclick="Javascript:saveVaccineSchema(2);">Modificar vacuna</button>
                                     <button type="button" id="botonCancelar" class="btn btn-danger btn-block" onclick="javascript:viewSchema(this);">Cancelar</button>
                                 </div>
                             </td>

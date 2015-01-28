@@ -182,13 +182,6 @@ function viewSchema(){
     
 }
 
-function addVaccine(){
-    var ajaxurl  = 'view/add_schema.php';
-    var data_form = {};
-    cargarURL("#contenedor_principal", ajaxurl, data_form);
-    
-}
-
 function viewChild(){
     var ajaxurl  = 'view/view_child.php';
     var data_form = {};
@@ -440,34 +433,105 @@ function saveChildSchema(){
     
 }
 
+//############################################## ESQUEMA DE VACUNACION ##############################################
 
-//############################################## EMPRESAS ##############################################
-function verEmpresa(id_empresa, ajaxurl){
-
-    var data_form;
-    
-    if(id_empresa !== "0"){
-        data_form = {
-            id_empresa          : id_empresa,
-            codigo_base         : document.getElementById('codigo_base'+id_empresa).innerHTML,
-            nit_empresa         : document.getElementById('nit_empresa'+id_empresa).innerHTML,
-            nombre_empresa      : document.getElementById('nombre_empresa'+id_empresa).innerHTML,
-            id_ubicacion        : document.getElementById('id_ubicacion'+id_empresa).innerHTML,
-            direccion_ubicacion : document.getElementById('direccion_ubicacion'+id_empresa).innerHTML,
-            id_ciudad           : document.getElementById('id_ciudad'+id_empresa).innerHTML,
-            nombre_ciudad       : document.getElementById('nombre_ciudad'+id_empresa).innerHTML,
-            id_departamento     : document.getElementById('id_departamento'+id_empresa).innerHTML,
-            nombre_departamento : document.getElementById('nombre_departamento'+id_empresa).innerHTML
-        };
-    }
-    else{
-        data_form = {
-            id_empresa          : id_empresa,
-            agregar             : 'FALSE'
-        };
-    }
-    
+function addVaccine(){
+    var ajaxurl  = 'view/add_vaccine_schema.php';
+    var data_form = {};
     cargarURL("#contenedor_principal", ajaxurl, data_form);
+    
+}
+
+function editVaccine(id_vaccine_schema){
+    var ajaxurl  = 'view/edit_vaccine_schema.php';
+    var data_form = {
+            id_vaccine_schema   : id_vaccine_schema,
+            nombre_vacuna       : document.getElementById('nombre_vacuna_'+id_vaccine_schema).innerHTML,
+            dosis1              : document.getElementById('dosis1_'+id_vaccine_schema).innerHTML,
+            dosis2              : document.getElementById('dosis2_'+id_vaccine_schema).innerHTML,
+            dosis3              : document.getElementById('dosis3_'+id_vaccine_schema).innerHTML,
+            dosis4              : document.getElementById('dosis4_'+id_vaccine_schema).innerHTML,
+            dosis5              : document.getElementById('dosis5_'+id_vaccine_schema).innerHTML,
+            refuerzo1           : document.getElementById('refuerzo1_'+id_vaccine_schema).innerHTML,
+            refuerzo2           : document.getElementById('refuerzo2_'+id_vaccine_schema).innerHTML,
+            adicional1          : document.getElementById('adicional1_'+id_vaccine_schema).innerHTML,
+            adicional2          : document.getElementById('adicional2_'+id_vaccine_schema).innerHTML
+            
+        };
+    cargarURL("#contenedor_principal", ajaxurl, data_form);
+    
+}
+
+function saveVaccineSchema(tipo_guardado){
+    var ajaxurl  = 'controller/save_vaccine_schema.php';
+    
+    if(tipo_guardado === 1){ // GUARDAR
+        if(!requerido('nombreVacuna')){return false;}
+        if(!requerido('dosis1')){return false;}
+        if(!requerido('dosis2')){return false;}
+        if(!requerido('dosis3')){return false;}
+        if(!requerido('dosis4')){return false;}
+        if(!requerido('dosis5')){return false;}
+        if(!requerido('refuerzo1')){return false;}
+        if(!requerido('refuerzo2')){return false;}
+        if(!requerido('adicional1')){return false;}
+        if(!requerido('adicional2')){return false;}
+        
+        var data_form = {
+            nombre_vacuna       : document.getElementById('nombreVacuna').value,
+            dosis1              : document.getElementById('dosis1').value,
+            dosis2              : document.getElementById('dosis2').value,
+            dosis3              : document.getElementById('dosis3').value,
+            dosis4              : document.getElementById('dosis4').value,
+            dosis5              : document.getElementById('dosis5').value,
+            refuerzo1           : document.getElementById('refuerzo1').value,
+            refuerzo2           : document.getElementById('refuerzo2').value,
+            adicional1          : document.getElementById('adicional1').value,
+            adicional2          : document.getElementById('adicional2').value,
+            tipo_guardado       : tipo_guardado
+        };
+        
+        viewSchema();
+        cargarURL("#contenedor_resultado_esquema", ajaxurl, data_form);
+    }
+    else if(tipo_guardado === 2){ //MODIFICAR
+        if(!requerido('nombreVacuna')){return false;}
+        if(!requerido('dosis1')){return false;}
+        if(!requerido('dosis2')){return false;}
+        if(!requerido('dosis3')){return false;}
+        if(!requerido('dosis4')){return false;}
+        if(!requerido('dosis5')){return false;}
+        if(!requerido('refuerzo1')){return false;}
+        if(!requerido('refuerzo2')){return false;}
+        if(!requerido('adicional1')){return false;}
+        if(!requerido('adicional2')){return false;}
+        
+        var data_form = {
+            id_vaccine_schema   : document.getElementById('id_vaccine_schema').value,
+            nombre_vacuna       : document.getElementById('nombreVacuna').value,
+            dosis1              : document.getElementById('dosis1').value,
+            dosis2              : document.getElementById('dosis2').value,
+            dosis3              : document.getElementById('dosis3').value,
+            dosis4              : document.getElementById('dosis4').value,
+            dosis5              : document.getElementById('dosis5').value,
+            refuerzo1           : document.getElementById('refuerzo1').value,
+            refuerzo2           : document.getElementById('refuerzo2').value,
+            adicional1          : document.getElementById('adicional1').value,
+            adicional2          : document.getElementById('adicional2').value,
+            tipo_guardado       : tipo_guardado
+        };
+        viewSchema();
+        cargarURL("#contenedor_resultado_esquema", ajaxurl, data_form);
+    }
+}
+
+function deleteVaccine(id_vaccine_schema){
+    var ajaxurl  = 'view/delete_vaccine_schema.php';
+    var data_form = {
+        id_vaccine_schema   : id_vaccine_schema,
+    };
+    cargarURL("#contenedor_secundario", ajaxurl, data_form);
+    
 }
 
 //############################################## REPORTES ##############################################
