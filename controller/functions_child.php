@@ -329,7 +329,7 @@ function getTipoIdentificacion($condicion, $select = null) {
     }
 }
 
-function getDataChild() {
+function getDataChild($filtros=NULL) {
 
     global $bd_host;
     global $bd_usuario;
@@ -340,7 +340,17 @@ function getDataChild() {
 
 
 
-    $consulta = 'select numero_identificacion, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento from tbl_personas where is_mom<>1 order by primer_nombre';
+    $consulta = 'select    per.id_tbl_personas, '
+            . 'per.numero_identificacion, '
+            . 'per.primer_nombre, '
+            . 'per.segundo_nombre, '
+            . 'per.primer_apellido, '
+            . 'per.segundo_apellido, '
+            . 'per.fecha_nacimiento, '
+            . 'per.regimen_afiliacion, '
+            . 'per.aseguradora '
+            . 'from tbl_personas per '
+            . 'where per.is_mom <> 1 order by primer_nombre';
 
     /* echo '<option>'.$consulta.'</option>'; */
 
@@ -349,15 +359,17 @@ function getDataChild() {
         // execute
         $query->execute();
         // bind results
-        $query->bind_result($numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento);
+       $query->bind_result($id_tbl_personas, $numero_identificacion, $primer_nombre, $segundo_nombre, $primer_apellido, $segundo_apellido, $fecha_nacimiento, $regimen_afiliacion, $aseguradora);
 
         while ($query->fetch()) {
 
             echo '<tr>
-                       <td>' . $numero_identificacion . '</td>
-                                                <td>' . $primer_nombre . ' ' . $segundo_nombre . '</td>
+                       <td>' . $numero_identificacion . '</td>                                                
                                                 <td>' . $primer_apellido . ' ' . $segundo_apellido . '</td>
+                                                <td>' . $primer_nombre . ' ' . $segundo_nombre . '</td>    
                                                 <td>' . $fecha_nacimiento . '</td>
+                                                <td>' . $regimen_afiliacion . '</td>
+                                                <td>' . $aseguradora . '</td>
                                                 <td>Estado vacunacion</td>
                                                 <td><i class="fa fa-fw fa-eye" onclick="JavaScript:viewDataToChild(\'' . $numero_identificacion . '\')"></i></td>
                                                 <td><i class="fa fa-edit" onclick="JavaScript:editChild(\'' . $numero_identificacion . '\')"></i></td>   

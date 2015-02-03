@@ -7,7 +7,7 @@
  */
 
 $bd_host = "localhost"; 
-	$bd_usuario = "root"; 
+	$bd_usuario = "vacunas"; 
 	$bd_password = "diseno&desarrollo"; 
-	$bd_base = "bd_vacunar"; 
+	$bd_base = "bd_vacunas"; 
 
